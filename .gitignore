@@ -1,0 +1,30 @@
+# Dataset files, labels, and videos never go in git
+data/
+*.mp4
+*.mov
+*.webm
+*.avi
+*.mkv
+
+# Credentials
+*.config
+!config.example
+.env
+.env.*
+*-secret.yaml
+kubeconfig
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Always keep these, even if a broader pattern matches
+!/SUBMISSION.md
+!/NOTICE.md

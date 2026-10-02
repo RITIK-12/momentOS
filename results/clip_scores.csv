@@ -1,0 +1,668 @@
+id,score,rank,precursor_z,search_z,yolo_z,llm_z,risk_last,risk_max,llm_risk,cause,peak_segment,cues,summary
+00002,0.79296,11,1.678,0.155,2.723,0.930,9.0,9.0,8.0,other,2,cut_in;vehicle_crossing_path,"A white sedan cuts in front of the ego vehicle, forcing it to brake suddenly as a pedestrian crosses the path."
+00009,0.67160,153,1.405,0.719,-1.486,0.930,8.0,8.0,8.0,ego,2,brake_lights_ahead;cut_in;low_visibility;vehicle_crossing_path,"The ego vehicle is slowing down and yielding to a white truck that is cutting into its lane, creating a high risk of collision."
+00020,0.77070,23,1.678,-0.009,1.404,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+00030,0.56757,203,0.165,0.279,0.118,0.530,1.0,8.0,7.0,none,1,brake_lights_ahead;vehicle_crossing_path,"The white SUV ahead brakes hard, forcing the ego vehicle to slow down to avoid a rear-end collision."
+00035,0.74687,57,1.405,0.694,0.325,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"A black car ahead suddenly stops and cuts into the ego vehicle's lane, creating a high risk of collision."
+00038,0.44529,398,-0.503,1.127,0.155,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+00045,0.71000,119,1.405,0.360,0.193,0.930,8.0,8.0,8.0,other,3,brake_lights_ahead;cut_in,"The blue sedan ahead cuts into the ego lane and applies its brakes, requiring the ego vehicle to slow down quickly to avoid a collision."
+00051,0.70556,123,1.541,0.107,0.023,0.930,9.0,9.0,8.0,ego,2,brake_lights_ahead;ego_tailgating,"The ego vehicle is slowing down and tailgating the silver SUV ahead, which is braking, creating a high risk of rear-end collision."
+00067,0.75097,50,1.678,-0.299,1.734,0.930,9.0,9.0,8.0,other,2,oncoming_in_lane,"A black van is crossing the ego vehicle's path, creating a high risk of collision."
+00070,0.45142,388,-0.503,-0.380,-0.334,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead;cut_in,"The vehicle ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+00075,0.74537,62,1.678,0.593,0.346,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead;cut_in,"The black car ahead brakes hard and cuts into the ego vehicle's lane, creating a high risk of collision."
+00087,0.77063,24,1.773,0.527,0.433,1.329,9.0,10.0,9.0,ego,1,brake_lights_ahead;oncoming_in_lane;vehicle_crossing_path,The ego vehicle is driving fast and must swerve to avoid a collision with an oncoming vehicle in the same lane.
+00091,0.71882,108,1.678,0.585,-0.546,0.930,9.0,9.0,8.0,other,2,vehicle_crossing_path,"A white sedan crosses the ego's path, causing a collision."
+00092,0.57378,195,0.314,-0.066,0.348,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"The red car ahead cuts in and brakes suddenly, requiring the ego vehicle to slow down to avoid a collision."
+00094,0.58646,186,0.314,0.158,0.396,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white SUV ahead is braking and crossing into the ego lane, creating a collision risk."
+00101,0.34215,513,-1.049,-0.043,0.276,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is stopped behind a white pickup truck, with no immediate collision risk."
+00107,0.52201,266,-0.503,0.835,0.599,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white sedan ahead is braking, prompting the ego vehicle to remain stopped to avoid a collision."
+00113,0.68035,148,1.405,-0.169,-0.036,0.930,8.0,8.0,8.0,other,3,brake_lights_ahead;vehicle_crossing_path,"The black SUV ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+00116,0.72488,97,1.950,-0.597,-0.162,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"A police car crosses the intersection in front of the ego vehicle, creating a collision risk."
+00120,0.47109,352,-0.408,-0.516,-0.546,0.930,1.0,2.0,8.0,other,1,cut_in,"The vehicle ahead is moving at a moderate speed, and the ego vehicle is following it, maintaining a safe distance."
+00137,0.80223,7,1.678,0.548,1.915,1.329,9.0,9.0,9.0,other,3,vehicle_crossing_path,"A red minivan crosses directly in front of the ego vehicle's path, creating an immediate collision risk."
+00146,0.76101,38,1.541,0.657,0.519,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead,"The black car in front is slowing down and braking, requiring the ego vehicle to slow down to avoid a collision."
+00156,0.50731,290,0.042,-0.794,-0.408,0.930,3.0,3.0,8.0,other,2,brake_lights_ahead;vehicle_crossing_path,"A black SUV cuts in front of the ego vehicle, causing the ego to slow down."
+00159,0.81544,4,1.405,0.595,3.149,1.329,8.0,8.0,9.0,none,2,brake_lights_ahead;vehicle_crossing_path,"The white car ahead is braking and crossing the ego vehicle's path, creating a high risk of collision."
+00161,0.75221,49,1.678,0.675,0.479,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead;cut_in,"The vehicle ahead is braking hard and cutting into the ego lane, creating a high risk of collision."
+00176,0.73366,80,1.678,0.243,0.408,0.930,9.0,9.0,8.0,none,2,brake_lights_ahead;vehicle_crossing_path,"The black car ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+00185,0.35890,491,-0.953,1.153,-0.416,-1.468,0.0,1.0,2.0,none,1,pedestrian_in_path,"Pedestrian crosses in front of ego vehicle, requiring immediate braking to avoid collision."
+00193,0.78675,12,1.678,0.951,1.411,0.930,9.0,9.0,8.0,ego,2,brake_lights_ahead;cut_in;vehicle_crossing_path,The ego vehicle slows down and cuts into the adjacent lane to avoid a collision with the white pickup truck ahead.
+00196,0.69566,133,1.405,-0.881,0.724,1.329,8.0,8.0,9.0,other,2,vehicle_crossing_path,"A silver sedan crosses the intersection directly in front of the ego vehicle, forcing an immediate evasive maneuver to avoid a collision."
+00204,0.51346,279,-0.231,0.649,1.889,-1.068,2.0,2.0,3.0,other,2,vehicle_crossing_path,"The white sedan crosses the intersection in front of the ego vehicle, creating a collision risk."
+00211,0.35623,497,-0.858,0.779,-0.915,-1.068,0.0,2.0,3.0,none,1,,The ego vehicle is driving straight behind a black sedan on a three-lane road with moderate traffic.
+00215,0.71857,109,1.541,0.073,0.492,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead,"The white SUV ahead brakes hard, causing the ego vehicle to slow down sharply to avoid a collision."
+00219,0.74605,59,1.541,0.833,0.414,0.930,9.0,9.0,8.0,none,2,brake_lights_ahead,"The white sedan ahead is braking hard, causing the ego vehicle to slow down to avoid a rear-end collision."
+00221,0.59197,181,0.314,0.777,-0.278,0.530,4.0,4.0,7.0,other,3,brake_lights_ahead;cut_in,"The white car ahead cuts into the ego's lane and brakes suddenly, requiring the ego to slow down to avoid a collision."
+00230,0.76847,28,1.814,0.044,0.887,1.329,10.0,10.0,9.0,ego,2,brake_lights_ahead,"The ego vehicle is driving fast and swerves sharply left, cutting across the path of other vehicles."
+00231,0.78172,15,1.950,0.271,0.727,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white truck ahead is braking and crossing into the ego lane, creating a direct collision risk."
+00258,0.49951,299,0.042,0.152,-0.546,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+00261,0.48124,335,-0.231,-0.308,0.307,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,"A red car cuts in ahead of the ego vehicle, narrowing the gap and creating a potential collision risk."
+00267,0.72972,86,1.678,0.858,-0.546,0.930,9.0,9.0,8.0,ego,2,brake_lights_ahead;cut_in;low_visibility,"The ego vehicle is slowing down behind a car that cut into its lane, with brake lights visible ahead in low visibility conditions."
+00268,0.51235,283,-0.503,0.132,0.612,0.530,1.0,1.0,7.0,other,2,brake_lights_ahead;cut_in,"The white car ahead cuts into the ego vehicle's lane, causing a potential collision."
+00277,0.46984,357,-0.367,-0.242,-0.387,0.530,2.0,2.0,7.0,other,2,vehicle_crossing_path,"A white SUV crosses the ego vehicle's path, creating a potential collision risk."
+00278,0.72681,94,1.541,-0.349,1.329,0.930,9.0,9.0,8.0,none,2,brake_lights_ahead,"The black SUV ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+00279,0.80118,8,1.541,0.032,2.922,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;cut_in,"The white pickup truck ahead suddenly brakes, requiring the ego vehicle to brake hard to avoid a collision."
+00280,0.71305,116,1.678,0.007,-0.631,1.329,9.0,9.0,9.0,other,2,vehicle_crossing_path,"A dark blue sedan crosses the ego vehicle's path, creating a high-risk collision."
+00297,0.30549,583,-1.049,-0.186,-0.651,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is slowing down and stopping at an intersection, with no immediate collision risk."
+00299,0.50715,291,-0.231,0.812,-0.494,0.131,2.0,2.0,6.0,other,2,cut_in,"A silver sedan cuts into the ego vehicle's lane, narrowing the gap and creating a potential collision risk."
+00304,0.72274,100,1.269,0.510,0.775,0.930,8.0,8.0,8.0,none,2,brake_lights_ahead,"The blue SUV ahead is braking and slowing, requiring the ego vehicle to slow down to avoid a collision."
+00305,0.64268,164,0.314,0.323,2.427,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;pedestrian_in_path,Pedestrians crossing the road ahead require the ego vehicle to slow down and yield.
+00316,0.73631,76,1.678,-0.119,0.981,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white van ahead brakes suddenly, causing the ego vehicle to slow down to avoid a collision."
+00322,0.56356,207,-0.367,0.567,0.377,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead,"The lead vehicle is slowing down and braking, causing the ego vehicle to slow down and maintain a safe distance."
+00323,0.74771,55,1.541,0.404,0.378,1.329,9.0,9.0,9.0,none,2,brake_lights_ahead;occlusion,"The vehicle ahead is braking hard and is now directly in front of the ego vehicle, creating a high risk of collision."
+00338,0.69025,141,1.405,-0.536,0.760,0.930,8.0,8.0,8.0,other,2,vehicle_crossing_path,"The white sedan crossing the intersection is the critical object, as it cuts directly into the ego vehicle's path, creating a high risk of collision."
+00346,0.39399,456,-0.858,0.553,0.460,-1.068,0.0,2.0,3.0,other,1,pedestrian_in_path,Pedestrian crossing the road in front of the ego vehicle.
+00347,0.62626,168,0.028,0.577,1.713,0.530,1.0,8.0,7.0,other,1,brake_lights_ahead;cut_in,"The beige pickup truck ahead cuts into the ego vehicle's lane and applies its brakes, creating a high risk of collision."
+00350,0.38973,460,-0.503,0.160,-0.080,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+00374,0.56242,209,-0.503,-0.295,2.526,0.530,1.0,1.0,7.0,other,2,brake_lights_ahead;cut_in,"Fire truck ahead cuts into ego lane, reducing gap to 1.3s."
+00385,0.54471,230,0.860,-1.623,0.183,0.530,6.0,6.0,7.0,other,2,oncoming_in_lane,"A gray sedan is crossing the ego's path from the opposite direction, creating a collision risk."
+00386,0.76640,33,1.678,0.608,0.420,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;cut_in,"The vehicle ahead is braking hard and cutting into the lane, creating a high risk of collision."
+00390,0.75007,52,1.814,0.019,0.248,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead,"The vehicle ahead is braking hard, creating a high risk of rear-end collision."
+00399,0.76809,29,1.950,0.088,0.450,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"A white sedan crosses the intersection directly in front of the ego vehicle, forcing an immediate stop to avoid collision."
+00400,0.32103,555,-1.049,-0.231,0.557,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is stopped in traffic with no immediate collision risk.
+00419,0.52964,255,-0.231,1.047,-0.207,0.131,2.0,2.0,6.0,other,2,vehicle_crossing_path,"An excavator crosses the ego vehicle's path, requiring a slight leftward nudge to avoid collision."
+00421,0.75851,42,1.678,0.724,0.641,0.930,9.0,9.0,8.0,other,3,vehicle_crossing_path,"Red car crosses directly in front of ego vehicle, creating a collision risk."
+00432,0.36574,482,-0.503,-1.236,-0.898,0.131,2.0,2.0,6.0,none,2,oncoming_in_lane,Driving straight at moderate speed with no immediate hazards.
+00436,0.39789,450,-0.858,0.027,1.270,-1.068,0.0,2.0,3.0,other,1,brake_lights_ahead;cut_in,"A black car cuts in ahead, causing the ego vehicle to slow down."
+00439,0.29075,610,-1.049,-0.645,-0.508,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stopped in traffic with no immediate collision risk.
+00448,0.50270,295,-0.503,0.246,-0.463,0.930,1.0,1.0,8.0,other,2,cut_in,"A black car cuts in ahead, causing a potential collision."
+00451,0.76282,36,1.950,0.037,0.322,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead;cut_in,"The vehicle ahead is braking hard and cutting into the lane, creating a high risk of collision."
+00462,0.54105,239,-0.231,0.531,-0.546,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead;cut_in,"The black car ahead cuts into the ego vehicle's lane, creating a collision risk."
+00482,0.29617,595,-1.049,-0.005,-0.522,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is moving slowly through a wet intersection at night, yielding to other vehicles and maintaining a safe distance."
+00484,0.49479,307,-0.231,-0.377,-0.571,0.930,2.0,2.0,8.0,other,2,vehicle_crossing_path,"A red car crosses the ego vehicle's path, creating a collision risk."
+00492,0.67385,152,1.405,-0.541,-0.404,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The black sedan ahead cuts into the ego vehicle's lane and applies its brakes, creating a high risk of collision."
+00511,0.77798,19,1.950,-0.234,1.255,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The black pickup truck ahead is braking and crossing the ego vehicle's path, creating a high risk of rear-end collision."
+00535,0.80356,6,1.405,0.654,3.222,0.930,8.0,8.0,8.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"The black SUV cuts in ahead and moves into the ego vehicle's path, creating a high risk of collision."
+00545,0.37541,473,-1.049,0.113,1.032,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is stopped behind a white truck with its rear doors open, and there is no immediate collision risk."
+00548,0.72898,89,1.405,-0.042,0.690,1.329,8.0,8.0,9.0,other,3,brake_lights_ahead;cut_in,"The silver minivan ahead cuts into the ego lane and applies its brakes, forcing the ego vehicle to slow down to avoid a collision."
+00559,0.51595,275,-0.503,-0.235,1.863,0.131,1.0,1.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white car ahead is braking and crossing the ego vehicle's path, creating a collision risk."
+00561,0.49449,308,0.178,-1.309,0.239,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in;hard_braking_ahead,"The green truck ahead cuts into the ego lane and brakes hard, requiring the ego vehicle to slow down to avoid a collision."
+00572,0.77930,17,1.678,0.415,1.168,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"A silver SUV cuts in front of the ego vehicle, forcing it to brake hard to avoid a collision."
+00612,0.73528,77,1.678,0.384,-0.391,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"A black sedan cuts in ahead and crosses the ego vehicle's path, requiring an immediate stop to avoid a collision."
+00619,0.63478,166,1.405,-0.218,-1.987,1.329,8.0,8.0,9.0,other,2,cut_in;vehicle_crossing_path,"A black SUV cuts in front of the ego vehicle, forcing it to brake suddenly."
+00620,0.77056,25,1.678,-0.383,1.897,1.329,9.0,9.0,9.0,other,2,vehicle_crossing_path,"A black car crosses the lane and moves into the ego vehicle's path, creating a collision risk."
+00628,0.37759,471,-0.858,-0.537,-0.546,0.131,0.0,2.0,6.0,other,2,vehicle_crossing_path,"A white car crosses the intersection from the left, cutting directly into the ego vehicle's path."
+00631,0.63081,167,1.405,0.190,-1.979,0.930,8.0,8.0,8.0,other,2,vehicle_crossing_path,"A yellow car crosses the ego's path, creating a high risk of collision."
+00649,0.52507,261,0.314,-0.177,-0.151,0.131,4.0,4.0,6.0,other,2,oncoming_in_lane,A white car is crossing the ego's path from the opposite direction.
+00654,0.61035,175,0.860,-0.055,-0.112,0.530,6.0,6.0,7.0,other,2,cut_in;oncoming_in_lane,A gray car is crossing the ego's path from the opposite direction.
+00681,0.72952,87,1.950,0.923,-2.033,1.329,10.0,10.0,9.0,other,2,oncoming_in_lane,"A dark gray SUV crosses the ego vehicle's path, creating a high risk of collision."
+00689,0.44648,396,-0.503,-0.602,-0.171,0.530,2.0,2.0,7.0,none,2,brake_lights_ahead,"The lead vehicle is slowing down, prompting the ego vehicle to decelerate."
+00708,0.52250,264,-0.367,0.194,0.437,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead;cut_in,"A white SUV cuts in ahead of the ego vehicle, narrowing the gap and creating a potential collision risk."
+00711,0.54320,234,-0.176,0.074,1.309,0.131,2.0,4.0,6.0,other,1,brake_lights_ahead;cut_in;vehicle_crossing_path,"The yellow van ahead cuts into the ego vehicle's lane, causing the ego to slow down."
+00717,0.38219,467,-0.503,0.323,-0.510,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is moving steadily behind a gray sedan at a green light.
+00720,0.61684,172,0.314,0.520,0.759,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"The white SUV ahead cuts into the ego lane and brakes, requiring the ego vehicle to slow down to avoid a collision."
+00724,0.76938,27,1.950,0.871,-0.546,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"A black car crosses the ego's path, creating a collision risk."
+00726,0.51342,280,-0.408,0.331,-0.546,0.930,1.0,2.0,8.0,other,1,vehicle_crossing_path,"The vehicle ahead is stopped with brake lights on, requiring the ego vehicle to slow down and maintain a safe distance."
+00728,0.59780,178,-0.544,0.317,2.120,0.930,1.0,2.0,8.0,none,1,brake_lights_ahead,The ego vehicle is moving slowly behind a white SUV on a city street with no immediate collision risk.
+00732,0.74088,68,1.405,0.394,0.516,1.329,8.0,8.0,9.0,other,2,cut_in;vehicle_crossing_path,"A white pickup truck cuts in and crosses the ego's path, requiring urgent braking to avoid a collision."
+00738,0.71560,114,1.405,0.145,0.661,0.930,8.0,8.0,8.0,other,2,brake_lights_ahead;cut_in,"The black sedan ahead cuts into the ego vehicle's lane and applies hard braking, creating a high risk of rear-end collision."
+00743,0.77722,21,1.950,0.030,0.874,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"The red SUV ahead suddenly turns left, crossing directly into the ego vehicle's path, creating an immediate collision risk."
+00756,0.66698,156,1.405,-0.412,-0.783,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The white truck ahead cuts into the ego vehicle's lane and applies its brakes, requiring the ego vehicle to slow down to avoid a collision."
+00760,0.71918,106,1.950,-0.545,-0.420,1.329,10.0,10.0,9.0,other,2,oncoming_in_lane,Oncoming truck crosses the ego vehicle's path at the intersection.
+00764,0.73471,78,1.541,0.647,0.269,0.930,9.0,9.0,8.0,ego,2,,The ego vehicle is moving fast and is in danger of a collision because it is too close to the white truck in front.
+00767,0.39651,452,-0.503,-1.320,0.085,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white car ahead brakes, causing the ego vehicle to slow down."
+00770,0.52241,265,0.042,0.611,-0.546,0.131,3.0,3.0,6.0,other,2,vehicle_crossing_path,"A black SUV is crossing the intersection in front of the ego vehicle, requiring the ego to slow down and yield."
+00772,0.72254,101,1.950,0.685,-1.949,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"A black SUV cuts in front of the ego vehicle, forcing it to brake hard to avoid a collision."
+00775,0.59029,182,0.860,0.230,-1.049,0.530,6.0,6.0,7.0,other,2,vehicle_crossing_path,"Black SUV cuts in ahead, forcing the ego vehicle to slow down to avoid a collision."
+00778,0.45260,385,-0.231,-0.761,0.145,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"A black SUV ahead brakes and crosses the ego vehicle's path, creating a collision risk."
+00779,0.48280,334,-0.313,-0.380,-0.002,0.530,2.0,4.0,7.0,other,1,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+00781,0.69397,134,1.269,-0.339,0.311,1.329,8.0,8.0,9.0,ego,2,brake_lights_ahead;ego_tailgating,The ego vehicle is tailgating a black pickup truck and must brake to avoid a collision.
+00799,0.51930,270,-0.503,0.680,0.067,0.530,2.0,2.0,7.0,other,2,,"The black SUV on the right cuts in ahead of the ego vehicle, creating a potential collision risk."
+00801,0.44856,393,-0.190,0.056,-1.163,0.131,0.0,9.0,6.0,other,1,pedestrian_in_path,"A pedestrian suddenly crosses directly in front of the ego vehicle, forcing an immediate stop to avoid collision."
+00806,0.51541,277,0.042,0.213,-0.869,0.530,3.0,3.0,7.0,other,2,pedestrian_in_path;vehicle_crossing_path,"A black SUV is crossing the ego vehicle's path, requiring the ego to slow down to avoid a collision."
+00812,0.55019,223,0.314,0.109,0.140,0.131,4.0,4.0,6.0,other,2,cut_in,"A vehicle cuts in ahead of the ego vehicle, narrowing the gap and creating a potential collision risk."
+00821,0.70140,128,1.678,0.412,-0.880,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead;cut_in;pedestrian_in_path,Pedestrians crossing the road cause the ego vehicle to slow down.
+00829,0.50763,289,-0.231,-0.297,-0.335,0.930,2.0,2.0,8.0,other,2,vehicle_crossing_path,"The white van cuts in ahead, causing a potential collision."
+00853,0.35709,494,-1.049,0.301,0.921,-1.468,0.0,0.0,2.0,none,2,,Vehicles are passing through the intersection from multiple directions without any immediate conflict.
+00862,0.68854,143,1.405,-0.050,0.059,0.930,8.0,8.0,8.0,other,2,oncoming_in_lane;vehicle_crossing_path,A white car crosses the intersection into the ego vehicle's path.
+00878,0.77599,22,1.678,0.652,0.724,1.329,9.0,9.0,9.0,other,3,brake_lights_ahead;cut_in,"The white pickup truck ahead cuts into the ego lane and applies its brakes, requiring the ego vehicle to slow down to avoid a collision."
+00886,0.45618,378,-0.503,0.211,-0.329,0.131,2.0,2.0,6.0,other,2,,"The black SUV ahead is moving slowly and braking, requiring the ego vehicle to slow down to avoid a rear-end collision."
+00892,0.75598,45,1.678,0.997,0.186,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead;cut_in,"The black car ahead cuts into the ego vehicle's lane and applies its brakes, creating a high risk of collision."
+00894,0.74325,65,1.405,0.524,0.426,1.329,8.0,8.0,9.0,ego,2,brake_lights_ahead;cut_in,"The ego vehicle is driving fast and fails to yield to a white SUV that cuts into its lane, leading to a collision."
+00908,0.41639,431,-0.503,0.161,-1.341,0.131,2.0,2.0,6.0,other,2,,"The white truck ahead is moving slowly, causing the ego vehicle to decelerate."
+00920,0.86270,1,1.950,0.882,3.660,1.329,10.0,10.0,9.0,other,2,cyclist_in_path;pedestrian_in_path,"A cyclist crosses the road directly in front of the ego vehicle, creating an immediate collision risk."
+00925,0.26169,649,-0.858,-1.044,-0.123,-1.867,0.0,2.0,1.0,none,1,,The ego vehicle is turning right and there is no immediate collision risk.
+00933,0.51832,272,-0.094,-0.943,1.780,0.131,3.0,3.0,6.0,other,2,oncoming_in_lane,"Oncoming traffic is in the ego lane, creating a potential collision risk."
+00946,0.36253,489,-0.503,-0.643,0.217,-1.068,2.0,2.0,3.0,other,2,,"The black SUV ahead is moving steadily, and there is no immediate collision risk."
+00962,0.72870,91,1.405,-0.019,0.650,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The silver SUV ahead cuts into the ego vehicle's lane and applies its brakes, requiring the ego vehicle to slow down quickly to avoid a collision."
+00969,0.70593,121,1.405,0.083,-0.235,1.329,8.0,8.0,9.0,other,2,cut_in;vehicle_crossing_path,"A gray SUV cuts in ahead, forcing the ego vehicle to brake sharply to avoid a collision."
+00975,0.71112,117,1.405,0.421,-0.518,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The black SUV cuts in ahead, causing the ego vehicle to slow down."
+00984,0.45763,375,-0.503,-0.263,0.342,0.131,1.0,1.0,6.0,other,2,vehicle_crossing_path,"A black SUV crosses the intersection in front of the ego vehicle, creating a collision risk."
+00987,0.63729,165,0.792,0.525,0.064,0.530,4.0,9.0,7.0,other,1,brake_lights_ahead;cut_in,"The white sedan ahead cuts into the ego lane and applies its brakes, forcing the ego vehicle to slow down sharply to avoid a collision."
+00992,0.50380,294,-0.367,0.579,0.090,0.131,2.0,2.0,6.0,other,2,cut_in,"A black SUV cuts in ahead, requiring the ego vehicle to slow down."
+00993,0.74486,63,1.678,0.112,0.304,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The silver sedan ahead is braking and crossing the ego vehicle's path, creating a high risk of collision."
+00994,0.72622,95,1.146,1.140,0.378,0.930,6.0,9.0,8.0,other,1,brake_lights_ahead;vehicle_crossing_path,"A black SUV cuts in front of the ego vehicle, causing a near-miss."
+01006,0.50649,292,-0.503,0.212,1.015,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,"The black SUV ahead is slowing down, requiring the ego vehicle to decelerate to maintain a safe distance."
+01007,0.59720,180,0.314,0.311,0.489,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"The black pickup truck ahead cuts into the ego vehicle's lane, causing the ego to brake and avoid a collision."
+01009,0.72025,105,1.405,0.454,-0.263,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The black sedan ahead is braking and crossing the ego vehicle's path, creating a high risk of collision."
+01010,0.68057,147,1.405,-0.281,-0.546,1.329,8.0,8.0,9.0,other,2,cut_in,"The orange hatchback cuts into the ego lane, forcing the ego vehicle to brake hard to avoid a collision."
+01017,0.54292,235,-0.408,0.810,-0.395,0.930,1.0,2.0,8.0,other,1,brake_lights_ahead;vehicle_crossing_path,"The white pickup truck ahead is braking, causing the ego vehicle to slow down."
+01023,0.70977,120,1.405,0.021,-0.028,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The black car ahead cuts into the ego's lane and brakes, causing a potential rear-end collision."
+01030,0.74395,64,1.950,-0.067,-0.216,1.329,10.0,10.0,9.0,other,3,brake_lights_ahead;cut_in;vehicle_crossing_path,"A white van cuts into the ego vehicle's lane, creating a direct path conflict."
+01032,0.43725,408,-0.503,0.990,-0.546,-0.669,2.0,2.0,4.0,other,2,,The ego vehicle is moving slowly behind a line of vehicles stopped at a red light.
+01038,0.37334,474,-0.503,0.165,-0.550,-1.068,2.0,2.0,3.0,other,2,,"The white SUV ahead is moving steadily, and there is no immediate collision risk."
+01044,0.34453,510,-0.503,-0.544,-0.440,-1.068,2.0,2.0,3.0,none,2,brake_lights_ahead,"The lead vehicle is slowing down, prompting the ego vehicle to decelerate and maintain a safe following distance."
+01056,0.32675,544,-1.049,0.227,-0.546,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is stopped at a red light, waiting for it to turn green before proceeding."
+01059,0.33077,536,-1.049,0.059,-0.200,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle proceeds through an intersection with a green light, maintaining a moderate speed and no immediate collision risks."
+01065,0.36899,479,-1.049,-0.006,3.006,-2.267,0.0,0.0,0.0,none,3,,The ego vehicle is driving straight on a clear road with no immediate hazards.
+01068,0.47023,356,-0.367,0.134,-0.212,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, causing the ego vehicle to slow down as well."
+01083,0.76774,31,1.405,0.610,1.194,1.329,8.0,8.0,9.0,other,2,pedestrian_in_path,Pedestrians crossing the street ahead of the ego vehicle create a high risk of collision.
+01101,0.57759,192,0.178,0.361,-0.420,0.930,4.0,4.0,8.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+01110,0.34206,514,-0.503,-0.603,-0.434,-1.068,2.0,2.0,3.0,other,2,,"The black SUV ahead is moving forward, creating a closing gap."
+01113,0.71791,111,1.814,-0.210,-0.546,1.329,10.0,10.0,9.0,ego,2,,"The ego vehicle makes a sharp right turn at an intersection, crossing the path of oncoming traffic."
+01125,0.49283,309,-0.503,0.799,-0.133,0.131,2.0,2.0,6.0,other,2,,"The white SUV ahead is slowing down, requiring the ego vehicle to decelerate to maintain a safe distance."
+01126,0.34921,504,-0.503,-0.867,-0.538,-0.669,2.0,2.0,4.0,none,2,,The ego vehicle is driving straight on a highway with no immediate collision risk.
+01139,0.30137,589,-1.049,0.137,-0.546,-1.468,0.0,0.0,2.0,none,2,,The vehicle is stationary on a narrow dirt path at night with no immediate hazards.
+01143,0.48540,324,0.042,-0.427,-0.149,0.131,3.0,3.0,6.0,other,2,brake_lights_ahead;cut_in,"The white SUV ahead is slowing down and cutting into the ego vehicle's lane, creating a potential collision risk."
+01149,0.45735,376,-0.503,0.162,-0.232,0.131,2.0,2.0,6.0,none,2,,"Turning left at an intersection with moderate traffic, no immediate collision risk."
+01151,0.39545,453,-0.503,0.419,-0.265,-1.068,2.0,2.0,3.0,none,2,brake_lights_ahead,"The black SUV ahead is slowing down, requiring the ego vehicle to decelerate to avoid a collision."
+01152,0.31255,566,-0.503,-0.669,0.092,-1.867,2.0,2.0,1.0,none,2,,The ego vehicle is slowing down and turning right in a parking lot with no immediate collision risk.
+01154,0.55786,216,0.042,1.063,-0.196,0.131,4.0,4.0,6.0,none,2,brake_lights_ahead,"The vehicle ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+01158,0.41990,427,-0.503,0.389,-1.549,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, prompting the ego vehicle to slow down."
+01166,0.44873,392,-1.049,-0.681,2.114,0.131,0.0,0.0,6.0,none,2,,"The ego vehicle drives fast on a clear, empty road with no immediate hazards."
+01169,0.50500,293,-0.094,-0.317,-0.742,0.930,0.0,10.0,8.0,ego,1,brake_lights_ahead;cut_in;hard_braking_ahead;vehicle_crossing_path,"The ego vehicle is cutting into a lane while approaching a red light, with a vehicle crossing its path and brake lights visible ahead."
+01179,0.36099,490,-0.503,-0.170,-0.458,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The vehicle ahead is slowing down, requiring the ego vehicle to decelerate to maintain a safe distance."
+01181,0.71077,118,1.405,0.891,0.176,0.530,8.0,8.0,7.0,ego,2,brake_lights_ahead;cut_in,The ego vehicle is slowing down behind a white SUV that is braking and cutting into its lane.
+01201,0.46226,369,-1.049,0.588,-0.546,0.930,0.0,0.0,8.0,none,2,low_visibility,"The ego vehicle is moving forward at high speed in extremely low visibility, with no other vehicles or hazards visible in the immediate path."
+01203,0.31182,569,-1.049,-0.116,-0.546,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is stopped at a red light, waiting for it to turn green before proceeding."
+01208,0.24317,661,-1.049,-0.798,-1.929,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is making a left turn at an intersection with no immediate collision risk.
+01216,0.31315,565,-1.049,-0.085,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at a fast speed with no critical objects present.
+01239,0.54249,236,0.137,0.869,-1.272,0.530,3.0,4.0,7.0,other,1,brake_lights_ahead;cut_in;vehicle_crossing_path,The vehicle ahead is braking and crossing the path of the ego vehicle.
+01244,0.44929,389,-0.667,-0.379,0.710,0.131,0.0,4.0,6.0,other,1,cyclist_in_path,"A cyclist crosses the road in front of the ego vehicle, creating a collision risk."
+01246,0.30400,585,-1.049,-0.065,-0.192,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving normally with no immediate danger.
+01247,0.73259,82,1.541,0.725,0.092,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead,"The white car ahead is slowing and braking, requiring the ego vehicle to slow down to avoid a collision."
+01253,0.73958,71,1.405,1.156,-0.546,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+01264,0.66420,157,1.814,-0.538,-1.123,0.930,10.0,10.0,8.0,ego,2,low_visibility,"The ego vehicle is slowing down and turning right at an intersection, with limited visibility due to darkness."
+01274,0.47728,344,-0.503,0.157,-0.356,0.530,2.0,2.0,7.0,other,2,,"The red SUV cuts in ahead, creating a potential collision risk."
+01275,0.32886,538,-0.858,-0.386,-0.173,-1.068,0.0,2.0,3.0,none,1,,The ego vehicle is driving straight on a highway with no immediate collision risk.
+01297,0.40693,447,-0.503,0.617,-0.211,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The black sedan ahead is braking, requiring the ego vehicle to slow down to avoid a rear-end collision."
+01310,0.29505,598,-1.049,-0.135,-0.384,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at speed with no immediate hazards.
+01312,0.26213,648,-1.049,-0.833,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a fast speed on a clear road with no immediate hazards.
+01316,0.44367,403,-0.367,-0.534,-0.036,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The black car ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+01330,0.46754,360,-0.231,0.001,-0.471,0.131,3.0,3.0,6.0,other,2,brake_lights_ahead,"The white car ahead is slowing down, prompting the ego vehicle to decelerate."
+01347,0.44461,400,-0.408,-0.259,-1.600,0.930,1.0,2.0,8.0,other,1,brake_lights_ahead;oncoming_in_lane;vehicle_crossing_path,A white car is crossing the ego vehicle's path from the opposite direction.
+01353,0.34270,511,-0.858,-0.251,0.061,-1.068,0.0,2.0,3.0,other,1,brake_lights_ahead,"The vehicle ahead is stopped with brake lights on, requiring the ego vehicle to remain stopped to avoid a collision."
+01367,0.46395,366,-0.503,0.300,-0.904,0.530,2.0,2.0,7.0,other,2,cut_in,"The red SUV cuts in ahead, creating a potential collision risk."
+01375,0.56314,208,-0.367,-0.549,3.185,0.131,2.0,2.0,6.0,other,2,cut_in,"A white pickup truck cuts in ahead of the ego vehicle, creating a potential collision risk."
+01389,0.54491,229,0.042,0.896,-0.323,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+01398,0.26805,641,-1.049,-0.788,-0.403,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is stopped on a city street with no immediate collision risk.
+01409,0.46959,358,-0.367,0.371,-0.546,0.131,2.0,2.0,6.0,other,2,oncoming_in_lane,"Oncoming vehicle crosses into ego's lane, creating a potential collision risk."
+01410,0.42702,418,-0.231,-0.661,1.317,-1.068,3.0,3.0,3.0,none,2,,The ego vehicle is driving slowly in an urban area with no immediate collision risk.
+01432,0.76809,30,1.678,0.682,1.051,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white SUV ahead is braking and a black SUV cuts in front of the ego vehicle, creating a collision risk."
+01450,0.76433,34,1.950,0.346,-0.034,1.329,10.0,10.0,9.0,other,2,cyclist_in_path,"A cyclist cuts in front of the ego vehicle, forcing an immediate hard brake to avoid collision."
+01472,0.57149,197,-0.231,0.658,0.108,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead;cut_in,"The black car ahead cuts into the ego vehicle's lane and brakes suddenly, creating a collision risk."
+01479,0.21370,666,-1.049,-2.173,-0.546,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is stopped in a parking lot with trailers on both sides, no immediate moving vehicles or pedestrians in the path."
+01480,0.30891,574,-1.049,0.151,-0.992,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at a fast speed on a two-lane road with no nearby vehicles.
+01481,0.45286,384,-0.503,0.209,-0.415,0.131,2.0,2.0,6.0,other,2,,"The lead vehicle is braking, prompting the ego vehicle to slow down."
+01483,0.28782,616,-1.049,-0.688,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight on a highway with no immediate danger.
+01502,0.39489,455,-0.503,0.617,-0.546,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is driving straight on a multi-lane road with no immediate collision risk.
+01512,0.52723,257,0.042,0.529,-0.308,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The red car ahead is slowing down, causing the ego vehicle to slow down as well."
+01513,0.38392,465,-0.503,-0.869,-0.870,0.131,1.0,1.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"A white SUV crosses the intersection ahead, causing the ego vehicle to slow down."
+01531,0.56666,206,0.614,0.655,-1.606,0.530,4.0,10.0,7.0,other,1,brake_lights_ahead;cut_in,"The ego vehicle is driving fast in the left lane when a black car cuts in ahead, causing a collision."
+01549,0.31885,556,-1.049,0.047,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight in a residential area with no immediate hazards.
+01555,0.29867,593,-1.049,-0.067,-0.358,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a slow speed with no immediate hazards.
+01561,0.29071,611,-1.049,-1.269,0.322,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight through an intersection and continues along a narrow city street with parked cars on the right.
+01565,0.28992,614,-1.049,-0.637,-0.546,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is moving slowly in a quarry-like area with large piles of material and heavy machinery in the distance, with no immediate collision risk."
+01567,0.28608,621,-1.049,-0.955,-0.247,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stopped at an intersection and proceeds forward when the light turns green.
+01575,0.41933,428,-0.503,1.124,-0.546,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is driving straight at a moderate speed with no immediate collision risk.
+01576,0.32862,539,-0.858,-0.612,-0.546,-0.669,0.0,2.0,4.0,other,1,,"A black SUV cuts in ahead, creating a potential collision risk."
+01610,0.44605,397,-0.367,-0.582,0.093,0.131,2.0,2.0,6.0,other,2,vehicle_crossing_path,"A white pickup truck crosses the ego vehicle's path, creating a potential collision risk."
+01633,0.38721,464,-0.503,-1.104,-0.464,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,A bus is crossing the path of the ego vehicle.
+01636,0.25331,654,-1.049,-0.891,-0.777,-1.468,0.0,0.0,2.0,none,3,,The ego vehicle drives straight at speed with no conflicting road users.
+01644,0.30952,572,-1.049,0.330,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight on a clear road with no immediate hazards.
+01648,0.34109,517,-0.503,-0.585,-0.487,-1.068,2.0,2.0,3.0,other,2,,"The vehicle ahead is moving at a similar speed, but the ego vehicle is maintaining a safe distance and speed, so there is no immediate risk of collision."
+01650,0.42493,421,-0.503,0.507,1.096,-1.468,2.0,2.0,2.0,none,2,,Driving straight on a two-way road with no immediate danger.
+01651,0.33583,526,-1.049,0.432,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving fast on a clear road with no immediate hazards.
+01668,0.47947,340,-0.367,-0.418,0.105,0.530,2.0,2.0,7.0,other,2,pedestrian_in_path,"A pedestrian is crossing the road in front of the ego vehicle, requiring the ego to slow down and yield."
+01672,0.57324,196,-0.503,-0.192,2.681,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead,"The black SUV ahead is slowing down, requiring the ego vehicle to decelerate to avoid a collision."
+01675,0.42005,426,-0.503,-0.366,-0.538,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white car ahead is slowing down, causing the ego vehicle to slow down as well."
+01676,0.26498,645,-1.049,-0.473,-0.928,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a moderate speed with no immediate hazards.
+01677,0.35737,493,-0.858,0.643,-0.702,-1.068,0.0,2.0,3.0,other,1,brake_lights_ahead,"The black SUV ahead is braking, requiring the ego vehicle to slow down to avoid a rear-end collision."
+01686,0.41177,442,-0.503,-0.204,1.683,-1.468,2.0,2.0,2.0,other,2,,"The white van in the right lane is moving at a similar speed, maintaining a safe distance and no immediate collision risk."
+01688,0.48758,312,-0.503,0.005,-0.546,0.930,1.0,1.0,8.0,other,2,pedestrian_in_path,"A pedestrian suddenly runs into the road, forcing the ego vehicle to brake sharply to avoid a collision."
+01692,0.66823,155,1.405,0.053,-0.699,0.930,8.0,8.0,8.0,other,2,vehicle_crossing_path,"The white sedan coming from the opposite direction is crossing the path of the ego vehicle, creating a high risk of collision."
+01715,0.48668,315,-0.503,0.479,2.128,-1.068,2.0,2.0,3.0,other,2,,"The black SUV ahead is moving steadily, and there is no immediate collision risk."
+01731,0.32424,548,-1.049,0.170,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is turning right at an intersection with no immediate collision risk.
+01744,0.53845,244,0.178,0.190,0.081,0.131,4.0,4.0,6.0,other,2,cut_in,"A black car cuts in ahead, narrowing the gap and creating a potential collision risk."
+01745,0.46637,363,-0.640,-0.147,-0.546,0.930,1.0,1.0,8.0,other,2,,"The vehicle ahead is slowing down, creating a potential collision risk."
+01751,0.22719,663,-1.049,-0.781,-0.546,-2.267,0.0,0.0,0.0,none,2,,The ego vehicle is stationary in a parking lot with no immediate collision risk.
+01758,0.69960,130,1.541,-0.485,0.623,0.930,9.0,9.0,8.0,ego,2,brake_lights_ahead;ego_tailgating;vehicle_crossing_path,"The ego vehicle is slowing down behind a black car that is braking, creating a high risk of rear-end collision."
+01764,0.75075,51,1.950,0.410,-0.612,1.329,10.0,10.0,9.0,ego,2,oncoming_in_lane,"The ego vehicle is turning left at an intersection while oncoming traffic is present in the opposite lane, creating a high risk of collision."
+01769,0.36512,484,-0.858,-0.647,-0.755,0.131,0.0,2.0,6.0,other,1,,"A construction vehicle is parked on the right side of the road, narrowing the lane and requiring the ego vehicle to slow down and maneuver around it."
+01774,0.29310,603,-1.049,-0.201,-0.358,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is stationary in a parking lot with no immediate collision risk.
+01777,0.34957,503,-0.503,-0.425,-0.450,-1.068,2.0,2.0,3.0,other,2,,"The white SUV ahead is moving steadily, and there is no immediate risk of collision."
+01782,0.26608,643,-1.049,-0.063,-2.103,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight through a tunnel and exits into daylight without any immediate hazards.
+01794,0.33028,537,-1.049,-0.183,0.108,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is driving straight on a narrow, dimly lit street with parked cars on both sides, maintaining a safe distance from the surroundings."
+01804,0.38844,461,-0.503,-0.183,-0.325,-0.669,2.0,2.0,4.0,none,2,,The ego vehicle is driving straight at a fast speed behind a white sedan on a three-lane highway.
+01808,0.29112,608,-1.049,-0.608,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards.
+01814,0.32287,553,-1.049,0.139,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight on a highway with no immediate hazards.
+01820,0.27813,626,-0.503,-0.423,-2.006,-1.468,2.0,2.0,2.0,other,2,vehicle_crossing_path,"The vehicle ahead is moving steadily, and there is no immediate risk of collision."
+01826,0.26993,637,-1.049,-1.133,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards.
+01831,0.45675,377,-0.231,-0.260,-0.412,0.131,3.0,3.0,6.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, causing the ego vehicle to slow down as well."
+01836,0.57489,194,0.178,0.464,0.700,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is slowing down, causing the ego vehicle to slow down as well."
+01854,0.42852,417,-0.667,-0.093,-0.234,0.131,0.0,4.0,6.0,other,1,brake_lights_ahead;cut_in,"A white SUV cuts into the ego lane, causing the ego vehicle to slow down."
+01855,0.32793,542,-1.049,-1.263,-0.521,0.131,0.0,0.0,6.0,none,2,,"The ego vehicle drives straight at a moderate speed on a narrow, tree-lined street with parked cars on both sides, maintaining a safe distance from the surroundings."
+01856,0.54549,228,0.178,0.802,-0.546,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The white SUV ahead is braking, causing the ego vehicle to slow down."
+01859,0.43839,405,-0.503,-0.434,0.052,0.131,2.0,2.0,6.0,none,2,,The ego vehicle is making a right turn at an intersection.
+01861,0.77004,26,1.678,0.121,1.206,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;cut_in;oncoming_in_lane,"The black sedan ahead cuts into the ego vehicle's lane, causing a potential collision."
+01863,0.31649,562,-0.503,-0.454,-0.739,-1.468,2.0,2.0,2.0,none,2,vehicle_crossing_path,"The ego vehicle drives straight through an intersection at night with moderate speed, maintaining safe distance from other vehicles and no immediate collision risk."
+01873,0.22574,664,-1.049,-0.344,-2.515,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle drives fast on a two-lane road at night with no nearby vehicles or critical objects.
+01876,0.72355,99,1.405,-0.064,0.537,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The silver car ahead is braking and crossing the ego vehicle's path, creating a high risk of collision."
+01877,0.32272,554,-0.858,-0.238,-0.556,-1.068,0.0,2.0,3.0,other,1,,"The white sedan ahead is maintaining a steady speed and lane position, with no immediate risk of collision."
+01886,0.42166,423,-0.503,-0.479,-0.343,0.131,2.0,2.0,6.0,other,2,,"The black SUV ahead is slowing down, requiring the ego vehicle to decelerate to maintain a safe distance."
+01895,0.25112,657,-1.049,-1.122,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at speed with no other vehicles or obstacles in the immediate path.
+01898,0.31883,557,-0.503,-0.045,-0.546,-1.867,2.0,2.0,1.0,none,2,,The ego vehicle is driving straight at a moderate speed with no immediate collision risk.
+01902,0.78300,13,1.950,0.471,0.511,1.329,10.0,10.0,9.0,other,2,oncoming_in_lane,"Oncoming traffic is crossing the ego vehicle's path, creating a high risk of collision."
+01905,0.47096,355,-0.367,-0.261,-0.332,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead,"A black SUV ahead is braking, requiring the ego vehicle to slow down to avoid a rear-end collision."
+01907,0.26589,644,-1.049,-0.846,-1.066,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight on a highway with no immediate collision risk.
+01927,0.41303,440,-0.858,-0.096,-0.146,0.131,0.0,2.0,6.0,other,2,,"A white car in the adjacent lane cuts in front of the ego vehicle, creating a potential collision risk."
+01938,0.30494,584,-1.049,-0.177,-0.680,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed on a clear road with no immediate hazards.
+01940,0.68401,145,1.405,0.038,-0.199,0.930,8.0,8.0,8.0,other,2,vehicle_crossing_path,"A white SUV crosses the ego vehicle's path, causing a near-miss."
+01945,0.48480,327,-0.231,0.069,-0.100,0.131,2.0,2.0,6.0,other,2,pedestrian_in_path,"A pedestrian is crossing the ego vehicle's path, creating a collision risk."
+01947,0.70022,129,1.541,0.336,-0.453,0.930,9.0,9.0,8.0,none,2,brake_lights_ahead,"The white car ahead is braking, causing the ego vehicle to slow down and maintain a safe distance."
+01956,0.48903,310,-0.503,0.724,-0.133,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is slowing down, requiring the ego vehicle to decelerate to maintain a safe distance."
+01965,0.50984,288,-0.367,-0.049,-0.243,0.930,2.0,2.0,8.0,other,3,brake_lights_ahead,"The white van ahead is slowing down, causing the ego vehicle to slow down as well."
+01974,0.35535,498,-1.049,-0.630,2.112,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is stopped at a red light, with no immediate collision risk."
+01982,0.30033,592,-1.049,-1.253,0.610,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards.
+01984,0.44887,391,-0.367,-0.107,-0.465,0.131,2.0,2.0,6.0,other,3,brake_lights_ahead,"The white car ahead is braking, requiring the ego vehicle to slow down to avoid a rear-end collision."
+01993,0.30815,576,-1.049,0.382,-0.658,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is stopped in traffic with no immediate collision risk.
+01997,0.67415,151,1.269,-0.381,-0.245,1.329,8.0,8.0,9.0,none,2,brake_lights_ahead;low_visibility,"The white car ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+02008,0.58389,190,-0.503,0.899,2.185,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The black sedan ahead is slowing down, requiring the ego vehicle to decelerate to avoid a collision."
+02010,0.41422,438,-0.858,0.578,0.987,-1.068,0.0,2.0,3.0,other,1,,"The black SUV cuts in ahead, creating a potential collision risk."
+02043,0.73762,75,1.678,0.103,0.730,0.930,9.0,9.0,8.0,other,2,pedestrian_in_path,"Pedestrian jaywalking across the road, causing the ego vehicle to slow down."
+02047,0.46469,365,-0.503,0.253,-0.156,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white car ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+02057,0.56140,211,-0.503,0.534,0.060,1.329,1.0,1.0,9.0,other,2,brake_lights_ahead;cut_in,"Vehicle ahead cuts into ego lane, causing sudden brake lights and a near-miss."
+02065,0.56803,202,-0.503,0.094,2.159,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, causing the ego vehicle to slow down as well."
+02068,0.25299,655,-1.049,-0.484,-1.996,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight through a residential area with no immediate hazards.
+02073,0.47686,346,-0.408,-0.233,-0.769,0.930,1.0,2.0,8.0,other,1,cut_in;oncoming_in_lane,"The red car is cutting in ahead, causing a potential collision risk."
+02082,0.29227,605,-1.049,-0.814,-0.234,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is stopped in a narrow, parked-car-lined street with no immediate moving hazards."
+02091,0.31686,559,-0.503,-0.670,-0.439,-1.468,2.0,2.0,2.0,none,2,,The ego vehicle is driving straight on a clear road with no immediate hazards.
+02093,0.27254,633,-1.049,-0.112,-1.153,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving fast on a clear road with no immediate hazards.
+02098,0.27508,630,-1.049,-0.504,-0.546,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is decelerating and stopping at a red light, with no immediate collision risk."
+02101,0.27451,632,-1.049,-0.691,-0.315,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle drives straight at high speed on a clear highway with no immediate hazards.
+02107,0.27479,631,-1.049,-1.011,-0.546,-1.068,0.0,0.0,3.0,none,2,,Driving straight under overpasses with no immediate hazards.
+02109,0.55193,221,-0.367,-0.266,1.840,0.530,2.0,2.0,7.0,other,3,brake_lights_ahead,"The red SUV ahead is braking, causing the ego vehicle to slow down."
+02123,0.47101,353,-0.503,0.700,-0.583,0.131,2.0,2.0,6.0,none,2,brake_lights_ahead;cut_in,The ego vehicle drives straight through an intersection and continues straight on a two-way road.
+02140,0.41628,432,-0.503,-0.366,-0.641,0.131,2.0,2.0,6.0,none,2,cut_in,Driving at moderate speed with no immediate hazards or critical objects in the path.
+02141,0.67673,150,1.269,-0.335,-0.227,1.329,8.0,8.0,9.0,ego,2,,The ego vehicle is moving at a high speed and is about to collide with the median.
+02142,0.33195,532,-1.049,0.345,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards.
+02143,0.52273,263,-0.503,-0.392,1.587,0.530,2.0,2.0,7.0,other,2,,"The ego vehicle is following a white SUV, which is slowing down, requiring the ego vehicle to decelerate to avoid a collision."
+02146,0.51146,286,-0.231,-0.883,1.214,0.530,2.0,2.0,7.0,other,2,pedestrian_in_path,A pedestrian is crossing the road in front of the ego vehicle.
+02150,0.40271,449,-0.503,0.056,0.420,-1.068,2.0,2.0,3.0,none,2,oncoming_in_lane,Driving straight on a wet road with no immediate collision risk.
+02151,0.37273,475,-0.503,0.164,-1.232,-0.669,2.0,2.0,4.0,none,2,,The ego vehicle is driving straight on a highway with no immediate collision risk.
+02152,0.48515,325,-0.231,0.664,-1.549,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,The vehicle ahead is braking and crossing the path of the ego vehicle.
+02153,0.21313,667,-1.049,-2.190,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is stopped in a parking lot with no immediate moving vehicles or hazards.
+02155,0.35673,495,-1.049,0.064,0.560,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is stopped behind a white truck with its rear open, and there are no immediate moving vehicles or hazards in the path."
+02157,0.35349,499,-0.858,0.285,-0.337,-1.068,0.0,2.0,3.0,none,2,,The ego vehicle is driving fast on a highway with a steady gap to the vehicle ahead.
+02158,0.34169,515,-0.503,-0.569,-0.491,-1.068,2.0,2.0,3.0,other,2,,"The black SUV ahead is moving forward, creating a closing gap."
+02160,0.55753,217,0.042,0.000,1.211,0.131,3.0,3.0,6.0,other,2,vehicle_crossing_path,"A black sedan crosses the ego vehicle's path, creating a potential collision risk."
+02162,0.45822,374,-0.503,-0.297,-0.261,0.530,2.0,2.0,7.0,none,2,brake_lights_ahead,"The lead vehicle is slowing down, prompting the ego vehicle to decelerate."
+02164,0.73374,79,1.950,-0.498,0.006,1.329,10.0,10.0,9.0,ego,2,brake_lights_ahead;cut_in,The ego vehicle is forced to brake hard as a black hatchback cuts in directly in front of it.
+02165,0.24699,659,-1.049,-1.295,-0.462,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving slowly in a residential area with parked cars on both sides.
+02166,0.65266,161,1.269,-0.464,-0.776,1.329,8.0,8.0,9.0,other,2,occlusion,"The white truck ahead is cutting into the ego vehicle's lane, creating a high risk of collision."
+02167,0.69303,135,1.950,-0.560,-1.241,1.329,10.0,10.0,9.0,other,2,pedestrian_in_path;vehicle_crossing_path,"A pedestrian is crossing the road directly in front of the ego vehicle, requiring an immediate stop to avoid a collision."
+02169,0.39215,459,-0.503,0.439,-0.384,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed behind a red car on a three-lane road.
+02170,0.24694,660,-1.049,-0.193,-1.933,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a fast speed on a clear road with no immediate hazards.
+02175,0.53069,253,0.314,0.602,-1.705,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"The white pickup truck ahead cuts into the ego vehicle's lane and applies its brakes, requiring the ego vehicle to slow down to avoid a collision."
+02176,0.37638,472,-0.858,-0.455,1.309,-1.068,0.0,2.0,3.0,other,1,,"The black SUV ahead is moving steadily, requiring the ego vehicle to maintain a safe following distance."
+02177,0.32488,547,-1.049,0.070,-0.393,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at high speed through a tunnel with no other vehicles or obstacles in the lane.
+02178,0.65962,158,0.314,0.290,2.302,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"The black SUV ahead cuts into the ego vehicle's lane, causing a potential collision."
+02181,0.48040,339,-0.367,0.064,0.153,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white SUV ahead is braking and crossing the ego vehicle's path, creating a potential collision risk."
+02184,0.70446,125,1.405,0.175,-0.405,1.329,8.0,8.0,9.0,other,2,vehicle_crossing_path,"The white car coming from the opposite direction crosses directly in front of the ego vehicle, creating a high risk of collision."
+02185,0.75574,46,1.950,0.123,-0.051,1.329,10.0,10.0,9.0,other,3,brake_lights_ahead;vehicle_crossing_path,"The black SUV ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+02187,0.45603,379,-0.231,-0.504,-0.106,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,"The silver SUV ahead brakes and cuts into the ego vehicle's lane, creating a collision risk."
+02188,0.52076,268,0.042,-0.045,0.284,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The black car ahead is slowing down and signaling a right turn, requiring the ego vehicle to decelerate to avoid a collision."
+02190,0.43725,407,-0.503,-0.683,-0.313,0.530,2.0,2.0,7.0,none,2,brake_lights_ahead,"The white car ahead is slowing down, requiring the ego vehicle to decelerate to avoid a collision."
+02193,0.51391,278,-0.231,0.759,-0.244,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,"The white SUV ahead is braking and cutting into the ego lane, creating a potential collision risk."
+02195,0.53643,246,-0.503,0.684,3.183,-1.068,2.0,2.0,3.0,other,2,,"The white car ahead is moving steadily, and there is no immediate danger of collision."
+02196,0.50182,296,-0.503,0.286,0.126,0.530,2.0,2.0,7.0,other,2,,"The black car in the right lane is moving fast and closing the gap, requiring attention."
+02197,0.30264,588,-1.049,0.167,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is stopped on a dirt road at night with no immediate hazards or moving vehicles in the path.
+02199,0.82882,2,1.678,-0.031,4.534,0.930,9.0,9.0,8.0,other,2,vehicle_crossing_path,"A black SUV cuts in front of the ego vehicle, forcing it to brake hard to avoid a collision."
+02200,0.62398,170,0.314,0.190,1.401,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"A black SUV cuts in ahead, causing the ego vehicle to slow down."
+02202,0.51543,276,0.178,-0.287,0.101,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white pickup truck ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+02204,0.68343,146,1.678,-0.260,-0.546,0.930,9.0,9.0,8.0,other,2,vehicle_crossing_path,"A white sedan crosses the path of the ego vehicle, creating a collision risk."
+02205,0.70168,127,1.814,-0.294,-0.959,1.329,10.0,10.0,9.0,ego,2,,"The ego vehicle is turning right at a red light, which is a traffic violation and poses a collision risk."
+02207,0.58616,187,0.178,0.666,0.074,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead,"The lead vehicle is slowing down, causing the ego vehicle to slow down as well."
+02208,0.51212,284,0.314,-1.040,-0.013,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"A white pickup truck cuts into the ego lane ahead, requiring the ego vehicle to slow down to avoid a collision."
+02209,0.48897,311,0.314,0.231,-2.325,0.530,4.0,4.0,7.0,other,2,cut_in,"A gray SUV cuts into the ego vehicle's lane from the right, narrowing the gap and creating a potential collision risk."
+02211,0.32657,545,-0.858,-0.658,-0.546,-0.669,0.0,2.0,4.0,other,1,,The ego vehicle is driving fast on a winding road and passes a white SUV in the opposite direction.
+02212,0.33610,524,-0.503,-0.797,-0.353,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+02214,0.47100,354,-0.503,0.280,-0.023,0.131,1.0,1.0,6.0,other,2,vehicle_crossing_path,"A white car crosses the intersection, causing the ego vehicle to slow down."
+02215,0.71721,112,1.814,-0.365,-0.362,1.329,10.0,10.0,9.0,ego,2,brake_lights_ahead;vehicle_crossing_path,"The ego vehicle stops at a red light, posing a risk of a rear-end collision if following traffic does not stop in time."
+02216,0.55076,222,0.042,1.052,-0.374,0.131,4.0,4.0,6.0,none,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+02218,0.27658,629,-1.049,-0.782,-0.790,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at high speed with no immediate hazards.
+02222,0.36714,481,-0.503,-0.235,-0.195,-1.068,2.0,2.0,3.0,ego,3,,The ego vehicle is slowing down while driving on a narrow street with parked vehicles on the right side.
+02230,0.30375,586,-1.049,-0.872,0.209,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at a fast speed with no critical objects in the lane.
+02233,0.29254,604,-0.858,-1.108,-0.343,-1.068,0.0,2.0,3.0,none,1,,The ego vehicle is turning right and there is no immediate collision risk.
+02234,0.35637,496,-0.858,0.005,-0.546,-0.669,0.0,2.0,4.0,other,1,oncoming_in_lane,A bus is crossing the ego vehicle's path in the opposite lane.
+02236,0.53976,242,-0.231,-0.030,0.168,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The red car ahead is slowing down and its brake lights are on, requiring the ego vehicle to slow further to avoid a collision."
+02237,0.42129,424,-1.049,-0.279,3.498,-1.468,0.0,0.0,2.0,none,3,,"The ego vehicle drives straight at high speed on a clear, empty road with no immediate hazards."
+02238,0.48613,320,-0.544,-0.286,-0.087,0.930,1.0,2.0,8.0,other,1,brake_lights_ahead,"The black car in the right lane cuts in ahead of the ego vehicle, creating a potential conflict."
+02241,0.48696,314,-0.367,0.119,0.254,0.131,2.0,2.0,6.0,other,2,cut_in,"The black sedan ahead cuts into the ego lane, creating a risk of collision."
+02242,0.48643,317,-0.313,0.300,-0.146,0.131,2.0,4.0,6.0,other,1,brake_lights_ahead;cut_in,"The white SUV ahead brakes and cuts into the ego lane, requiring the ego vehicle to slow down to avoid a collision."
+02243,0.37234,476,-0.367,0.003,-0.725,-1.068,2.0,2.0,3.0,other,2,,"The silver sedan ahead is moving steadily, and the ego vehicle is slowing down to maintain a safe distance."
+02245,0.27146,635,-1.049,-0.839,-0.221,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is moving slowly down a narrow, parked-car-lined street with no immediate collision risk."
+02250,0.40733,446,-0.503,1.007,-1.386,-0.669,2.0,2.0,4.0,other,2,brake_lights_ahead,The ego vehicle is moving slowly behind a silver car that is turning right at the intersection.
+02253,0.60910,176,0.260,0.651,-0.153,0.930,2.0,10.0,8.0,other,1,vehicle_crossing_path,"The ego vehicle is stopped as a black SUV cuts in front of it, creating a direct collision risk."
+02254,0.51320,282,0.042,0.081,-0.085,0.131,4.0,4.0,6.0,none,2,brake_lights_ahead,"The white SUV ahead is slowing down, requiring the ego vehicle to decelerate to maintain a safe distance."
+02255,0.45916,373,-0.231,-0.111,-0.546,0.131,2.0,2.0,6.0,other,2,oncoming_in_lane,"Oncoming traffic is crossing the ego vehicle's path, creating a potential collision risk."
+02257,0.47263,350,-0.176,-0.702,0.458,0.131,2.0,4.0,6.0,other,1,brake_lights_ahead;vehicle_crossing_path,"The silver car ahead is braking and crossing into the ego lane, creating a collision risk."
+02259,0.28702,618,-1.049,0.098,-1.620,-1.068,0.0,0.0,3.0,none,2,,Driving straight at speed with no immediate hazards.
+02260,0.69219,137,1.269,-0.003,-0.193,1.329,8.0,8.0,9.0,none,2,brake_lights_ahead,"The vehicle ahead is braking hard, requiring the ego vehicle to slow down quickly to avoid a collision."
+02261,0.72793,93,1.950,-0.232,-0.546,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"The vehicle ahead is moving into the ego vehicle's path, creating a direct collision risk."
+02262,0.52508,260,-0.408,0.357,-0.268,0.930,1.0,2.0,8.0,none,1,cyclist_in_path,The ego vehicle is driving straight at a fast speed on a busy road with no immediate collision risks.
+02265,0.46689,362,-0.503,-0.010,0.253,0.131,2.0,2.0,6.0,other,3,,"The white van ahead is stopped, requiring the ego vehicle to slow down."
+02266,0.72505,96,1.678,-0.311,0.189,1.329,9.0,9.0,9.0,other,2,vehicle_crossing_path,"Black SUV cuts in front of ego vehicle, creating a collision risk."
+02267,0.77832,18,1.269,0.680,2.533,0.930,8.0,8.0,8.0,other,2,brake_lights_ahead,"The white car ahead is slowing down and braking, requiring the ego vehicle to slow down and maintain a safe distance."
+02270,0.76645,32,1.773,0.925,-0.255,1.329,9.0,10.0,9.0,other,1,brake_lights_ahead;cut_in;oncoming_in_lane;vehicle_crossing_path,"Oncoming vehicle crosses into the ego vehicle's lane, creating an imminent collision risk."
+02271,0.73874,73,1.678,0.253,-0.097,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;oncoming_in_lane;vehicle_crossing_path,"The vehicle ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+02273,0.56111,212,0.314,-0.414,0.468,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking and crossing into the ego lane, creating a risk of collision."
+02276,0.71672,113,1.678,0.395,-1.027,1.329,9.0,9.0,9.0,other,2,cut_in;pedestrian_in_path,"A pedestrian suddenly steps into the ego vehicle's path, creating a high risk of collision."
+02278,0.30652,581,-1.049,0.259,-0.546,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is stopped at a red light, with no immediate collision risk."
+02279,0.48088,337,-0.503,0.351,0.147,0.131,2.0,2.0,6.0,other,2,pedestrian_in_path,"The black SUV ahead is moving slowly and steadily, with no immediate collision risk."
+02280,0.47309,348,-0.367,0.154,-0.163,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The silver sedan ahead is slowing down, requiring the ego vehicle to slow further to avoid a rear-end collision."
+02282,0.64666,162,1.405,0.907,-2.477,0.930,8.0,8.0,8.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The truck ahead is braking and crossing the ego vehicle's path, creating a high risk of collision."
+02283,0.48581,322,0.178,-0.361,-0.589,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The black SUV ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+02287,0.46731,361,-0.503,0.067,0.162,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,"The blue car ahead is slowing down, causing the ego vehicle to slow down as well."
+02289,0.26865,639,-1.049,-0.666,-0.546,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is stopped at a red light, with no immediate collision risk."
+02290,0.31228,568,-1.049,0.021,-0.714,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives fast on a clear road with no immediate hazards.
+02292,0.73965,70,1.814,0.338,-0.542,1.329,10.0,10.0,9.0,ego,2,,"The ego vehicle is driving fast and cuts into a lane with a vehicle ahead, causing a collision."
+02297,0.51183,285,-0.231,0.204,0.441,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The white car ahead is braking and crossing the ego vehicle's path, creating a collision risk."
+02299,0.72069,104,1.405,0.768,-0.001,0.930,8.0,8.0,8.0,other,2,brake_lights_ahead;cut_in,"The vehicle ahead is braking and cutting into the ego vehicle's lane, creating a high risk of collision."
+02303,0.58184,191,0.205,0.652,-0.098,0.530,2.0,8.0,7.0,other,1,brake_lights_ahead;cut_in,"The white SUV ahead cuts into the ego vehicle's lane, causing the ego to slow down and avoid a collision."
+02305,0.76369,35,1.950,0.712,-0.546,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"A gray sedan cuts in front of the ego vehicle, creating a direct path conflict."
+02306,0.53420,249,-0.367,0.480,0.369,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead,"The blue SUV ahead is slowing down and braking, requiring the ego vehicle to slow further to avoid a rear-end collision."
+02310,0.30816,575,-1.049,0.265,-0.502,-1.468,0.0,0.0,2.0,none,3,,The ego vehicle drives straight at a fast speed on a highway with no nearby vehicles.
+02316,0.69276,136,1.405,0.256,-0.883,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The black car ahead cuts into the ego vehicle's lane and applies hard braking, creating a high risk of rear-end collision."
+02317,0.36437,486,-0.503,-0.492,0.069,-1.068,2.0,2.0,3.0,other,2,,"The white car ahead is braking, requiring the ego vehicle to slow down."
+02319,0.75655,44,1.950,0.516,-0.546,1.329,10.0,10.0,9.0,ego,2,cut_in,"Ego vehicle cuts in ahead of a white sedan, causing a collision."
+02320,0.78115,16,1.405,0.369,2.694,0.930,8.0,8.0,8.0,other,2,brake_lights_ahead;cut_in,"The white car ahead cuts into the ego vehicle's lane and brakes hard, creating a collision risk."
+02322,0.48042,338,-0.040,-0.109,-0.488,0.131,2.0,4.0,6.0,other,2,vehicle_crossing_path,"The black sedan ahead cuts into the ego vehicle's lane, creating a collision risk."
+02323,0.34687,507,-0.503,0.036,-1.143,-1.068,2.0,2.0,3.0,none,2,,"The ego vehicle is driving straight at night on a narrow, two-way street with parked cars on both sides and a pedestrian crossing ahead."
+02330,0.73826,74,1.405,0.445,0.357,1.329,8.0,8.0,9.0,other,2,cut_in,"A black SUV cuts in ahead, forcing the ego vehicle to brake hard to avoid a collision."
+02331,0.29832,594,-0.503,-1.026,-0.546,-1.468,2.0,2.0,2.0,none,2,,The ego vehicle drives straight at a fast speed on a clear road with no immediate hazards.
+02333,0.47283,349,-0.503,-0.211,2.679,-1.068,2.0,2.0,3.0,other,2,,The ego vehicle is driving fast on a highway while maintaining a safe distance from the vehicle ahead.
+02335,0.57140,198,0.314,-0.265,1.215,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"Black SUV cuts in ahead, requiring the ego vehicle to slow down."
+02336,0.38808,462,-0.503,0.340,-0.366,-1.068,2.0,2.0,3.0,none,2,brake_lights_ahead,"The ego vehicle is driving straight on a two-lane road at night, following a black SUV in the same lane."
+02339,0.29190,607,-1.049,-0.589,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stopped in a quarry with large piles of gravel and a truck in the distance; no immediate collision risk.
+02343,0.46267,368,-0.367,-0.823,-0.471,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead;cut_in,"A bus is crossing the ego's path, creating a potential collision risk."
+02345,0.77779,20,1.950,0.577,0.167,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"The police car ahead is turning left, crossing the ego vehicle's path, creating a high risk of collision."
+02347,0.46058,371,-1.049,0.554,-0.546,0.930,0.0,0.0,8.0,none,2,low_visibility,"The ego vehicle is moving at high speed in extremely low visibility, with no other vehicles or hazards visible in the immediate path."
+02348,0.31061,570,-1.049,0.359,-0.551,-1.468,0.0,0.0,2.0,none,3,,The ego vehicle is moving slowly and cautiously through a residential area at night.
+02350,0.43295,414,-0.503,-0.451,-0.073,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, causing the ego vehicle to decelerate to avoid a collision."
+02351,0.26322,646,-0.858,-0.256,-2.453,-1.068,0.0,2.0,3.0,other,1,oncoming_in_lane,"The red car coming from the opposite direction is turning left across the ego vehicle's path, creating a potential collision risk."
+02354,0.34123,516,-1.049,-0.005,0.198,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stopped behind a white pickup truck at an intersection with no immediate collision risk.
+02357,0.50164,297,-0.503,-0.460,1.782,0.131,2.0,2.0,6.0,none,2,brake_lights_ahead,"The red SUV ahead is slowing down, requiring the ego vehicle to decelerate to avoid a rear-end collision."
+02359,0.36552,483,-0.503,-0.012,-0.538,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The white car ahead is braking, prompting the ego vehicle to slow down."
+02361,0.34636,508,-0.503,-0.339,-0.659,-1.068,2.0,2.0,3.0,other,2,,The ego vehicle is following a black car at a safe distance while driving fast on a highway.
+02363,0.31240,567,-1.049,0.397,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving on a clear road with no immediate hazards.
+02366,0.75238,48,1.678,0.514,0.034,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;cut_in,"The white SUV ahead cuts into the ego lane and applies hard braking, requiring the ego vehicle to brake sharply to avoid a collision."
+02368,0.37135,477,-0.503,0.153,-0.591,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is moving slowly in traffic with no immediate collision risk.
+02369,0.58542,188,0.178,1.111,0.126,0.131,4.0,4.0,6.0,none,2,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+02370,0.52700,258,-0.503,1.143,0.321,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white pickup truck ahead is slowing down, causing the ego vehicle to slow as well."
+02371,0.33781,523,-0.367,0.553,-2.465,-1.068,2.0,2.0,3.0,other,2,,"A black SUV is crossing the intersection in front of the ego vehicle, creating a potential collision risk."
+02373,0.48404,330,-0.231,-0.028,0.009,0.131,3.0,3.0,6.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, causing the ego vehicle to slow down as well."
+02374,0.47906,341,-0.503,0.300,0.166,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The truck ahead is braking, causing the ego vehicle to slow down."
+02375,0.32797,541,-0.858,-0.667,-0.492,-0.669,0.0,2.0,4.0,none,1,,"The ego vehicle drives straight at a fast speed, maintaining a safe distance from the vehicle ahead."
+02377,0.32541,546,-0.503,-0.906,-0.529,-1.068,2.0,2.0,3.0,none,2,,Driving straight at high speed with no immediate hazards.
+02378,0.82064,3,1.950,0.120,2.562,1.329,10.0,10.0,9.0,other,2,pedestrian_in_path,"A pedestrian suddenly crosses directly in front of the ego vehicle, creating an immediate collision risk."
+02379,0.52274,262,-0.503,0.545,0.339,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, causing the ego vehicle to slow down as well."
+02382,0.40874,445,-0.503,0.720,-0.298,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, requiring the ego vehicle to slow down."
+02384,0.74646,58,1.678,0.484,0.530,0.930,9.0,9.0,8.0,ego,2,brake_lights_ahead;cut_in;low_visibility;vehicle_crossing_path,The ego vehicle is slowing down and yielding to a vehicle that cut into its lane ahead.
+02385,0.74853,54,1.950,0.051,-0.213,1.329,10.0,10.0,9.0,other,2,oncoming_in_lane,"A red sedan is crossing the ego vehicle's path from the opposite direction, creating a high risk of collision."
+02386,0.41356,439,-0.762,-0.016,-0.492,0.131,0.0,3.0,6.0,other,1,brake_lights_ahead,"The black sedan ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+02387,0.38235,466,-0.503,0.085,-0.187,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+02389,0.39495,454,-0.503,0.619,-0.546,-1.068,2.0,2.0,3.0,none,2,brake_lights_ahead,The ego vehicle is driving straight on a multi-lane road with no immediate collision risk.
+02391,0.73944,72,1.269,0.907,0.146,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead,"The vehicle ahead is braking hard, causing the ego vehicle to slow down sharply to avoid a collision."
+02396,0.58946,184,-0.367,0.869,0.682,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead,"The white sedan ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+02397,0.54655,226,0.314,0.555,-0.551,0.131,4.0,4.0,6.0,other,3,brake_lights_ahead;vehicle_crossing_path,"A white sedan cuts in ahead, forcing the ego vehicle to brake."
+02398,0.28005,625,-1.049,-0.879,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is moving at high speed on a highway with no immediate collision risks.
+02400,0.29330,602,-1.049,-0.555,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at high speed with no nearby vehicles or obstacles.
+02401,0.46494,364,-0.231,-0.387,-0.023,0.131,2.0,2.0,6.0,other,2,vehicle_crossing_path,"The black sedan cuts in front of the ego vehicle, creating a collision risk."
+02403,0.39709,451,-0.503,-0.209,-1.380,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;oncoming_in_lane,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+02405,0.47713,345,0.178,-0.688,-0.386,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The white SUV ahead brakes, causing the ego vehicle to slow down."
+02406,0.37079,478,-0.503,-0.264,-0.051,-1.068,2.0,2.0,3.0,none,2,,"The ego vehicle is driving straight at a moderate speed, maintaining a steady distance from the vehicle ahead, with no immediate collision risk."
+02410,0.74603,60,1.814,0.645,-0.730,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead,"The vehicle ahead is braking hard, causing the ego vehicle to slow down and avoid a collision."
+02411,0.29005,613,-1.049,-0.135,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight on a clear road with no immediate hazards.
+02413,0.54079,240,0.314,0.096,-0.095,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;cut_in,"A yellow van cuts into the ego lane and slows down, requiring the ego vehicle to slow further to avoid a collision."
+02428,0.44425,401,-0.285,0.572,0.285,-1.068,0.0,8.0,3.0,other,1,pedestrian_in_path,Pedestrian crossing the road in front of the ego vehicle.
+02429,0.27070,636,-0.858,-1.651,-0.338,-1.068,0.0,2.0,3.0,other,1,oncoming_in_lane,Oncoming traffic is crossing the ego vehicle's path.
+02433,0.65297,160,-0.367,0.856,3.167,0.530,2.0,2.0,7.0,other,2,cut_in;vehicle_crossing_path,"A dark SUV crosses the ego's path, requiring the ego to slow down to avoid a collision."
+02434,0.69844,131,1.269,0.249,0.335,0.930,8.0,8.0,8.0,none,2,brake_lights_ahead,"The vehicle ahead is braking hard, causing the ego vehicle to slow down to avoid a collision."
+02435,0.79390,10,1.950,0.404,1.036,1.329,10.0,10.0,9.0,other,2,oncoming_in_lane,"Oncoming traffic is directly in the ego vehicle's path, creating an immediate collision risk."
+02441,0.61372,174,-0.367,0.329,2.077,0.930,2.0,2.0,8.0,other,3,brake_lights_ahead,"The white SUV ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+02442,0.76201,37,1.541,0.634,0.586,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead,"The white pickup truck ahead is braking hard, causing the ego vehicle to slow down to avoid a collision."
+02448,0.41560,433,-0.503,0.826,-0.251,-1.068,2.0,2.0,3.0,other,2,,"The white car ahead is maintaining a steady speed, and there is no immediate collision risk."
+02449,0.49552,306,-0.503,0.218,0.048,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+02451,0.25151,656,-1.049,-1.138,-0.511,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle drives straight at speed with no conflicting road users.
+02452,0.32354,549,-0.503,0.063,-0.546,-1.867,2.0,2.0,1.0,none,2,,The ego vehicle is driving straight at high speed on a clear highway with no immediate collision risks.
+02454,0.49653,302,-0.503,0.714,0.080,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white car ahead brakes, causing the ego vehicle to slow down."
+02458,0.42642,419,-0.503,-0.405,1.686,-1.068,2.0,2.0,3.0,none,2,,Driving straight on a highway with no immediate danger.
+02459,0.69579,132,1.541,0.209,-0.423,0.930,9.0,9.0,8.0,none,2,brake_lights_ahead,"The silver SUV ahead is braking, causing the ego vehicle to slow down to avoid a rear-end collision."
+02461,0.34097,519,-0.858,-0.301,0.076,-1.068,0.0,2.0,3.0,other,1,pedestrian_in_path,Pedestrian walking past the ego vehicle in the adjacent lane.
+02463,0.30772,577,-1.049,-0.009,-0.150,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving normally through a residential area with no immediate hazards.
+02467,0.28727,617,-1.049,-0.702,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at speed with no other road users to react to.
+02468,0.53127,251,-0.367,1.107,-0.546,0.530,2.0,2.0,7.0,other,2,cut_in,"The black SUV ahead cuts into the ego vehicle's lane, creating a potential collision risk."
+02472,0.75459,47,1.950,0.304,-0.334,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"The black pickup truck cuts into the ego vehicle's lane, creating an immediate collision risk."
+02473,0.54471,231,-0.503,0.815,3.231,-1.068,2.0,2.0,3.0,other,3,brake_lights_ahead;vehicle_crossing_path,The ego vehicle is stopped at an intersection with no immediate collision risk.
+02474,0.73223,83,1.405,0.414,0.191,1.329,8.0,8.0,9.0,other,2,vehicle_crossing_path,"A white pickup truck crosses the road in front of the ego vehicle, creating a high risk of collision."
+02475,0.28969,615,-1.049,-0.612,0.080,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving slowly through a parking lot with no immediate collision risks.
+02476,0.53484,247,-0.040,-0.025,0.186,0.530,2.0,4.0,7.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"A white SUV cuts in ahead, causing a potential collision."
+02477,0.36399,487,-0.503,-0.224,-0.299,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is moving slowly behind a black SUV in the same lane.
+02478,0.26245,647,-1.049,-0.925,-1.079,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight on a highway with no immediate collision risk.
+02479,0.74931,53,1.814,0.784,-0.799,1.329,10.0,10.0,9.0,ego,2,vehicle_crossing_path,"The ego vehicle is driving fast in the rightmost lane, which is a merging lane, and is about to drive into the oncoming lane."
+02482,0.56703,205,-0.367,-0.021,1.255,0.930,2.0,2.0,8.0,other,3,,"The truck crossing the intersection is the most dangerous actor, as it is moving into the ego vehicle's path."
+02484,0.61987,171,0.751,0.690,-0.546,0.530,4.0,10.0,7.0,other,1,brake_lights_ahead;cut_in;vehicle_crossing_path,"The ego vehicle is being overtaken by a black car from the right, which is crossing its path and creating a high risk of collision."
+02490,0.41819,429,-0.503,1.100,-0.546,-1.068,2.0,2.0,3.0,other,2,,"The vehicle ahead is maintaining a steady speed, and there is no immediate risk of collision."
+02491,0.53218,250,0.314,-0.521,0.498,0.131,4.0,4.0,6.0,other,2,vehicle_crossing_path,"A bus crosses the ego vehicle's path, requiring the ego to slow down."
+02493,0.33452,528,-1.049,-1.096,-0.546,0.131,0.0,0.0,6.0,none,2,,The ego vehicle is accelerating and turning left at an intersection with no immediate collision risk.
+02494,0.76074,39,1.541,1.187,0.470,0.930,9.0,9.0,8.0,ego,2,ego_tailgating,"The ego vehicle is driving fast and closing in on the white pickup truck ahead, creating a high risk of collision."
+02495,0.29423,601,-1.049,-0.854,-0.118,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at high speed with no immediate collision risk.
+02496,0.76030,40,1.814,-0.253,0.980,1.329,10.0,10.0,9.0,ego,3,brake_lights_ahead;vehicle_crossing_path,"The ego vehicle is stopped at an intersection, and a white sedan cuts in directly in front of it, creating an immediate collision risk."
+02497,0.70386,126,1.405,0.504,-0.196,0.930,8.0,8.0,8.0,other,3,brake_lights_ahead;cut_in,"The black sedan ahead cuts into the ego lane and applies its brakes, requiring the ego vehicle to slow down to avoid a collision."
+02498,0.43144,416,-0.503,-0.230,-0.408,0.131,2.0,2.0,6.0,none,2,,The ego vehicle is driving straight on a highway with no immediate collision risk.
+02499,0.68610,144,1.405,0.221,-1.045,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The black SUV ahead cuts into the ego vehicle's lane, forcing the ego to brake hard to avoid a collision."
+02500,0.51889,271,-0.231,-0.129,1.074,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"The black SUV ahead is braking and crossing the ego vehicle's path, creating a potential collision risk."
+02501,0.33607,525,-0.503,-0.316,-0.328,-1.468,2.0,2.0,2.0,other,2,,"The black car in the adjacent lane is moving at a similar speed, but there is no immediate risk of collision."
+02502,0.57052,200,0.342,0.829,-0.342,0.131,2.0,8.0,6.0,other,1,pedestrian_in_path;vehicle_crossing_path,"A pedestrian suddenly crosses directly in front of the ego vehicle, forcing it to brake hard to avoid a collision."
+02503,0.28614,620,-1.049,-0.729,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight on a highway with no immediate danger.
+02505,0.71902,107,1.950,-0.429,-0.580,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"A white sedan crosses the intersection directly in front of the ego vehicle, creating an immediate collision risk."
+02509,0.39323,458,-0.640,-0.302,1.663,-1.468,1.0,1.0,2.0,other,2,,"The firetruck ahead is stopped with its brake lights on, requiring the ego vehicle to remain stopped to avoid a collision."
+02510,0.28582,622,-1.049,-1.301,0.206,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed on a clear road with no immediate hazards.
+02511,0.51957,269,-0.408,0.013,1.375,0.131,2.0,3.0,6.0,other,1,brake_lights_ahead;vehicle_crossing_path,"The black SUV cuts in ahead, causing the ego vehicle to slow down."
+02512,0.78258,14,1.405,0.948,1.978,0.930,8.0,8.0,8.0,other,2,pedestrian_in_path,"A pedestrian suddenly crosses the road directly in front of the ego vehicle, creating a high risk of collision."
+02515,0.58949,183,-0.503,0.776,2.502,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The black sedan ahead is braking, requiring the ego vehicle to slow down to avoid a rear-end collision."
+02517,0.47891,342,-0.231,-0.542,-0.109,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The car in front is braking and crossing the ego vehicle's path, creating a potential collision risk."
+02518,0.71477,115,1.405,-0.124,0.327,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+02522,0.66914,154,1.678,0.223,-1.626,0.930,9.0,9.0,8.0,other,2,cut_in;vehicle_crossing_path,"A yellow car cuts into the ego lane and crosses its path, creating a high-risk collision."
+02524,0.29596,597,-1.049,0.008,-0.546,-1.468,0.0,0.0,2.0,none,2,,Driving straight with no immediate hazards.
+02530,0.34251,512,-0.858,0.199,-0.546,-1.068,0.0,2.0,3.0,other,1,,"Police car with flashing lights is ahead, but no immediate collision risk."
+02533,0.53433,248,-0.408,0.459,-0.157,0.930,1.0,2.0,8.0,other,1,vehicle_crossing_path,"The ego vehicle is moving slowly in traffic, maintaining a safe distance from other vehicles."
+02534,0.31569,563,-1.049,-0.133,-0.403,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight through an intersection with no immediate collision risk.
+02537,0.73069,85,1.678,-0.381,0.472,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The black pickup truck ahead is braking and crossing the ego vehicle's path, creating a high risk of collision."
+02538,0.55222,220,0.314,0.268,-0.016,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;cut_in,"The white van ahead cuts into the ego vehicle's lane, causing the ego to slow down."
+02539,0.29457,600,-1.049,-0.025,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a fast speed on a clear road with no immediate hazards.
+02540,0.35742,492,-0.231,-0.836,-0.400,-1.068,2.0,2.0,3.0,other,2,oncoming_in_lane,A white van is crossing the ego vehicle's path from the opposite direction.
+02541,0.36443,485,-1.049,-0.528,-1.091,0.530,0.0,0.0,7.0,none,2,,The ego vehicle is driving straight at a fast speed on a clear road with no immediate hazards.
+02543,0.54926,224,-0.231,-0.394,2.241,0.131,2.0,2.0,6.0,other,2,vehicle_crossing_path,"A red minivan crosses the intersection in front of the ego vehicle, creating a collision risk."
+02544,0.31673,561,-1.049,-0.164,-0.330,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stationary in a parking lot with no immediate collision risk.
+02545,0.33175,533,-0.503,-0.281,-0.504,-1.468,2.0,2.0,2.0,other,2,,The white car in the left lane is moving steadily without affecting the ego vehicle.
+02548,0.69168,139,1.405,0.171,-0.804,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"A gray minivan cuts into the ego lane, forcing the ego vehicle to brake hard to avoid a collision."
+02555,0.48757,313,-0.217,-0.197,-0.373,0.530,1.0,4.0,7.0,other,1,brake_lights_ahead;cut_in;oncoming_in_lane,"The white car ahead cuts into the ego vehicle's lane, causing a potential collision."
+02556,0.72877,90,1.405,-0.097,0.756,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in;oncoming_in_lane,"The red SUV ahead cuts into the ego vehicle's lane and stops abruptly, causing the ego vehicle to slow down."
+02557,0.74549,61,1.814,-0.006,0.119,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead,"The black SUV ahead is braking hard, causing a high risk of rear-end collision."
+02561,0.35293,500,-0.858,-0.803,1.097,-1.068,0.0,2.0,3.0,other,1,brake_lights_ahead,"The red car ahead is slowing down, causing the ego vehicle to slow down as well."
+02562,0.27799,627,-1.049,-0.431,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight in a clear lane with no immediate hazards.
+02563,0.72218,103,1.678,0.192,-0.577,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The black SUV ahead is braking and crossing into the ego lane, creating a high risk of collision."
+02565,0.32316,551,-1.049,0.216,-0.640,-1.068,0.0,0.0,3.0,none,2,,"Traffic is stopped at a red light, with no immediate collision risk."
+02566,0.44824,394,-0.503,-0.445,0.333,0.131,1.0,1.0,6.0,other,2,brake_lights_ahead;cut_in,"A red car cuts in ahead, reducing the gap and creating a collision risk."
+02567,0.54403,232,0.178,0.028,-0.220,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead,"The black car in front is slowing down and braking, requiring the ego vehicle to slow down to avoid a collision."
+02568,0.54172,238,-0.367,0.472,1.247,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;pedestrian_in_path,Pedestrians crossing the road ahead of the ego vehicle in the intersection.
+02572,0.44929,390,-0.503,0.019,-0.258,0.131,2.0,2.0,6.0,other,2,,"The white SUV ahead is braking, requiring the ego vehicle to slow down."
+02573,0.32802,540,-0.503,-0.579,-0.886,-1.068,2.0,2.0,3.0,other,2,,"The white SUV in the right lane is moving at a similar speed to the ego vehicle, maintaining a safe distance and not posing an immediate collision risk."
+02576,0.54019,241,-0.040,-0.775,1.996,0.131,2.0,4.0,6.0,other,1,cyclist_in_path;vehicle_crossing_path,"A cyclist crosses the road in front of the ego vehicle, requiring the ego to slow down."
+02579,0.57067,199,0.314,0.435,-0.405,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The dark sedan ahead is braking and crossing the ego vehicle's path, creating a collision risk."
+02581,0.79588,9,1.950,-0.123,1.819,1.329,10.0,10.0,9.0,other,2,oncoming_in_lane,"A black van is crossing the road in front of the ego vehicle, creating a direct collision risk."
+02582,0.36325,488,-0.503,-1.415,1.268,-1.068,2.0,2.0,3.0,other,3,,The ego vehicle is driving fast on a highway with no immediate collision risk.
+02583,0.44472,399,-1.049,0.098,2.965,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards.
+02587,0.33386,530,-0.858,0.525,-1.238,-1.068,0.0,2.0,3.0,none,1,,The ego vehicle is following a white SUV at a safe distance on a clear road.
+02588,0.25737,652,-1.049,-1.509,0.190,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle drives straight through an intersection and continues at speed on a narrow city street with no immediate hazards.
+02591,0.23382,662,-1.049,-0.688,-0.420,-2.267,0.0,0.0,0.0,none,2,,The ego vehicle is stopped on a city street with no immediate collision risk.
+02592,0.31686,560,-1.049,0.156,-0.087,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is moving slowly through a parking lot with no immediate collision risks.
+02594,0.61387,173,0.437,0.499,-0.290,0.930,2.0,9.0,8.0,other,1,brake_lights_ahead;cut_in;vehicle_crossing_path,"The white sedan ahead cuts into the ego vehicle's lane and applies its brakes, creating a high risk of rear-end collision."
+02595,0.48656,316,-0.503,0.099,-0.031,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, requiring the ego vehicle to decelerate to avoid a collision."
+02599,0.74071,69,1.814,-0.088,0.062,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead,"The vehicle ahead is braking hard, causing the ego vehicle to slow down to avoid a collision."
+02600,0.33164,535,-0.503,-0.253,-0.546,-1.468,2.0,2.0,2.0,other,2,,"The ego vehicle is driving fast on a highway at night, with no immediate collision risk."
+02603,0.27201,634,-1.049,-0.585,-0.541,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards.
+02608,0.41815,430,-0.503,-0.399,-0.546,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+02609,0.70575,122,1.678,-0.635,-0.010,1.329,9.0,9.0,9.0,ego,2,brake_lights_ahead;cut_in,"The ego vehicle is forced to brake hard as a black hatchback cuts in ahead, closing the gap rapidly."
+02612,0.46018,372,-0.503,0.215,-0.226,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is slowing down, requiring the ego vehicle to decelerate to avoid a collision."
+02613,0.34714,506,-0.503,-1.332,0.688,-1.068,2.0,2.0,3.0,other,2,,"The ego vehicle is driving fast in moderate traffic, maintaining a safe distance from surrounding vehicles."
+02615,0.43761,406,-0.313,0.763,-0.075,-1.068,2.0,4.0,3.0,other,1,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+02617,0.34462,509,-0.503,-0.059,-0.418,-1.468,2.0,2.0,2.0,none,2,,The ego vehicle is driving straight at a slow speed with no immediate collision risks.
+02618,0.31877,558,-1.049,-0.182,-0.244,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is driving straight on a narrow, dimly lit residential street with parked cars on both sides and no immediate hazards."
+02620,0.49646,303,-0.503,0.600,0.230,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white pickup truck ahead is braking, requiring the ego vehicle to slow down to avoid a collision."
+02621,0.43477,411,-1.049,0.532,-0.546,0.530,0.0,0.0,7.0,none,2,low_visibility,"The ego vehicle is moving at high speed in very low visibility conditions, but no immediate collision risk is present."
+02623,0.34829,505,-0.503,0.538,-0.440,-1.867,2.0,2.0,1.0,none,2,,"The ego vehicle is driving straight at a fast speed, maintaining a steady distance from the red vehicle ahead, with no immediate collision risk."
+02624,0.29105,609,-1.049,-0.610,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stationary in a quarry-like area with no immediate moving vehicles or obstacles in its path.
+02628,0.51782,273,-0.231,-0.076,-0.358,0.930,2.0,2.0,8.0,other,3,brake_lights_ahead;cut_in,"The black car ahead cuts into the ego vehicle's lane, causing the ego vehicle to slow down."
+02630,0.53885,243,-0.231,-0.494,0.762,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead;cyclist_in_path,"A cyclist crosses the ego vehicle's path, requiring the ego to slow down to avoid a collision."
+02631,0.32315,552,-1.049,0.145,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stationary on a dirt road at night with no immediate hazards.
+02632,0.54583,227,-0.640,1.052,-0.021,0.930,1.0,1.0,8.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down to avoid a collision."
+02634,0.21393,665,-1.049,-2.166,-0.546,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is stopped in a parking lot with trailers around, no immediate danger."
+02635,0.48291,333,-0.367,0.167,0.083,0.131,2.0,2.0,6.0,other,2,cut_in;cyclist_in_path,"A yellow van cuts in front of the ego vehicle, creating a potential collision risk."
+02636,0.50024,298,-0.367,-0.345,1.227,0.131,2.0,2.0,6.0,other,2,,"The firetruck ahead is reversing, creating a potential collision risk."
+02639,0.48592,321,-0.367,0.059,0.307,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,"A black SUV cuts in ahead, causing the ego vehicle to slow down."
+02640,0.44132,404,-0.503,0.895,-1.641,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The black sedan ahead is signaling a right turn, indicating an upcoming maneuver that could affect the ego vehicle's path."
+02641,0.30760,578,-1.049,0.284,-0.546,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is stopped at a red light, waiting for it to turn green before proceeding."
+02646,0.41464,436,-0.858,0.624,-1.061,0.131,0.0,2.0,6.0,other,1,brake_lights_ahead,"The vehicle ahead is slowing down, prompting the ego vehicle to decelerate."
+02652,0.26948,638,-1.049,-0.642,-0.550,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving fast on a highway with no immediate collision risks.
+02655,0.48637,319,0.178,-0.383,-0.546,0.131,4.0,4.0,6.0,other,2,,"The white truck ahead is moving slowly and cutting into the lane, creating a potential collision risk."
+02656,0.48108,336,-0.503,0.581,-0.155,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The lead vehicle is slowing down, causing the ego vehicle to slow down as well."
+02662,0.29035,612,-0.503,-0.955,-0.229,-1.867,2.0,2.0,1.0,none,2,,"The ego vehicle is driving slowly down a narrow, parked-car-lined street at night with no immediate danger."
+02664,0.30617,582,-0.858,-0.979,-0.081,-1.068,0.0,2.0,3.0,other,1,pedestrian_in_path,Pedestrians crossing the road ahead of the ego vehicle pose a collision risk.
+02666,0.60634,177,0.260,0.925,0.069,0.530,2.0,10.0,7.0,other,1,vehicle_crossing_path,"A black SUV cuts in front of the ego vehicle, forcing it to brake suddenly."
+02668,0.31527,564,-1.049,-0.197,-0.331,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is stationary in a parking lot with no immediate collision risk.
+02672,0.70487,124,1.678,-0.404,-0.347,1.329,9.0,9.0,9.0,other,2,pedestrian_in_path,"A pedestrian suddenly crosses the road directly in front of the ego vehicle, creating an immediate collision risk."
+02673,0.47473,347,0.178,0.556,-1.442,-0.269,4.0,4.0,5.0,ego,2,,"The ego vehicle is slowing down in traffic, maintaining a safe distance from the vehicle ahead."
+02674,0.49838,300,-0.313,0.617,-0.251,0.131,2.0,4.0,6.0,other,2,brake_lights_ahead;cut_in,"The white SUV ahead is braking and cutting into the ego lane, creating a collision risk."
+02681,0.25604,653,-1.049,-1.196,-0.274,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving slowly down a narrow street with parked cars on both sides and no immediate moving vehicles or pedestrians in its path.
+02683,0.69047,140,1.405,0.094,-0.073,0.930,8.0,8.0,8.0,other,2,vehicle_crossing_path,"A white pickup truck crosses the road in front of the ego vehicle, creating a collision risk."
+02685,0.41053,444,-0.503,-0.582,-0.512,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The red car ahead is slowing down, prompting the ego vehicle to decelerate to maintain a safe distance."
+02686,0.74744,56,1.678,0.817,-0.546,1.329,9.0,9.0,9.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"The vehicle ahead cuts into the ego lane and brakes hard, creating a high risk of rear-end collision."
+02687,0.75901,41,1.950,0.583,-0.546,1.329,10.0,10.0,9.0,ego,2,cut_in,"Ego vehicle is cutting in front of a white car, creating a high risk of collision."
+02688,0.41448,437,-1.049,-0.332,3.382,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a fast speed on a clear road with no immediate hazards.
+02689,0.26827,640,-1.049,-0.676,-0.546,-1.468,0.0,0.0,2.0,none,2,,"The ego vehicle is stopped at a red light, waiting for it to turn green before proceeding."
+02690,0.37987,469,-0.503,0.074,-0.244,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is driving straight on a highway with no immediate danger.
+02691,0.36893,480,-0.367,-0.048,-0.756,-1.068,2.0,2.0,3.0,other,2,,The silver sedan turning left creates a risk as it crosses the ego vehicle's path.
+02692,0.48307,332,-0.503,0.460,2.058,-1.068,2.0,2.0,3.0,other,2,,"The lead vehicle is maintaining a steady speed, and there is no immediate risk of collision."
+02693,0.48423,328,-0.503,-0.166,0.925,0.131,2.0,2.0,6.0,other,2,,"The black car in the adjacent lane is moving slowly and could potentially cut into the ego lane, requiring attention."
+02694,0.43331,413,-1.049,-0.013,2.806,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight through a tunnel at high speed with no immediate hazards.
+02695,0.68865,142,0.314,0.765,3.215,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The black SUV ahead is slowing and braking as pedestrians cross its path, requiring the ego vehicle to slow and maintain a safe distance."
+02696,0.44710,395,-0.503,-0.206,-0.016,0.131,2.0,2.0,6.0,other,2,,"The black car in front is slowing down, requiring the ego vehicle to decelerate."
+02699,0.26031,650,-1.049,-0.530,-1.013,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight in a lane with clear visibility and no immediate hazards.
+02700,0.51668,274,-0.231,0.233,-0.134,0.530,2.0,2.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The silver sedan ahead is braking and crossing the ego vehicle's path, creating a potential collision risk."
+02702,0.74100,67,1.950,-0.127,-0.240,1.329,10.0,10.0,9.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking hard and crossing the ego vehicle's path, creating a high risk of collision."
+02703,0.43590,410,-0.408,-0.418,-2.289,1.329,1.0,2.0,9.0,other,1,vehicle_crossing_path,The ego vehicle is following a truck and must maintain a safe distance.
+02704,0.34970,502,-0.503,-0.058,-0.270,-1.468,2.0,2.0,2.0,other,2,,"The black car in front is moving steadily, and there is no immediate collision risk."
+02708,0.41535,434,-0.313,0.122,0.172,-1.068,2.0,4.0,3.0,none,1,brake_lights_ahead,"The black car ahead is braking, causing the ego vehicle to slow down."
+02710,0.29464,599,-1.049,-0.194,-0.318,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight at a moderate speed with no immediate hazards.
+02713,0.67743,149,1.405,-0.006,-1.008,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"The black sedan ahead cuts into the ego vehicle's lane and applies its brakes, creating a high risk of collision."
+02714,0.29599,596,-1.049,0.009,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle drives straight at high speed on a highway with no immediate hazards.
+02716,0.32324,550,-1.049,0.357,-0.159,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is moving slowly through a parking lot with no immediate collision risks.
+02724,0.43653,409,-0.503,-0.125,-0.411,0.131,2.0,2.0,6.0,other,2,,"A black SUV cuts in ahead, creating a potential collision risk."
+02725,0.45484,381,-0.503,0.145,-0.276,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in;low_visibility,"The vehicle ahead is braking, causing the ego vehicle to remain stopped and maintain a safe distance."
+02727,0.46837,359,-0.503,0.295,-0.114,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white van ahead is slowing down, prompting the ego vehicle to decelerate."
+02728,0.71819,110,1.541,0.558,-0.168,0.930,9.0,9.0,8.0,other,2,brake_lights_ahead,"The white car in front brakes hard, causing the ego vehicle to slow down to avoid a collision."
+02729,0.64395,163,1.269,0.148,-1.180,0.930,8.0,8.0,8.0,other,2,brake_lights_ahead,"The black car in front is braking hard, causing the ego vehicle to slow down to avoid a collision."
+02730,0.72863,92,1.678,0.830,-0.546,0.930,9.0,9.0,8.0,other,2,pedestrian_in_path,"Pedestrian crossing the road ahead of the ego vehicle, requiring the ego to slow down and yield."
+02732,0.27667,628,-1.049,-0.481,-0.523,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight on a clear road with no immediate hazards.
+02733,0.52995,254,-0.408,0.325,-0.095,0.930,1.0,2.0,8.0,other,1,vehicle_crossing_path,The ego vehicle is driving straight and is not in danger.
+02734,0.49555,305,-0.367,0.727,-0.327,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The lead vehicle is slowing down and crossing the intersection, requiring the ego vehicle to reduce speed and maintain a safe following distance."
+02736,0.51339,281,-0.367,0.505,-0.887,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead;cut_in,"A black car cuts in ahead, causing the ego vehicle to slow down."
+02739,0.48497,326,-0.313,-0.305,0.622,0.131,2.0,4.0,6.0,other,1,vehicle_crossing_path,"A black SUV cuts in ahead, causing a potential collision."
+02740,0.49758,301,-0.367,0.625,-0.137,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;cut_in,"The black sedan ahead is braking and signaling a right turn, requiring the ego vehicle to slow down and maintain a safe distance."
+02741,0.69180,138,1.269,0.176,0.223,0.930,8.0,8.0,8.0,none,2,brake_lights_ahead;cut_in;low_visibility,"The vehicle ahead is braking hard, creating a high risk of collision."
+02744,0.41515,435,-0.503,-0.562,-0.411,0.131,2.0,2.0,6.0,other,2,,"The vehicle ahead is maintaining a steady speed, and there is no immediate risk of collision."
+02745,0.58867,185,0.314,0.910,-0.546,0.530,4.0,4.0,7.0,other,3,brake_lights_ahead;cut_in,"The black SUV ahead cuts into the ego vehicle's lane, causing the ego to slow down."
+02746,0.54344,233,0.314,-0.011,-0.546,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"The red SUV ahead cuts into the ego vehicle's lane, causing a potential collision risk."
+02747,0.56707,204,0.178,0.588,0.322,0.131,4.0,4.0,6.0,none,2,brake_lights_ahead,"The white pickup truck ahead is slowing down, requiring the ego vehicle to slow further to avoid a rear-end collision."
+02749,0.45354,382,-0.094,-0.758,-0.863,0.530,3.0,3.0,7.0,other,2,brake_lights_ahead;cut_in,"The black SUV cuts in ahead of the ego vehicle, causing the ego to slow down."
+02751,0.55860,215,-0.503,0.997,0.034,0.930,1.0,1.0,8.0,other,3,cut_in;vehicle_crossing_path,"The black SUV cuts in ahead, causing a potential collision."
+02753,0.34107,518,-0.503,-0.182,-1.025,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The white sedan in the adjacent lane is moving at a similar speed, but there is no immediate collision risk."
+02755,0.39380,457,-1.049,0.186,-0.546,0.131,0.0,0.0,6.0,none,2,,The ego vehicle drives straight at a fast speed with no immediate collision risks.
+02758,0.73298,81,1.950,0.720,-1.644,1.329,10.0,10.0,9.0,other,3,pedestrian_in_path,"A pedestrian suddenly steps into the ego vehicle's path, causing an imminent collision."
+02763,0.28452,624,-1.049,-0.769,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is moving at speed under a bridge with no immediate hazards.
+02764,0.81128,5,1.950,0.164,2.088,1.329,10.0,10.0,9.0,other,2,vehicle_crossing_path,"A black SUV crosses the ego vehicle's path, creating a collision risk."
+02765,0.56051,213,-0.094,0.861,-0.824,0.930,0.0,10.0,8.0,other,1,pedestrian_in_path,"A pedestrian suddenly crosses directly in front of the ego vehicle, forcing an immediate stop to avoid a collision."
+02767,0.38731,463,-0.503,0.027,0.030,-1.068,2.0,2.0,3.0,other,2,cut_in,"The black car in the right lane is moving steadily, creating a low collision risk."
+02769,0.31020,571,-1.049,-0.154,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight on a clear road with no immediate hazards.
+02770,0.33926,521,-1.049,-0.990,-0.546,0.131,0.0,0.0,6.0,none,2,,"The ego vehicle is accelerating and turning left at an intersection with green traffic lights, with no immediate collision risks."
+02771,0.44372,402,-0.503,-0.315,0.038,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The black sedan ahead is braking, requiring the ego vehicle to slow down to avoid a rear-end collision."
+02774,0.37908,470,-0.503,-0.393,1.689,-1.867,2.0,2.0,1.0,none,2,,The ego vehicle is driving straight on a highway with a steady gap to the vehicle ahead.
+02781,0.62427,169,-0.503,1.034,3.131,0.131,2.0,2.0,6.0,other,2,,"A gray SUV crosses the intersection ahead, requiring the ego vehicle to slow down."
+02783,0.52168,267,-0.231,-0.320,0.071,0.930,2.0,2.0,8.0,other,2,cut_in,"The white SUV ahead cuts into the ego vehicle's lane, creating a collision risk."
+02786,0.40361,448,-0.503,0.254,0.181,-1.068,2.0,2.0,3.0,other,2,,"The black sedan in the adjacent lane is moving at a similar speed, but there is no immediate risk of collision."
+02787,0.59745,179,0.314,1.032,-0.466,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"A white SUV ahead cuts into the ego lane, causing the ego vehicle to slow down."
+02791,0.72928,88,1.950,-0.198,-0.546,1.329,10.0,10.0,9.0,other,2,oncoming_in_lane,"Oncoming vehicle crosses the ego's path at the intersection, creating a direct collision risk."
+02793,0.45256,386,-0.503,0.046,-0.205,0.131,2.0,2.0,6.0,other,2,,"The white SUV ahead is slowing down, requiring the ego vehicle to decelerate to maintain a safe distance."
+02794,0.72222,102,1.678,-0.233,-0.009,1.329,9.0,9.0,9.0,other,2,vehicle_crossing_path,"Black SUV crosses the intersection in front of the ego vehicle, creating a collision risk."
+02797,0.30074,591,-1.049,-0.227,-0.747,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards or critical objects present.
+02798,0.43456,412,-1.049,-0.093,2.945,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate hazards.
+02800,0.46067,370,-0.503,0.876,0.238,-0.669,2.0,2.0,4.0,other,2,,"The white pickup truck ahead is moving forward, creating a closing distance that requires attention."
+02801,0.56214,210,0.205,0.557,0.157,0.131,2.0,8.0,6.0,other,1,brake_lights_ahead;cut_in;vehicle_crossing_path,"The white sedan ahead cuts into the ego lane and applies its brakes, requiring the ego vehicle to slow down to avoid a collision."
+02804,0.55693,218,0.314,0.890,-1.384,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The truck ahead is braking and crossing into the ego lane, creating a collision risk."
+02805,0.38176,468,-0.231,-0.829,-1.711,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead;vehicle_crossing_path,"A black SUV crosses the path of the ego vehicle, requiring the ego to slow down to avoid a collision."
+02807,0.41075,443,-0.503,0.926,0.149,-1.468,2.0,2.0,2.0,none,2,pedestrian_in_path,The ego vehicle is driving straight in moderate traffic without any immediate collision risks.
+02809,0.73216,84,1.405,0.153,0.538,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;cut_in,"The red car ahead cuts into the ego's lane, causing the ego to slow down and avoid a collision."
+02811,0.28460,623,-1.049,-0.767,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight on a clear road with no immediate hazards.
+02812,0.51007,287,-0.094,0.229,-0.002,0.131,3.0,3.0,6.0,other,2,brake_lights_ahead;cut_in,"The black SUV ahead cuts into the ego vehicle's lane, causing a potential collision."
+02815,0.48642,318,0.342,-0.523,-0.794,0.131,2.0,8.0,6.0,other,1,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking hard, requiring the ego vehicle to slow down quickly to avoid a collision."
+02816,0.72365,98,1.405,0.674,-0.444,1.329,8.0,8.0,9.0,other,3,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead has its brake lights on and is crossing the ego vehicle's path, creating a high risk of collision."
+02818,0.33170,534,-1.049,-0.298,0.304,-1.068,0.0,0.0,3.0,none,2,,Traffic is stopped with no immediate danger.
+02821,0.29221,606,-1.049,-0.582,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight on a highway with no immediate collision risk.
+02822,0.26735,642,-1.049,-0.891,-0.955,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle drives straight at a fast speed on a clear road with no immediate hazards.
+02823,0.30122,590,-1.049,-0.448,-0.436,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is turning right in a parking lot with no immediate collision risk.
+02826,0.41222,441,-0.858,0.151,-0.497,0.131,0.0,2.0,6.0,other,1,,"The red SUV on the right is moving into the ego vehicle's lane, creating a potential collision risk."
+02827,0.33444,529,-0.953,-0.242,0.057,-1.068,0.0,1.0,3.0,other,1,pedestrian_in_path,"A pedestrian is crossing the road in front of the ego vehicle, creating a collision risk."
+02828,0.48575,323,-0.231,-0.529,-0.609,0.930,2.0,2.0,8.0,other,2,brake_lights_ahead;cut_in;vehicle_crossing_path,"The black car ahead cuts into the ego vehicle's lane and applies its brakes, requiring the ego vehicle to slow down to avoid a collision."
+02829,0.48377,331,-0.640,0.549,0.323,0.131,1.0,1.0,6.0,other,2,oncoming_in_lane,"Oncoming traffic is approaching in the opposite lane, creating a potential collision risk."
+02831,0.30314,587,-0.503,-1.148,-0.230,-1.468,2.0,2.0,2.0,none,2,,The ego vehicle is driving straight in a parking lot with no immediate collision risk.
+02832,0.32710,543,-1.049,0.720,-0.527,-1.468,0.0,0.0,2.0,none,3,,The ego vehicle is driving straight on a clear road with no immediate hazards.
+02833,0.49626,304,0.178,-0.563,-0.042,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The white van ahead brakes, causing the ego vehicle to slow down."
+02836,0.53840,245,-0.503,0.691,3.228,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is moving slowly in traffic with no immediate collision risk.
+02840,0.33847,522,-0.503,-0.772,-0.315,-1.068,2.0,2.0,3.0,none,2,,"The ego vehicle is traveling at high speed on a busy highway, maintaining a safe distance from surrounding traffic."
+02845,0.55930,214,0.314,0.207,0.257,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;cut_in,"The white sedan ahead is braking and cutting into the ego vehicle's lane, creating a potential collision risk."
+02846,0.30923,573,-1.049,-0.177,-0.546,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a steady speed with no immediate hazards.
+02848,0.30699,580,-1.049,-0.238,-0.535,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at a fast speed with no immediate collision risks.
+02851,0.34970,501,-0.503,-0.557,-0.270,-1.068,2.0,2.0,3.0,none,2,,The ego vehicle is driving fast on a straight road with no immediate collision risks.
+02853,0.42032,425,-0.503,-0.540,-0.298,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white SUV ahead is slowing down, causing the ego vehicle to slow down as well."
+02854,0.47825,343,-0.367,0.076,0.080,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The red car ahead is slowing down, requiring the ego vehicle to slow further to avoid a rear-end collision."
+02855,0.75748,43,1.950,0.047,0.114,1.329,10.0,10.0,9.0,other,2,cut_in;vehicle_crossing_path,"The gray pickup truck ahead cuts into the ego lane and crosses directly in front of the ego vehicle, creating a high-risk collision scenario."
+02856,0.74219,66,1.405,0.505,0.414,1.329,8.0,8.0,9.0,other,2,brake_lights_ahead;pedestrian_in_path;vehicle_crossing_path,Pedestrians crossing the road ahead of the ego vehicle pose a collision risk.
+02857,0.42484,422,-0.503,-0.364,1.589,-1.068,2.0,2.0,3.0,other,2,,"The white SUV ahead is moving away, and the ego vehicle is following it at a safe distance."
+02858,0.52514,259,0.042,0.219,0.050,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead,"The vehicle ahead is braking, causing the ego vehicle to slow down."
+02859,0.33572,527,-0.858,0.048,-0.546,-1.068,0.0,2.0,3.0,other,1,,The vehicle ahead is moving away and not posing a collision risk.
+02860,0.45548,380,-0.367,-0.315,-0.010,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The white car ahead brakes, causing the ego vehicle to slow down."
+02862,0.57733,193,0.165,0.462,0.140,0.530,1.0,8.0,7.0,other,1,brake_lights_ahead;vehicle_crossing_path,"The white SUV ahead brakes hard, causing the ego vehicle to slow down to avoid a collision."
+02863,0.24878,658,-1.049,-1.184,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle drives straight at speed with no other road users nearby.
+02866,0.55582,219,0.178,0.109,-0.009,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;cut_in,"A black car cuts in ahead, causing the ego vehicle to slow down."
+02868,0.47199,351,-0.503,0.269,2.016,-1.068,2.0,2.0,3.0,other,2,,"The white SUV ahead is maintaining a steady speed, and no immediate collision risk is present."
+02870,0.43187,415,-0.503,-0.258,-0.359,0.131,2.0,2.0,6.0,other,2,brake_lights_ahead,"The black car ahead is slowing down, causing the ego vehicle to slow down as well."
+02872,0.48416,329,-0.408,-0.500,-0.217,0.930,1.0,2.0,8.0,other,1,brake_lights_ahead;cut_in,"The vehicle ahead is braking, prompting the ego vehicle to slow down."
+02873,0.56978,201,-0.408,1.157,-0.131,0.930,1.0,2.0,8.0,none,1,brake_lights_ahead;cut_in,"The white pickup truck ahead is slowing down, requiring the ego vehicle to decelerate to avoid a rear-end collision."
+02874,0.45179,387,-0.503,-0.633,0.680,0.131,2.0,2.0,6.0,none,2,brake_lights_ahead,"The red SUV ahead is slowing down, prompting the ego vehicle to decelerate."
+02877,0.25923,651,-1.049,-0.923,-1.192,-1.068,0.0,0.0,3.0,none,2,,The ego vehicle is driving straight at speed with no immediate collision risk.
+02879,0.42637,420,-0.231,0.597,-0.378,-1.068,3.0,3.0,3.0,none,2,,Driving straight on a wet residential road with moderate traffic.
+02883,0.33959,520,-0.858,-0.411,-0.484,-0.669,0.0,2.0,4.0,none,1,,The ego vehicle drives straight through a residential area with parked vehicles on both sides.
+02885,0.52923,256,0.314,0.097,-0.405,0.131,4.0,4.0,6.0,other,2,brake_lights_ahead;cut_in,"The vehicle ahead cuts into the ego vehicle's lane, causing the ego to slow down and avoid a collision."
+02888,0.33337,531,-1.049,0.043,-0.100,-1.068,0.0,0.0,3.0,none,2,,"The ego vehicle is stopped behind a white pickup truck at a yield sign, with no immediate collision risk."
+02889,0.45318,383,-0.503,0.807,0.794,-1.068,2.0,2.0,3.0,other,2,brake_lights_ahead,"The white car ahead is braking, causing the ego vehicle to stop and maintain a safe distance."
+02890,0.54680,225,-0.367,-0.228,1.651,0.530,2.0,2.0,7.0,other,2,pedestrian_in_path,A white truck parked on the right side of the road creates a potential collision risk as the ego vehicle passes by.
+02893,0.30746,579,-1.049,0.048,-0.235,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle drives fast on a clear road with no immediate hazards.
+02894,0.28663,619,-1.049,-0.218,-0.546,-1.468,0.0,0.0,2.0,none,2,,The ego vehicle is driving straight in the middle lane with no immediate collision risk.
+02903,0.54178,237,0.314,0.547,-1.335,0.530,4.0,4.0,7.0,other,2,brake_lights_ahead;vehicle_crossing_path,"The vehicle ahead is braking and crossing the ego vehicle's path, creating a potential collision risk."
+02904,0.65527,159,1.405,0.152,-1.216,0.930,8.0,8.0,8.0,other,2,oncoming_in_lane,"A white sedan crosses the ego vehicle's path from the opposite direction, creating a collision risk."
+02905,0.46350,367,-0.858,-0.713,2.046,0.131,0.0,2.0,6.0,other,1,oncoming_in_lane,"Oncoming white SUV crosses the ego vehicle's path, creating a collision risk."
+02906,0.58515,189,-0.367,-0.229,2.693,0.530,2.0,2.0,7.0,other,2,cut_in,"The black SUV cuts in ahead of the ego vehicle, narrowing the gap and requiring the ego to slow down to avoid a collision."
+02915,0.53074,252,-0.408,0.232,0.049,0.930,1.0,2.0,8.0,other,1,brake_lights_ahead;vehicle_crossing_path,"The white truck ahead is braking, causing the ego vehicle to slow down."

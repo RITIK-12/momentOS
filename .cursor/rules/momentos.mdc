@@ -1,0 +1,22 @@
+---
+description: MomentOS project guardrails (team-49, VAST Builders Challenge). Applies to every session in this repo.
+alwaysApply: true
+---
+
+# MomentOS guardrails
+
+- Scope: team-49 namespace and buckets only. Data scope: Nexar public-test **batch A** (uploaded
+  2026-10-02 19:40–20:20 UTC), listed in `manifests/batch_a.csv`. Exclude 2026-10-01 videos and
+  later 2026-10-02 uploads from the app, search, and evaluation; never delete them.
+- Credentials come from the environment and `/config/<team>.config`. List names with
+  `env | cut -d= -f1 | sort`; never print values, hardcode, or commit them.
+- Labels live only in gitignored `data/nexar/`. Never put labels in prompts, `camera_id`,
+  `location`, filenames, or the app. VastDB `tags` on batch A leak labels: never read or show them.
+- The pipeline is shared: ask before any re-ingest; ≤10 clips first, then batches of ≤100.
+- Keep backend `/search` at `top_k ≤ 50` (larger requests have OOM-killed the backend).
+- The driver score is opt-in, discount/coaching-only, counts ego-caused moments only, needs human
+  review, supports contests, and uses no location features (Nexar license: no exploitative
+  insurance practices). Do not add surcharges or location penalties.
+- Deploy only via `deploy/deploy.sh` (deploy-app-no-registry): `http://team-49-vss.thecosmoslabs.com/app`.
+- Do not commit or push unless the user explicitly asks.
+- Use the matching skill in `.cursor/skills/` (challenge skills and `momentos/`) before raw REST calls.

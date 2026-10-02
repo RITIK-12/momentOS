@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MomentOS · Safe-driver scoring from dashcam moments</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --panel2: #1c2330; --line: #2a3342; --text: #e6edf3; --muted: #8b98a9;
+    --high: #f0565c; --elev: #f2a93b; --low: #3fb96f; --other: #6aa8ff; --accent: #8e7bff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header { display: flex; align-items: center; gap: 24px; padding: 14px 28px; border-bottom: 1px solid var(--line); background: #0f141b; position: sticky; top: 0; z-index: 5; }
+  .brand { font-weight: 700; font-size: 18px; letter-spacing: .2px; }
+  .brand span { color: var(--accent); }
+  .tag { color: var(--muted); font-size: 13px; }
+  nav { margin-left: auto; display: flex; gap: 4px; }
+  nav button { background: none; border: 1px solid transparent; color: var(--muted); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+  nav button.on { color: var(--text); background: var(--panel2); border-color: var(--line); }
+  main { max-width: 1280px; margin: 0 auto; padding: 22px 28px 60px; }
+  .notice { background: #141a24; border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 8px; color: var(--muted); margin-bottom: 18px; font-size: 13px; }
+  .notice b { color: var(--text); }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .kpi .v { font-size: 26px; font-weight: 700; }
+  .kpi .l { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  h2 { font-size: 16px; margin: 6px 0 12px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; cursor: pointer; transition: border-color .15s, transform .15s; }
+  .card:hover { border-color: #3b4659; transform: translateY(-1px); }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .ring { --p: 50; --c: var(--low); width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; flex: none;
+          background: conic-gradient(var(--c) calc(var(--p) * 1%), #263042 0); }
+  .ring > div { width: 50px; height: 50px; border-radius: 50%; background: var(--panel); display: grid; place-items: center; font-weight: 700; font-size: 17px; }
+  .ring.big { width: 110px; height: 110px; } .ring.big > div { width: 88px; height: 88px; font-size: 30px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .badge.high { color: #fff; background: rgba(240,86,92,.18); border-color: rgba(240,86,92,.5); }
+  .badge.elevated { color: #fff; background: rgba(242,169,59,.16); border-color: rgba(242,169,59,.5); }
+  .badge.low { color: #fff; background: rgba(63,185,111,.14); border-color: rgba(63,185,111,.45); }
+  .badge.ego { color: #fff; background: rgba(142,123,255,.18); border-color: rgba(142,123,255,.55); }
+  .badge.other { color: #fff; background: rgba(106,168,255,.14); border-color: rgba(106,168,255,.5); }
+  .badge.tier { color: var(--text); background: var(--panel2); }
+  .muted { color: var(--muted); }
+  .small { font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; }
+  tr.click { cursor: pointer; } tr.click:hover td { background: #18202b; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip { font-size: 11.5px; padding: 2px 7px; border-radius: 6px; background: #222b39; color: #c9d4e2; border: 1px solid #2d3849; }
+  .btn { background: var(--panel2); color: var(--text); border: 1px solid var(--line); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+  .btn:hover { border-color: #46526a; } .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:disabled { opacity: .5; cursor: wait; }
+  .two { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  video { width: 100%; border-radius: 10px; background: #000; aspect-ratio: 16/9; }
+  .timeline { display: flex; gap: 3px; margin: 10px 0 4px; height: 26px; }
+  .timeline div { flex: 1; border-radius: 5px; display: grid; place-items: center; font-size: 11px; cursor: pointer; color: #0d1117; font-weight: 600; }
+  .bar { height: 8px; background: #263042; border-radius: 4px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; background: var(--accent); }
+  .report { white-space: pre-wrap; background: #121822; border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin-top: 10px; font-size: 13px; }
+  .back { color: var(--muted); cursor: pointer; margin-bottom: 12px; display: inline-block; }
+  .back:hover { color: var(--text); }
+  input[type=text], select { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; font-size: 14px; }
+  .searchbar { display: flex; gap: 8px; margin-bottom: 14px; } .searchbar input { flex: 1; }
+  footer { color: var(--muted); font-size: 12px; text-align: center; padding: 22px; border-top: 1px solid var(--line); }
+  .spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid #46526a; border-top-color: var(--text); border-radius: 50%; animation: s 0.8s linear infinite; vertical-align: -2px; }
+  @keyframes s { to { transform: rotate(360deg); } }
+  .md h1, .md h2, .md h3 { font-size: 14px; margin: 8px 0 4px; }
+  @media (max-width: 900px) { .two { grid-template-columns: 1fr; } .kpis { grid-template-columns: repeat(2, 1fr); } header { flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Moment<span>OS</span></div>
+  <div class="tag">Opt-in safe-driver scoring from dashcam near-miss moments</div>
+  <nav id="nav">
+    <button data-v="drivers" class="on">Drivers</button>
+    <button data-v="moments">Moments</button>
+    <button data-v="search">Search</button>
+    <button data-v="method">Method</button>
+  </nav>
+</header>
+<main id="view"></main>
+<footer>
+  Data: Moura, Daniel C., and Zvitia, Orly. "Nexar Collision Dataset." Hugging Face, 2025 · Nexar Open Data License (no re-identification, no exploitative insurance practices).
+  · Built on VAST DataEngine + VastDB, NVIDIA Cosmos Reason / Embed1, YOLO11, and W&amp;B Inference.
+</footer>
+<script>
+const BASE = location.pathname.endsWith('/') ? location.pathname : location.pathname + '/';
+const api = (p, opt) => fetch(BASE + 'api/' + p, opt).then(async r => { if (!r.ok) throw new Error((await r.json().catch(() => ({}))).detail || r.status); return r.json(); });
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CAUSE = {ego: 'Driver (ego)', other: 'Other road user', none: 'No clear cause'};
+const cueLabel = c => c.replace(/_/g, ' ');
+const riskColor = r => r == null ? '#3a4558' : r >= 7 ? 'var(--high)' : r >= 4 ? 'var(--elev)' : 'var(--low)';
+const scoreColor = s => s >= 85 ? 'var(--low)' : s >= 70 ? 'var(--elev)' : 'var(--high)';
+const ring = (v, big) => `<div class="ring ${big ? 'big' : ''}" style="--p:${v};--c:${scoreColor(v)}"><div>${v}</div></div>`;
+const levelBadge = l => `<span class="badge ${l}">${l} risk</span>`;
+const causeBadge = (c, lvl) => `<span class="badge ${c === 'ego' ? 'ego' : c === 'other' ? 'other' : ''}">${esc(CAUSE[c] || c)}${lvl !== 'low' && c !== 'ego' ? ' · not counted' : ''}</span>`;
+const chips = cs => `<div class="chips">${(cs || []).map(c => `<span class="chip">${esc(cueLabel(c))}</span>`).join('') || '<span class="muted small">no cues</span>'}</div>`;
+let OV = null;
+
+function md(s) {
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/^#+\s*(.*)$/gm, '<b>$1</b>').replace(/^- /gm, '• ');
+}
+
+document.querySelectorAll('#nav button').forEach(b => b.onclick = () => go(b.dataset.v));
+function go(v, arg) {
+  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.v === v || (v === 'rider' && b.dataset.v === 'drivers') || (v === 'clip' && b.dataset.v === 'moments')));
+  history.replaceState(null, '', '#' + v + (arg ? '/' + arg : ''));
+  ({drivers, rider, moments, clip, search, method})[v](arg);
+  window.scrollTo(0, 0);
+}
+
+async function drivers() {
+  $('#view').innerHTML = '<span class="spinner"></span>';
+  OV = await api('overview');
+  const avg = Math.round(OV.riders.reduce((a, r) => a + r.safe_score, 0) / OV.riders.length);
+  const flagged = OV.levels.high + OV.levels.elevated;
+  $('#view').innerHTML = `
+    <div class="notice"><b>Simulated drivers.</b> The ${OV.clips} public Nexar test clips come from anonymous, unrelated drivers; MomentOS groups them into ${OV.riders.length} demo "drivers" to show driver-level scoring.
+      <b>Policy:</b> only moments the driver caused count; moments caused by other road users are shown but never counted; scores can unlock a discount or free coaching and never raise a premium; every tier change goes to human review and any moment can be contested.</div>
+    <div class="kpis">
+      <div class="kpi"><div class="v">${OV.clips}</div><div class="l">Trips analysed</div></div>
+      <div class="kpi"><div class="v">${flagged}</div><div class="l">Flagged moments (high + elevated)</div></div>
+      <div class="kpi"><div class="v">${Math.round(100 * OV.flagged_by_cause.ego / Math.max(1, flagged))}%</div><div class="l">Of flagged moments caused by driver</div></div>
+      <div class="kpi"><div class="v">${avg}</div><div class="l">Average safe-driving score</div></div>
+    </div>
+    <h2>Drivers</h2>
+    <div class="grid">${OV.riders.map(r => `
+      <div class="card" onclick="go('rider','${r.id}')">
+        <div class="row">${ring(r.safe_score)}<div>
+          <div style="font-weight:600">Driver ${r.id} <span class="muted small">(simulated)</span></div>
+          <div class="badge tier" style="margin-top:4px">${esc(r.tier.name)}</div></div></div>
+        <div class="small muted" style="margin-top:10px">${r.trips} trips · <b style="color:var(--text)">${r.ego_high + r.ego_elevated}</b> driver-caused · ${r.other_events} by others (not counted)${r.contested ? ` · ${r.contested} contested` : ''}</div>
+      </div>`).join('')}</div>`;
+}
+
+async function rider(id) {
+  $('#view').innerHTML = '<span class="spinner"></span>';
+  const d = await api('riders/' + id), s = d.summary;
+  const flagged = d.clips.filter(c => c.level !== 'low');
+  $('#view').innerHTML = `
+    <span class="back" onclick="go('drivers')">← All drivers</span>
+    <div class="two">
+      <div class="panel">
+        <div class="row" style="gap:20px">${ring(s.safe_score, true)}
+          <div><div style="font-size:20px;font-weight:700">Driver ${s.id} <span class="muted small">(simulated)</span></div>
+            <div style="margin:6px 0"><span class="badge tier">${esc(s.tier.name)}</span> <span class="muted">${esc(s.tier.action)}</span></div>
+            <div class="small muted">${s.trips} trips · ${s.ego_high} high + ${s.ego_elevated} elevated driver-caused moments · ${s.events_per_10_trips} weighted events per 10 trips</div>
+            <div class="small muted">${s.other_events} moments caused by other road users (not counted)${s.contested ? ` · ${s.contested} contested (excluded pending review)` : ''}</div></div></div>
+        <p class="small muted" style="margin-top:14px">Score = 100 − 35 × (high + 0.4 × elevated driver-caused moments per 10 trips). Tiers: ≥85 reward (discount after human review), 70–84 standard (no change), &lt;70 coaching offered (no increase).</p>
+      </div>
+      <div class="panel">
+        <div class="row" style="justify-content:space-between"><h2 style="margin:0">Coaching note</h2>
+          <button class="btn primary" id="coachBtn">Generate with W&amp;B LLM</button></div>
+        <div id="coach" class="report md" style="${d.coach ? '' : 'display:none'}">${d.coach ? md(d.coach.note) : ''}</div>
+      </div>
+    </div>
+    <h2 style="margin-top:20px">Flagged moments (${flagged.length})</h2>
+    ${momentTable(flagged)}
+    <h2 style="margin-top:20px">Other trips (${d.clips.length - flagged.length})</h2>
+    ${momentTable(d.clips.filter(c => c.level === 'low'))}`;
+  $('#coachBtn').onclick = async e => {
+    e.target.disabled = true; e.target.innerHTML = '<span class="spinner"></span> Writing…';
+    try { const c = await api(`riders/${id}/coach`, {method: 'POST'}); $('#coach').style.display = ''; $('#coach').innerHTML = md(c.note); }
+    catch (err) { $('#coach').style.display = ''; $('#coach').textContent = 'Failed: ' + err.message; }
+    e.target.disabled = false; e.target.textContent = 'Regenerate';
+  };
+}
+
+function momentTable(cs) {
+  if (!cs.length) return '<div class="muted">None.</div>';
+  return `<div class="panel" style="padding:0"><table><thead><tr><th>Rank</th><th>Clip</th><th>Risk</th><th>Caused by</th><th>Cues</th><th>What the model saw</th></tr></thead><tbody>
+    ${cs.map(c => `<tr class="click" onclick="go('clip','${c.id}')">
+      <td>#${c.rank}</td><td>${c.id}<div class="small muted">driver ${c.rider}</div></td>
+      <td>${levelBadge(c.level)}<div class="small muted">${(c.score * 100).toFixed(0)}/100</div></td>
+      <td>${causeBadge(c.cause, c.level)}${c.contested ? '<div class="small" style="color:var(--elev)">contested</div>' : ''}</td>
+      <td>${chips(c.cues)}</td><td class="small">${esc(c.summary)}</td></tr>`).join('')}
+  </tbody></table></div>`;
+}
+
+async function moments() {
+  $('#view').innerHTML = `
+    <div class="row" style="justify-content:space-between;margin-bottom:12px"><h2 style="margin:0">Riskiest moments across all trips</h2>
+      <div class="row"><select id="lvl"><option value="">All levels</option><option value="high">High</option><option value="elevated">Elevated</option><option value="low">Low</option></select>
+      <select id="cause"><option value="">Any cause</option><option value="ego">Driver-caused</option><option value="other">Other road user</option><option value="none">No clear cause</option></select></div></div>
+    <div id="list"><span class="spinner"></span></div>`;
+  const load = async () => {
+    const d = await api(`clips?limit=100&level=${$('#lvl').value}&cause=${$('#cause').value}`);
+    $('#list').innerHTML = `<div class="small muted" style="margin-bottom:8px">${d.total} clips · showing top ${d.clips.length}</div>` + momentTable(d.clips);
+  };
+  $('#lvl').onchange = $('#cause').onchange = load; load();
+}
+
+async function clip(id) {
+  $('#view').innerHTML = '<span class="spinner"></span>';
+  const c = await api('clips/' + id);
+  const comp = c.components || {};
+  const compRows = Object.entries({precursor: 'Cosmos Reason precursor score', search: 'Hazard-query similarity (Cosmos Embed)', yolo: 'In-path proximity & looming (YOLO11)', llm: 'W&B LLM judge'})
+    .filter(([k]) => k in comp).map(([k, l]) => `<div class="small" style="margin:6px 0 2px">${l} <span class="muted">z=${comp[k].toFixed(2)}</span></div>
+      <div class="bar"><i style="width:${Math.max(3, Math.min(100, 50 + comp[k] * 20))}%"></i></div>`).join('');
+  $('#view').innerHTML = `
+    <span class="back" onclick="history.length > 1 ? history.back() : go('moments')">← Back</span>
+    <div class="two">
+      <div>
+        <video id="vid" controls preload="metadata" src="${BASE}api/stream/${c.id}"></video>
+        <div class="timeline">${c.segments.map(s => `<div title="segment ${s.n}: risk ${s.risk}" style="background:${riskColor(s.risk)}" onclick="seek(${(s.n - 1) * 5})">${s.n === c.peak_segment ? '▲ ' : ''}${(s.n - 1) * 5}s · risk ${s.risk ?? '?'}</div>`).join('')}</div>
+        <div class="small muted">Segments are 5 s; ▲ marks the riskiest segment. The clip ends just before the moment that matters.</div>
+        <div class="panel" style="margin-top:14px;padding:0"><table><thead><tr><th>Seg</th><th>Risk</th><th>Cause</th><th>TTC</th><th>Gap ahead</th><th>Ego speed</th><th>Cues / summary</th></tr></thead><tbody>
+          ${c.segments.map(s => `<tr><td>${s.n}/${s.of}</td><td style="color:${riskColor(s.risk)};font-weight:700">${s.risk ?? '?'}</td><td>${esc(CAUSE[s.cause] || '—')}</td>
+            <td>${s.ttc != null ? s.ttc + ' s' : '—'}</td><td>${esc(s.lead || '—')}</td><td>${esc(s.ego || '—')}</td><td>${chips(s.cues)}<div class="small" style="margin-top:4px">${esc(s.summary)}</div></td></tr>`).join('')}
+        </tbody></table></div>
+      </div>
+      <div>
+        <div class="panel">
+          <div class="row" style="justify-content:space-between"><div style="font-size:18px;font-weight:700">Clip ${c.id}</div>${levelBadge(c.level)}</div>
+          <div class="small muted" style="margin:4px 0 10px">Driver ${c.rider} (simulated) · rank #${c.rank} of all trips · risk ${(c.score * 100).toFixed(0)}/100</div>
+          <div style="margin-bottom:8px">${causeBadge(c.cause, c.level)}</div>
+          ${chips(c.cues)}
+          <p style="margin:12px 0 4px">${esc(c.summary)}</p>
+          ${c.llm && c.llm.rationale ? `<p class="small muted">LLM judge: risk ${c.llm.risk}/10, cause ${esc(c.llm.cause)}: ${esc(c.llm.rationale)}</p>` : ''}
+          <h2 style="margin-top:16px">Why this score</h2>${compRows}
+        </div>
+        <div class="panel" style="margin-top:14px">
+          <div class="row" style="justify-content:space-between"><h2 style="margin:0">Incident report</h2><button class="btn primary" id="repBtn">${c.report ? 'Show' : 'Generate'}</button></div>
+          <div id="rep" class="report md" style="${c.report ? '' : 'display:none'}">${c.report ? md(c.report.answer) : ''}</div>
+          <div class="small muted" style="margin-top:6px">Written by Cosmos Reason via VSS /videos/synthesize from this clip's indexed segments.</div>
+        </div>
+        <div class="panel" style="margin-top:14px">
+          <h2 style="margin-top:0">Driver review</h2>
+          <div id="contestState" class="small" style="margin-bottom:8px">${c.contested ? `Contested: ${esc(c.contested.status)}` : 'Not contested. A contested moment is excluded from the score until a human reviews it.'}</div>
+          <div class="row"><input type="text" id="reason" placeholder="Why do you disagree? (optional)" style="flex:1">
+            <button class="btn" id="contestBtn">${c.contested ? 'Withdraw' : 'Contest'}</button></div>
+        </div>
+      </div>
+    </div>`;
+  window.seek = t => { const v = $('#vid'); v.currentTime = t; v.play(); };
+  $('#vid').addEventListener('loadedmetadata', () => { if (c.peak_segment > 1) $('#vid').currentTime = (c.peak_segment - 1) * 5; }, {once: true});
+  $('#repBtn').onclick = async e => {
+    e.target.disabled = true; e.target.innerHTML = '<span class="spinner"></span> Writing…';
+    try { const r = await api(`clips/${id}/report`, {method: 'POST'}); $('#rep').style.display = ''; $('#rep').innerHTML = md(r.answer); }
+    catch (err) { $('#rep').style.display = ''; $('#rep').textContent = 'Failed: ' + err.message; }
+    e.target.disabled = false; e.target.textContent = 'Show';
+  };
+  $('#contestBtn').onclick = async () => {
+    const withdraw = !!c.contested;
+    const r = await api(`clips/${id}/contest`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({withdraw, reason: $('#reason').value})});
+    c.contested = r.contested;
+    $('#contestState').textContent = c.contested ? `Contested: ${c.contested.status}. Driver ${r.rider.id} score is now ${r.rider.safe_score}.` : `Contest withdrawn. Driver ${r.rider.id} score is ${r.rider.safe_score}.`;
+    $('#contestBtn').textContent = c.contested ? 'Withdraw' : 'Contest';
+  };
+}
+
+async function search() {
+  $('#view').innerHTML = `
+    <div class="searchbar"><input type="text" id="q" placeholder="e.g. vehicle ahead braking suddenly, cyclist entering the lane, car running a red light">
+      <button class="btn primary" id="go">Search</button></div>
+    <div class="chips" style="margin-bottom:14px">${['vehicle ahead braking suddenly', 'car cutting into our lane', 'pedestrian stepping into the road', 'cyclist crossing in front', 'driving at night in rain'].map(q => `<span class="chip" style="cursor:pointer" onclick="$('#q').value='${q}';$('#go').click()">${q}</span>`).join('')}</div>
+    <div class="small muted" style="margin-bottom:10px">Semantic search over the VSS index (Cosmos Embed + captions), limited to the Nexar public-test clips uploaded on 2026-10-02.</div>
+    <div id="res"></div>`;
+  $('#q').onkeydown = e => { if (e.key === 'Enter') $('#go').click(); };
+  $('#go').onclick = async () => {
+    const q = $('#q').value.trim(); if (!q) return;
+    $('#res').innerHTML = '<span class="spinner"></span> Searching (takes ~15 s)…';
+    try { const d = await api('search?q=' + encodeURIComponent(q)); $('#res').innerHTML = d.results.length ? momentTable(d.results) : '<div class="muted">No matches.</div>'; }
+    catch (err) { $('#res').textContent = 'Search failed: ' + err.message; }
+  };
+}
+
+async function method() {
+  OV = OV || await api('overview');
+  $('#view').innerHTML = `<div class="panel md" style="max-width:900px">
+    <h2>How MomentOS scores a trip</h2>
+    <p>Each dashcam clip runs through the VAST DataEngine pipeline: Segmenter (5 s segments) → YOLO11 detector → Cosmos Reason → Cosmos Embed1 → VastDB.
+    MomentOS adds a <b>precursor prompt</b> that asks Cosmos Reason for a fixed, parseable answer per segment: <code>RISK 0–10</code>, <code>CAUSE ego|other|none</code>, time-to-contact, gap to the lead vehicle, ego speed and cue flags (cut-in, hard braking ahead, pedestrian or cyclist in path, tailgating, lane drift, red light…).</p>
+    <p>The clip risk score blends four signals, weighted toward the final segment because Nexar clips stop 0.5–1.5 s before the event:</p>
+    <p>• Cosmos Reason precursor score (40%) • W&amp;B LLM judge reading the segment notes (25%) • Cosmos Embed similarity to hazard queries (20%) • YOLO11 in-path proximity, looming and pedestrians/cyclists in the final 0.5 s (15%). Weights were fixed before evaluation.</p>
+    <h2>Fairness guardrails</h2>
+    <p>• Opt-in and driver-facing. • Only driver-caused moments count; other road users' actions never do. • Discount or coaching only — no surcharge tier. • Human review before any tier change; any moment can be contested. • No location features (no penalising "accident-prone" areas). • No identification of people or vehicles. • Ground-truth labels are used only offline for evaluation and never reach the pipeline, the index prompts, or this app.</p>
+    <h2>Evaluation</h2>
+    <p>See <code>results/metrics.md</code> in the repo for AP / ROC AUC on the Nexar public test split with ablations.</p>
+    <h2>Models</h2><p>${Object.entries(OV.models).map(([k, v]) => `${k}: ${esc(v)}`).join(' · ')}</p>
+    <h2>Data</h2><p>${esc(OV.source)}. Citation: Moura, Daniel C., and Zvitia, Orly. "Nexar Collision Dataset." Hugging Face, 2025.</p>
+  </div>`;
+}
+
+const [v, arg] = (location.hash.slice(1) || 'drivers').split('/');
+go(({drivers: 1, rider: 1, moments: 1, clip: 1, search: 1, method: 1})[v] ? v : 'drivers', arg);
+</script>
+</body>
+</html>

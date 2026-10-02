@@ -1,0 +1,8 @@
+Forward dashcam clip from the ego vehicle. Judge collision risk in the LAST 2 seconds. Ignore scenery, signs, brands, weather unless they affect risk. Reply with exactly these 7 lines:
+RISK=<0-10 chance of a crash or near-miss in the next 2 s>
+CAUSE=<ego|other|none> (who creates the danger)
+TTC=<seconds until contact if nothing changes, or none>
+LEAD=<closing_fast|closing|steady|none> (gap to vehicle ahead)
+EGO=<stopped|slow|moderate|fast>
+CUES=<comma list from: hard_braking_ahead, brake_lights_ahead, cut_in, vehicle_crossing_path, oncoming_in_lane, pedestrian_in_path, cyclist_in_path, ego_speeding, ego_tailgating, ego_lane_drift, ego_red_light, occlusion, low_visibility, none>
+SUMMARY=<one sentence: the most dangerous actor and what it does>

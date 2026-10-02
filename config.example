@@ -1,0 +1,38 @@
+# MomentOS reads these from the environment and from the single /config/<team>.config file that
+# the VAST Builders Challenge VM provides. Never commit real values.
+
+# ---- identity (VSS backend login) ----
+USERNAME=team-N
+PASSWORD=
+
+# ---- S3 (segment videos, detection sidecars, upload metadata) ----
+S3_ENDPOINT=
+ACCESS_KEY=
+SECRET_KEY=
+S3_CHUNKS_BUCKET=team-N-vss-chunks
+S3_SEGMENTS_BUCKET=team-N-vss-chunks-segments
+
+# ---- VastDB (direct read-only access to segment rows and vectors) ----
+VASTDB_BUCKET=team-N-vss-db
+VDB_SCHEMA=vss-schema
+VDB_COLLECTION=vss-collection
+# Query Engine endpoint used for reads; defaults to the challenge cluster's value
+VDB_ENDPOINT=
+
+# ---- VSS backend / UI ----
+PIPELINE=
+INGRESS_URL=http://video-lab-team-N.cosmos.vastdata.com
+# Public name in front of INGRESS_URL (Cloudflare). The app is http://team-49-vss.thecosmoslabs.com/app
+# APP_HOST / PUBLIC_HOST overrides used by deploy/deploy.sh:
+# PUBLIC_HOST=team-49-vss.thecosmoslabs.com
+
+# ---- GPU models (Cosmos Reason :8001, YOLO11 :8002, Cosmos Embed1 :8003) ----
+GPU_BEARER_TOKEN=
+GPU_HOST=
+REASON_URL=
+EMBED_URL=
+
+# ---- Weights & Biases Inference ----
+WANDB_API_KEY=
+WANDB_TEAM=
+WANDB_PROJECT=
