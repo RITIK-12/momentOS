@@ -3,292 +3,675 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MomentOS · Safe-driver scoring from dashcam moments</title>
+<title>MomentOS · Driver safety scores from dashcam footage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d1117; --panel: #161b22; --panel2: #1c2330; --line: #2a3342; --text: #e6edf3; --muted: #8b98a9;
-    --high: #f0565c; --elev: #f2a93b; --low: #3fb96f; --other: #6aa8ff; --accent: #8e7bff;
+    --bg: #0a1020; --panel: #111a2e; --panel2: #16213a; --raise: #1c2945; --line: #223051; --line2: #31446d;
+    --text: #e8eefa; --muted: #93a3c2; --dim: #6a7ca2;
+    --accent: #7cc4ff; --ink: #04192e;
+    --high: #ff6b6b; --elev: #ffb547; --low: #34d399; --ego: #b49cff; --other: #7cc4ff;
+    --good: #34d399; --mid: #7cc4ff; --coach: #ffb547;
+    --r: 14px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; background: var(--bg); color: var(--text); }
-  header { display: flex; align-items: center; gap: 24px; padding: 14px 28px; border-bottom: 1px solid var(--line); background: #0f141b; position: sticky; top: 0; z-index: 5; }
-  .brand { font-weight: 700; font-size: 18px; letter-spacing: .2px; }
-  .brand span { color: var(--accent); }
-  .tag { color: var(--muted); font-size: 13px; }
-  nav { margin-left: auto; display: flex; gap: 4px; }
-  nav button { background: none; border: 1px solid transparent; color: var(--muted); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 14px; }
-  nav button.on { color: var(--text); background: var(--panel2); border-color: var(--line); }
-  main { max-width: 1280px; margin: 0 auto; padding: 22px 28px 60px; }
-  .notice { background: #141a24; border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 8px; color: var(--muted); margin-bottom: 18px; font-size: 13px; }
-  .notice b { color: var(--text); }
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
-  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
-  .kpi .v { font-size: 26px; font-weight: 700; }
-  .kpi .l { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
-  h2 { font-size: 16px; margin: 6px 0 12px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; cursor: pointer; transition: border-color .15s, transform .15s; }
-  .card:hover { border-color: #3b4659; transform: translateY(-1px); }
-  .row { display: flex; align-items: center; gap: 12px; }
-  .ring { --p: 50; --c: var(--low); width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; flex: none;
-          background: conic-gradient(var(--c) calc(var(--p) * 1%), #263042 0); }
-  .ring > div { width: 50px; height: 50px; border-radius: 50%; background: var(--panel); display: grid; place-items: center; font-weight: 700; font-size: 17px; }
-  .ring.big { width: 110px; height: 110px; } .ring.big > div { width: 88px; height: 88px; font-size: 30px; }
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
-  .badge.high { color: #fff; background: rgba(240,86,92,.18); border-color: rgba(240,86,92,.5); }
-  .badge.elevated { color: #fff; background: rgba(242,169,59,.16); border-color: rgba(242,169,59,.5); }
-  .badge.low { color: #fff; background: rgba(63,185,111,.14); border-color: rgba(63,185,111,.45); }
-  .badge.ego { color: #fff; background: rgba(142,123,255,.18); border-color: rgba(142,123,255,.55); }
-  .badge.other { color: #fff; background: rgba(106,168,255,.14); border-color: rgba(106,168,255,.5); }
-  .badge.tier { color: var(--text); background: var(--panel2); }
-  .muted { color: var(--muted); }
-  .small { font-size: 12px; }
-  table { width: 100%; border-collapse: collapse; }
-  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; }
-  tr.click { cursor: pointer; } tr.click:hover td { background: #18202b; }
-  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
-  .chip { font-size: 11.5px; padding: 2px 7px; border-radius: 6px; background: #222b39; color: #c9d4e2; border: 1px solid #2d3849; }
-  .btn { background: var(--panel2); color: var(--text); border: 1px solid var(--line); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; }
-  .btn:hover { border-color: #46526a; } .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn:disabled { opacity: .5; cursor: wait; }
-  .two { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; }
-  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
-  video { width: 100%; border-radius: 10px; background: #000; aspect-ratio: 16/9; }
-  .timeline { display: flex; gap: 3px; margin: 10px 0 4px; height: 26px; }
-  .timeline div { flex: 1; border-radius: 5px; display: grid; place-items: center; font-size: 11px; cursor: pointer; color: #0d1117; font-weight: 600; }
-  .bar { height: 8px; background: #263042; border-radius: 4px; overflow: hidden; }
-  .bar > i { display: block; height: 100%; background: var(--accent); }
-  .report { white-space: pre-wrap; background: #121822; border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin-top: 10px; font-size: 13px; }
-  .back { color: var(--muted); cursor: pointer; margin-bottom: 12px; display: inline-block; }
+  html { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; color: var(--text);
+    font: 14px/1.5 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: radial-gradient(1100px 560px at 85% -10%, #15264c 0%, transparent 60%), radial-gradient(900px 480px at -10% 0%, #0f1c3b 0%, transparent 55%), var(--bg);
+    background-attachment: fixed; }
+  button, input, select { font: inherit; color: inherit; }
+  svg.i { width: 16px; height: 16px; flex: none; }
+  [hidden] { display: none !important; }
+
+  header { position: sticky; top: 0; z-index: 20; background: rgba(10,16,32,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .hbar { max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 20px; }
+  .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .mark { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; flex: none; color: var(--ink);
+    background: linear-gradient(135deg, #8fd0ff, #4b7cf2); box-shadow: 0 6px 20px rgba(76,150,255,.3); }
+  .mark svg { width: 22px; height: 22px; }
+  .mark.big { width: 58px; height: 58px; border-radius: 17px; margin: 0 auto 18px; }
+  .mark.big svg { width: 32px; height: 32px; }
+  .wm { font-weight: 800; font-size: 19px; letter-spacing: -.2px; line-height: 1.15; }
+  .wm span { color: var(--accent); }
+  .wm-sub { color: var(--muted); font-size: 12.5px; }
+  nav { margin-left: auto; display: flex; gap: 4px; padding: 4px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+  nav button { display: flex; align-items: center; gap: 8px; border: 0; background: none; color: var(--muted); padding: 8px 14px; border-radius: 9px; cursor: pointer; font-weight: 600; font-size: 13.5px; }
+  nav button:hover { color: var(--text); }
+  nav button.on { background: var(--accent); color: var(--ink); }
+  .demo { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); border: 1px dashed var(--line2); padding: 6px 11px; border-radius: 999px; white-space: nowrap; cursor: help; }
+  .demo i { width: 7px; height: 7px; border-radius: 50%; background: var(--elev); }
+
+  main { flex: 1; width: 100%; max-width: 1280px; margin: 0 auto; padding: 28px 24px 56px; }
+  .ph { margin-bottom: 20px; }
+  .ph h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -.4px; }
+  .ph p { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; }
+  h2 { font-size: 16px; font-weight: 700; margin: 0; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .sh { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 32px 0 14px; flex-wrap: wrap; }
+  .sh .meta { color: var(--muted); font-size: 13px; }
+  .sub { color: var(--dim); font-size: 12.5px; }
+  .link { color: var(--accent); font-weight: 600; font-size: 13.5px; cursor: pointer; background: none; border: 0; padding: 0; }
+  .link:hover { text-decoration: underline; }
+  .back { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer; margin-bottom: 16px; font-weight: 600; background: none; border: 0; padding: 0; }
   .back:hover { color: var(--text); }
-  input[type=text], select { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; font-size: 14px; }
-  .searchbar { display: flex; gap: 8px; margin-bottom: 14px; } .searchbar input { flex: 1; }
-  footer { color: var(--muted); font-size: 12px; text-align: center; padding: 22px; border-top: 1px solid var(--line); }
-  .spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid #46526a; border-top-color: var(--text); border-radius: 50%; animation: s 0.8s linear infinite; vertical-align: -2px; }
-  @keyframes s { to { transform: rotate(360deg); } }
-  .md h1, .md h2, .md h3 { font-size: 14px; margin: 8px 0 4px; }
-  @media (max-width: 900px) { .two { grid-template-columns: 1fr; } .kpis { grid-template-columns: repeat(2, 1fr); } header { flex-wrap: wrap; } }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .tile { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; }
+  .tile .v { font-size: 30px; font-weight: 800; color: var(--accent); letter-spacing: -.5px; line-height: 1.15; }
+  .tile .l { font-weight: 600; margin-top: 2px; }
+
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+  .tierc { position: relative; overflow: hidden; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px 16px 22px; }
+  .tierc::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c); }
+  .tierc .top { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+  .tierc .big { font-size: 21px; font-weight: 800; color: var(--c); margin: 6px 0 2px; }
+  .tierc .n { color: var(--muted); font-size: 13px; }
+  .tierc .n b { color: var(--text); }
+  .policy { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 12.5px; margin-top: 12px; }
+  .policy span { display: flex; align-items: center; gap: 6px; }
+  .policy svg { color: var(--good); width: 14px; height: 14px; }
+
+  .lb { width: 100%; border-collapse: collapse; }
+  .lb th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--dim); font-weight: 600; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .lb td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .lb tbody tr:last-child td { border-bottom: 0; }
+  .lb tbody tr { cursor: pointer; }
+  .lb tbody tr:hover td { background: var(--panel2); }
+  .rk { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-weight: 800; font-size: 13px; background: var(--raise); color: var(--muted); }
+  .rk.r1 { background: linear-gradient(135deg, #ffd76a, #e8a93b); color: #3a2600; }
+  .rk.r2 { background: linear-gradient(135deg, #e3e9f5, #a9b6cc); color: #1d2533; }
+  .rk.r3 { background: linear-gradient(135deg, #f0b88a, #c27a48); color: #351c08; }
+  .who { display: flex; align-items: center; gap: 12px; }
+  .who b { display: block; font-weight: 600; }
+  .av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; flex: none; font-weight: 700; font-size: 13px;
+    color: hsl(var(--h) 90% 86%); background: hsl(var(--h) 42% 26%); border: 1px solid hsl(var(--h) 42% 38%); }
+  .av.lg { width: 68px; height: 68px; font-size: 23px; }
+  .sc { display: flex; align-items: center; gap: 12px; min-width: 150px; }
+  .sc b { font-size: 18px; width: 34px; font-weight: 800; }
+  .bar { flex: 1; height: 8px; background: var(--raise); border-radius: 99px; overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 99px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 600; white-space: nowrap;
+    color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); }
+  .pill .d, .ov .d { width: 7px; height: 7px; border-radius: 50%; background: var(--c); flex: none; }
+  .num { font-weight: 700; font-size: 15px; }
+  .chev { color: var(--dim); text-align: right; }
+
+  .filters { display: grid; gap: 14px; }
+  .frow { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .frow + .frow { border-top: 1px solid var(--line); padding-top: 14px; }
+  .frow > label { font-weight: 600; width: 86px; flex: none; }
+  .seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+  .seg button { display: inline-flex; align-items: center; gap: 8px; border: 0; background: none; color: var(--muted); padding: 7px 14px; border-radius: 9px; font-weight: 600; font-size: 13px; cursor: pointer; }
+  .seg button:hover { color: var(--text); }
+  .seg button.on { background: var(--accent); color: var(--ink); }
+  .cnt { font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 99px; background: var(--raise); color: var(--muted); }
+  .seg button.on .cnt { background: rgba(4,25,46,.16); color: var(--ink); }
+  select.sel { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; min-width: 220px; cursor: pointer; }
+
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+  .vcard { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: border-color .15s, transform .15s, box-shadow .15s; }
+  .vcard:hover { border-color: var(--line2); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,.35); }
+  .thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; background: linear-gradient(110deg, #111b30 30%, #1a2743 50%, #111b30 70%) 0 0/200% 100%; animation: shimmer 1.4s linear infinite; }
+  .thumb.ready { animation: none; background: #000; }
+  .thumb video { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .25s; }
+  .thumb.ready video { opacity: 1; }
+  .thumb.err { animation: none; }
+  .thumb.err::after { content: 'Preview unavailable'; position: absolute; inset: 0; display: grid; place-items: center; color: var(--dim); font-size: 12.5px; }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  .ov { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #fff; background: rgba(6,10,20,.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .ov svg.i { width: 13px; height: 13px; }
+  .ov.tl { top: 10px; left: 10px; } .ov.tr { top: 10px; right: 10px; } .ov.bl { bottom: 10px; left: 10px; } .ov.br { bottom: 10px; right: 10px; }
+  .play { width: 34px; height: 34px; padding: 0; justify-content: center; border-radius: 50%; transition: opacity .2s; }
+  .vcard:hover .play { opacity: 0; }
+  .vbody { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .vt { display: flex; align-items: center; gap: 10px; }
+  .vt .av { width: 28px; height: 28px; font-size: 11px; }
+  .vt b { font-weight: 700; font-size: 15px; }
+  .vt .sub { margin-left: auto; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cue { font-size: 12px; padding: 2px 8px; border-radius: 7px; background: var(--raise); color: #c8d4ea; border: 1px solid var(--line); }
+  .jl { font-size: 11px; font-weight: 700; letter-spacing: .7px; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+  .segs { display: flex; gap: 4px; }
+  .segs button { flex: 1; display: flex; justify-content: center; gap: 6px; border: 0; border-bottom: 2px solid var(--c); border-radius: 7px; padding: 6px 4px; font-size: 11.5px; font-weight: 700; cursor: pointer;
+    background: color-mix(in srgb, var(--c) 20%, var(--raise)); }
+  .segs button:hover { background: color-mix(in srgb, var(--c) 36%, var(--raise)); }
+  .segs button span { opacity: .75; }
+  .segs button.match { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .sum { display: flex; gap: 10px; padding: 10px 12px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); color: #cdd8ec; font-size: 13px; }
+  .sum p { margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .sum.full p { display: block; }
+  .sum svg { color: var(--accent); margin-top: 2px; }
+  .pager { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 26px; color: var(--muted); }
+  .empty { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 40px 16px; }
+  .loading { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--muted); padding: 48px 0; }
+  .spin { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--line2); border-top-color: var(--accent); border-radius: 50%; animation: rot .8s linear infinite; }
+  @keyframes rot { to { transform: rotate(360deg); } }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--panel2); border: 1px solid var(--line); padding: 9px 16px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13.5px; white-space: nowrap; }
+  .btn:hover:not(:disabled) { border-color: var(--line2); background: var(--raise); }
+  .btn:disabled { opacity: .45; cursor: default; }
+  .btn.pri { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+  .btn.pri:hover:not(:disabled) { background: #9ad3ff; border-color: #9ad3ff; }
+  input.txt { flex: 1; min-width: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; outline: 0; }
+  input.txt:focus { border-color: var(--accent); }
+
+  .dhead { display: grid; grid-template-columns: auto 1fr auto auto; gap: 24px; align-items: center; }
+  .dhead h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -.4px; }
+  .ring { width: 112px; height: 112px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--c) calc(var(--p) * 1%), var(--raise) 0); }
+  .ring > div { width: 90px; height: 90px; border-radius: 50%; background: var(--panel); display: grid; place-items: center; text-align: center; }
+  .ring b { font-size: 32px; font-weight: 800; line-height: 1; }
+  .ring small { display: block; font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .prem { padding: 14px 18px; border-radius: 12px; min-width: 220px; max-width: 280px; border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); background: color-mix(in srgb, var(--c) 10%, transparent); }
+  .prem .k { font-size: 11.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 600; }
+  .prem .big { font-size: 21px; font-weight: 800; color: var(--c); }
+  .report { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-top: 12px; font-size: 13.5px; white-space: pre-wrap; }
+
+  .two { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+  .player { border-radius: var(--r); overflow: hidden; background: #000; border: 1px solid var(--line); }
+  .player video { width: 100%; display: block; aspect-ratio: 16/9; background: #000; }
+  .tl { display: flex; gap: 8px; margin-top: 12px; }
+  .tl button { flex: 1; position: relative; overflow: hidden; text-align: left; border: 1px solid var(--line); background: var(--panel); border-radius: 10px; padding: 8px 12px 10px; cursor: pointer; }
+  .tl button::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--c); }
+  .tl button.on { border-color: var(--accent); background: var(--panel2); }
+  .tl .t { font-size: 12px; color: var(--muted); font-weight: 600; }
+  .tl .r { font-size: 16px; font-weight: 800; color: var(--c); }
+  .side { display: grid; gap: 14px; }
+  .riskbig { font-size: 34px; font-weight: 800; line-height: 1.1; letter-spacing: -.5px; }
+  .drv { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 12px; border-radius: 12px; background: var(--panel2); border: 1px solid var(--line); cursor: pointer; }
+  .drv:hover { border-color: var(--line2); }
+  .drv b { display: block; }
+  .drv .pill { margin-left: auto; }
+  table.st { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .st th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--dim); font-weight: 600; padding: 11px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  .st td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .st tbody tr:last-child td { border-bottom: 0; }
+  .wr { margin-top: 12px; }
+  .wr .lab { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; margin-bottom: 5px; }
+
+  .sbox { display: flex; gap: 12px; }
+  .sinput { flex: 1; display: flex; align-items: center; gap: 12px; background: var(--bg); border: 1px solid var(--line2); border-radius: 12px; padding: 0 16px; color: var(--muted); }
+  .sinput:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,196,255,.15); }
+  .sinput input { flex: 1; min-width: 0; background: none; border: 0; outline: 0; padding: 15px 0; font-size: 15px; color: var(--text); }
+  .hero { text-align: center; padding: 44px 20px 32px; margin-top: 20px; }
+  .hero h2 { font-size: 26px; font-weight: 800; letter-spacing: -.3px; }
+  .hero > p { color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+  .try { max-width: 620px; margin: 24px auto 0; text-align: left; background: var(--panel2); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; }
+  .try .h { color: var(--accent); font-weight: 700; margin-bottom: 4px; }
+  .try button { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: 0; padding: 9px 8px; cursor: pointer; border-radius: 8px; text-align: left; font-size: 14.5px; }
+  .try button:hover { background: var(--raise); }
+  .try svg { color: var(--accent); }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; }
+  .step .no { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: var(--ink); font-weight: 800; display: grid; place-items: center; margin-bottom: 12px; }
+  .step b { display: block; margin-bottom: 4px; }
+  .step p { margin: 0; color: var(--muted); font-size: 13px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .formula { margin: 12px 0 4px; padding: 12px 14px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); font-weight: 600; }
+  ul.ok { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 9px; }
+  ul.ok li { display: flex; gap: 10px; color: #cdd8ec; }
+  ul.ok svg { color: var(--good); margin-top: 2px; }
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin-top: 12px; font-size: 13px; }
+  .kv span:nth-child(odd) { color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); color: var(--dim); font-size: 12px; text-align: center; padding: 18px 24px; }
+
+  @media (max-width: 1000px) {
+    .two, .grid2 { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .dhead { grid-template-columns: auto 1fr; }
+    .wm-sub { display: none; }
+  }
+  @media (max-width: 760px) {
+    .hbar { flex-wrap: wrap; padding: 12px 16px; gap: 12px; }
+    nav { order: 3; width: 100%; margin: 0; }
+    nav button { flex: 1; justify-content: center; padding: 8px 6px; }
+    nav button span { display: none; }
+    .demo { margin-left: auto; }
+    main { padding: 20px 16px 40px; }
+    .tiers, .steps { grid-template-columns: 1fr; }
+    .hide-sm { display: none; }
+    .lb td, .lb th { padding: 10px; }
+    .sc { min-width: 90px; }
+    .frow > label { width: 100%; }
+    select.sel { width: 100%; }
+    .vgrid { grid-template-columns: 1fr; }
+    .sbox { flex-direction: column; }
+    .ring { width: 92px; height: 92px; } .ring > div { width: 74px; height: 74px; } .ring b { font-size: 26px; }
+    .prem { max-width: none; grid-column: 1 / -1; }
+  }
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">Moment<span>OS</span></div>
-  <div class="tag">Opt-in safe-driver scoring from dashcam near-miss moments</div>
-  <nav id="nav">
-    <button data-v="drivers" class="on">Drivers</button>
-    <button data-v="moments">Moments</button>
-    <button data-v="search">Search</button>
-    <button data-v="method">Method</button>
-  </nav>
+  <div class="hbar">
+    <div class="logo" onclick="go('drivers')">
+      <div class="mark" id="mark"></div>
+      <div><div class="wm">moment<span>OS</span></div><div class="wm-sub">Dashcam-based driver scoring for fairer insurance premiums</div></div>
+    </div>
+    <nav id="nav">
+      <button data-v="drivers" aria-label="Leaderboard"></button>
+      <button data-v="moments" aria-label="Moments"></button>
+      <button data-v="search" aria-label="Search"></button>
+      <button data-v="method" aria-label="How it works"></button>
+    </nav>
+    <div class="demo" title="Demo data: 24 fictional drivers built from anonymous public Nexar dashcam clips. Names are made up."><i></i>Demo drivers</div>
+  </div>
 </header>
 <main id="view"></main>
 <footer>
-  Data: Moura, Daniel C., and Zvitia, Orly. "Nexar Collision Dataset." Hugging Face, 2025 · Nexar Open Data License (no re-identification, no exploitative insurance practices).
-  · Built on VAST DataEngine + VastDB, NVIDIA Cosmos Reason / Embed1, YOLO11, and W&amp;B Inference.
+  Data: Moura, Daniel C., and Zvitia, Orly. "Nexar Collision Dataset." Hugging Face, 2025 · Nexar Open Data License ·
+  Built on VAST DataEngine + VastDB, NVIDIA Cosmos Reason / Embed1, YOLO11 and W&amp;B Inference.
 </footer>
 <script>
 const BASE = location.pathname.endsWith('/') ? location.pathname : location.pathname + '/';
 const api = (p, opt) => fetch(BASE + 'api/' + p, opt).then(async r => { if (!r.ok) throw new Error((await r.json().catch(() => ({}))).detail || r.status); return r.json(); });
 const $ = s => document.querySelector(s);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const CAUSE = {ego: 'Driver (ego)', other: 'Other road user', none: 'No clear cause'};
-const cueLabel = c => c.replace(/_/g, ' ');
-const riskColor = r => r == null ? '#3a4558' : r >= 7 ? 'var(--high)' : r >= 4 ? 'var(--elev)' : 'var(--low)';
-const scoreColor = s => s >= 85 ? 'var(--low)' : s >= 70 ? 'var(--elev)' : 'var(--high)';
-const ring = (v, big) => `<div class="ring ${big ? 'big' : ''}" style="--p:${v};--c:${scoreColor(v)}"><div>${v}</div></div>`;
-const levelBadge = l => `<span class="badge ${l}">${l} risk</span>`;
-const causeBadge = (c, lvl) => `<span class="badge ${c === 'ego' ? 'ego' : c === 'other' ? 'other' : ''}">${esc(CAUSE[c] || c)}${lvl !== 'low' && c !== 'ego' ? ' · not counted' : ''}</span>`;
-const chips = cs => `<div class="chips">${(cs || []).map(c => `<span class="chip">${esc(cueLabel(c))}</span>`).join('') || '<span class="muted small">no cues</span>'}</div>`;
-let OV = null;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const view = $('#view');
 
-function md(s) {
-  return esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/^#+\s*(.*)$/gm, '<b>$1</b>').replace(/^- /gm, '• ');
+const I = {
+  board: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>',
+  film: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+  shield: '<path d="M12 3 4 6v6c0 4.6 3.4 8.4 8 9 4.6-.6 8-4.4 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  back: '<path d="m15 18-6-6 6-6"/>',
+  chev: '<path d="m9 18 6-6-6-6"/>',
+  play: '<path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/>',
+  eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  check: '<path d="m5 12 5 5 9-10"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+};
+const ic = n => `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]}</svg>`;
+
+// Fictional display names for the 24 simulated drivers (clips come from anonymous, unrelated Nexar drivers).
+const NAMES = {R01: 'Maya Chen', R02: 'Daniel Okafor', R03: 'Sofia Ramirez', R04: 'Liam Byrne', R05: 'Aisha Khan', R06: 'Noah Williams',
+  R07: 'Priya Patel', R08: 'Lucas Martin', R09: 'Emma Lindqvist', R10: 'Mateo Rossi', R11: 'Hannah Kim', R12: 'Omar Haddad',
+  R13: 'Grace Mensah', R14: 'Ethan Brooks', R15: 'Yuki Tanaka', R16: 'Carlos Mendes', R17: 'Zoe Fischer', R18: 'Arjun Mehta',
+  R19: 'Chloe Dubois', R20: 'Samuel Adeyemi', R21: 'Isabella Costa', R22: 'Jack Thompson', R23: 'Leila Nasser', R24: 'Ben Carter'};
+const nameOf = id => NAMES[id] || `Driver ${id}`;
+const av = (id, cls = '') => `<span class="av ${cls}" style="--h:${(parseInt(String(id).slice(1), 10) * 53) % 360}">${esc(nameOf(id).split(' ').map(w => w[0]).join('').slice(0, 2))}</span>`;
+
+const TIER_UI = [{c: 'var(--good)', prem: 'Up to 15% off'}, {c: 'var(--mid)', prem: 'No change'}, {c: 'var(--coach)', prem: 'Free coaching'}];
+const tierUI = t => TIER_UI[Math.max(0, OV.policy.tiers.findIndex(x => x.name === t.name))] || TIER_UI[1];
+const LEVEL = {high: ['High risk', 'var(--high)'], elevated: ['Elevated', 'var(--elev)'], low: ['Low risk', 'var(--low)']};
+const CAUSE = {ego: 'Driver', other: 'Other road user', none: 'No clear cause'};
+const riskCol = r => r == null ? 'var(--dim)' : r >= 7 ? 'var(--high)' : r >= 4 ? 'var(--elev)' : 'var(--low)';
+const pill = (t, c, dot) => `<span class="pill" style="--c:${c}">${dot ? '<span class="d"></span>' : ''}${esc(t)}</span>`;
+const causePill = (cause, level) => level === 'low' ? '' : cause === 'ego' ? pill('Driver-caused · counts', 'var(--ego)')
+  : pill(`${CAUSE[cause] || cause} · not counted`, cause === 'other' ? 'var(--other)' : 'var(--dim)');
+const cues = (cs, max = 9) => (cs || []).slice(0, max).map(c => `<span class="cue">${esc(c.replace(/_/g, ' '))}</span>`).join('');
+const pct = s => Math.round(s * 100);
+const pctOf = (a, b) => Math.round(100 * a / Math.max(1, b));
+const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+const segT = (s, dur) => `${(s.n - 1) * 5}–${Math.round(Math.min(s.n * 5, dur || s.n * 5))}s`;
+const tile = (v, l, s) => `<div class="tile"><div class="v">${v}</div><div class="l">${l}</div>${s ? `<div class="sub">${s}</div>` : ''}</div>`;
+const md = s => esc(s).replace(/[*]{2}(.+?)[*]{2}/g, '<b>$1</b>').replace(/^#+\s*(.*)$/gm, '<b>$1</b>').replace(/^- /gm, '• ');
+
+$('#mark').innerHTML = ic('shield');
+const NAV = {drivers: ['board', 'Leaderboard'], moments: ['film', 'Moments'], search: ['search', 'Search'], method: ['info', 'How it works']};
+document.querySelectorAll('#nav button').forEach(b => { const [i, l] = NAV[b.dataset.v]; b.innerHTML = `${ic(i)}<span>${l}</span>`; b.onclick = () => go(b.dataset.v); });
+
+// ---------- data ----------
+let OV = null, DB = null, tok = 0, navs = 0;
+async function load() {
+  const [o, d] = await Promise.all([OV || api('overview'), DB || fetch(BASE + 'static/data.json').then(r => { if (!r.ok) throw new Error('data.json ' + r.status); return r.json(); })]);
+  if (!DB) { DB = d; DB.byId = Object.fromEntries(d.clips.map(c => [c.id, c])); }
+  if (OV !== o) { OV = o; OV.rank = Object.fromEntries(OV.riders.map(r => [r.id, 1 + OV.riders.filter(x => x.safe_score > r.safe_score).length])); }
 }
 
-document.querySelectorAll('#nav button').forEach(b => b.onclick = () => go(b.dataset.v));
-function go(v, arg) {
-  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.v === v || (v === 'rider' && b.dataset.v === 'drivers') || (v === 'clip' && b.dataset.v === 'moments')));
-  history.replaceState(null, '', '#' + v + (arg ? '/' + arg : ''));
-  ({drivers, rider, moments, clip, search, method})[v](arg);
+// ---------- video previews: lazy-load when visible, play on hover ----------
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io.unobserve(e.target); attach(e.target); } }), {rootMargin: '250px'}) : null;
+function attach(v) { if (v.dataset.src && !v.getAttribute('src')) { v.preload = 'metadata'; v.src = v.dataset.src; } }
+function wire(root = view) {
+  root.querySelectorAll('.thumb video').forEach(v => {
+    if (v.dataset.w) return;
+    v.dataset.w = 1;
+    const th = v.parentElement, ready = () => th.classList.add('ready');
+    ['loadeddata', 'seeked', 'playing'].forEach(ev => v.addEventListener(ev, ready, {once: true}));
+    v.addEventListener('error', () => { if (v.getAttribute('src')) th.classList.add('err'); });
+    th.addEventListener('mouseenter', () => { attach(v); v.play().catch(() => {}); });
+    th.addEventListener('mouseleave', () => v.pause());
+    io ? io.observe(v) : attach(v);
+  });
+}
+function release(root = view) { root.querySelectorAll('video').forEach(v => { if (io) io.unobserve(v); v.pause(); v.removeAttribute('src'); v.load(); }); }
+function seekCard(btn, t) {
+  const v = btn.closest('.vcard').querySelector('video');
+  attach(v);
+  const f = () => { v.currentTime = t; v.play().catch(() => {}); };
+  v.readyState >= 1 ? f() : v.addEventListener('loadedmetadata', f, {once: true});
+}
+
+function card(c, x = {}) {
+  const d = DB.byId[c.id] || c, segs = d.segments || [], peak = d.peak_segment || 1, dur = d.duration || 10;
+  const t = Math.max(0, Math.min(x.start ?? (peak - 1) * 5 + 2, dur - 0.5));
+  const [lt, lc] = LEVEL[d.level] || ['Unscored', 'var(--dim)'];
+  return `<article class="vcard" onclick="go('clip','${esc(d.id)}')">
+    <div class="thumb">
+      <video muted playsinline loop preload="none" data-src="${BASE}api/stream/${esc(d.id)}#t=${t.toFixed(1)}"></video>
+      <span class="ov tl" style="--c:${lc}" title="Trip risk score ${pct(d.score)}/100"><span class="d"></span>${lt} · ${pct(d.score)}</span>
+      ${x.sim != null ? `<span class="ov tr" title="Search similarity">${ic('search')}${Number(x.sim).toFixed(2)}</span>` : ''}
+      <span class="ov bl">${ic('clock')}${fmt(dur)}</span>
+      <span class="ov br play">${ic('play')}</span>
+    </div>
+    <div class="vbody">
+      <div class="vt">${av(d.rider)}<b>${esc(nameOf(d.rider))}</b><span class="sub">Trip ${esc(d.id)}</span></div>
+      <div class="tags">${causePill(d.cause, d.level)}${c.contested ? pill('Contested', 'var(--elev)') : ''}${cues(d.cues, 2)}</div>
+      <div><div class="jl">Jump to segment</div><div class="segs">${segs.map(s => `<button style="--c:${riskCol(s.risk)}" class="${s.n === x.match ? 'match' : ''}" title="Risk ${s.risk ?? '?'}/10${s.n === peak ? ' · riskiest segment' : ''}" onclick="event.stopPropagation();seekCard(this,${(s.n - 1) * 5})">${segT(s, dur)}<span>${s.n === peak ? '▲' : ''}${s.risk ?? '–'}</span></button>`).join('')}</div></div>
+      <div class="sum">${ic('eye')}<p>${esc(d.summary)}</p></div>
+    </div>
+  </article>`;
+}
+
+// ---------- routing ----------
+const VIEWS = {drivers, rider, moments, clip, search, method};
+const NAV_OF = {rider: 'drivers', clip: 'moments'};
+const stale = my => my !== tok;
+function go(v, arg) { const h = '#' + v + (arg ? '/' + arg : ''); if (location.hash === h) render(); else location.hash = h; }
+function back(fallback) { if (navs > 1) history.back(); else go(fallback); }
+async function render() {
+  let [v, arg] = decodeURIComponent(location.hash.slice(1)).split('/');
+  if (!VIEWS[v]) v = 'drivers';
+  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.v === (NAV_OF[v] || v)));
+  const my = ++tok; navs++;
+  release();
+  view.innerHTML = '<div class="loading"><span class="spin"></span>Loading…</div>';
   window.scrollTo(0, 0);
+  try {
+    await load();
+    if (stale(my)) return;
+    await VIEWS[v](arg, my);
+    if (!stale(my)) wire();
+  } catch (e) {
+    if (!stale(my)) view.innerHTML = `<div class="empty">Something went wrong: ${esc(e.message)}</div>`;
+  }
+}
+window.addEventListener('hashchange', render);
+
+// ---------- leaderboard ----------
+function range(i) {
+  const t = OV.policy.tiers;
+  return i === 0 ? `score ≥ ${t[0].min}` : i === t.length - 1 ? `below ${t[i - 1].min}` : `${t[i].min}–${t[i - 1].min - 1}`;
 }
 
 async function drivers() {
-  $('#view').innerHTML = '<span class="spinner"></span>';
-  OV = await api('overview');
-  const avg = Math.round(OV.riders.reduce((a, r) => a + r.safe_score, 0) / OV.riders.length);
-  const flagged = OV.levels.high + OV.levels.elevated;
-  $('#view').innerHTML = `
-    <div class="notice"><b>Simulated drivers.</b> The ${OV.clips} public Nexar test clips come from anonymous, unrelated drivers; MomentOS groups them into ${OV.riders.length} demo "drivers" to show driver-level scoring.
-      <b>Policy:</b> only moments the driver caused count; moments caused by other road users are shown but never counted; scores can unlock a discount or free coaching and never raise a premium; every tier change goes to human review and any moment can be contested.</div>
-    <div class="kpis">
-      <div class="kpi"><div class="v">${OV.clips}</div><div class="l">Trips analysed</div></div>
-      <div class="kpi"><div class="v">${flagged}</div><div class="l">Flagged moments (high + elevated)</div></div>
-      <div class="kpi"><div class="v">${Math.round(100 * OV.flagged_by_cause.ego / Math.max(1, flagged))}%</div><div class="l">Of flagged moments caused by driver</div></div>
-      <div class="kpi"><div class="v">${avg}</div><div class="l">Average safe-driving score</div></div>
+  const R = OV.riders, flagged = OV.levels.high + OV.levels.elevated;
+  const avg = Math.round(R.reduce((a, r) => a + r.safe_score, 0) / R.length);
+  const top = [...DB.clips].sort((a, b) => a.rank - b.rank).slice(0, 6);
+  view.innerHTML = `
+    <div class="ph"><h1>Driver leaderboard</h1><p>Every driver ranked by a safety score built from their own dashcam trips. Safer driving earns a lower premium.</p></div>
+    <div class="tiles">
+      ${tile(R.length, 'Drivers ranked')}
+      ${tile(OV.clips, 'Trips analysed', 'dashcam clips')}
+      ${tile(flagged, 'Risky moments', 'high + elevated')}
+      ${tile(pctOf(OV.flagged_by_cause.ego, flagged) + '%', 'Caused by drivers', 'the rest never count')}
+      ${tile(avg, 'Average score', 'out of 100')}
     </div>
-    <h2>Drivers</h2>
-    <div class="grid">${OV.riders.map(r => `
-      <div class="card" onclick="go('rider','${r.id}')">
-        <div class="row">${ring(r.safe_score)}<div>
-          <div style="font-weight:600">Driver ${r.id} <span class="muted small">(simulated)</span></div>
-          <div class="badge tier" style="margin-top:4px">${esc(r.tier.name)}</div></div></div>
-        <div class="small muted" style="margin-top:10px">${r.trips} trips · <b style="color:var(--text)">${r.ego_high + r.ego_elevated}</b> driver-caused · ${r.other_events} by others (not counted)${r.contested ? ` · ${r.contested} contested` : ''}</div>
-      </div>`).join('')}</div>`;
+    <div class="tiers">${OV.policy.tiers.map((t, i) => `
+      <div class="tierc" style="--c:${(TIER_UI[i] || TIER_UI[1]).c}">
+        <div class="top"><span>${esc(t.name)}</span><span>${range(i)}</span></div>
+        <div class="big">${(TIER_UI[i] || TIER_UI[1]).prem}</div>
+        <div class="n"><b>${R.filter(r => r.tier.name === t.name).length}</b> drivers</div>
+      </div>`).join('')}</div>
+    <div class="policy">${['Only driver-caused moments count', 'Scores never raise a premium', 'Tier changes are human-reviewed', 'Any moment can be contested'].map(s => `<span>${ic('check')}${s}</span>`).join('')}</div>
+    <div class="sh"><h2>Rankings</h2><span class="meta">Safety score 0–100 · higher is safer</span></div>
+    <div class="panel" style="padding:0;overflow:hidden"><table class="lb">
+      <thead><tr><th style="width:70px">Rank</th><th>Driver</th><th>Safety score</th><th>Premium</th><th class="hide-sm">Driver-caused moments</th><th class="hide-sm"></th></tr></thead>
+      <tbody>${R.map(r => { const u = tierUI(r.tier), k = OV.rank[r.id]; return `
+        <tr onclick="go('rider','${esc(r.id)}')">
+          <td><span class="rk ${k <= 3 ? 'r' + k : ''}">${k}</span></td>
+          <td><div class="who">${av(r.id)}<div><b>${esc(nameOf(r.id))}</b><span class="sub">${r.trips} trips</span></div></div></td>
+          <td><div class="sc"><b style="color:${u.c}">${r.safe_score}</b><div class="bar"><i style="width:${r.safe_score}%;background:${u.c}"></i></div></div></td>
+          <td>${pill(u.prem, u.c, 1)}<div class="sub" style="margin-top:3px">${esc(r.tier.name)}</div></td>
+          <td class="hide-sm"><span class="num">${r.ego_high + r.ego_elevated}</span> <span class="sub">· ${r.other_events} by others, not counted${r.contested ? ` · ${r.contested} contested` : ''}</span></td>
+          <td class="chev hide-sm">${ic('chev')}</td>
+        </tr>`; }).join('')}</tbody></table></div>
+    <div class="sh"><h2>Riskiest moments</h2><button class="link" onclick="go('moments')">See all moments →</button></div>
+    <div class="vgrid">${top.map(c => card(c)).join('')}</div>`;
 }
 
-async function rider(id) {
-  $('#view').innerHTML = '<span class="spinner"></span>';
-  const d = await api('riders/' + id), s = d.summary;
-  const flagged = d.clips.filter(c => c.level !== 'low');
-  $('#view').innerHTML = `
-    <span class="back" onclick="go('drivers')">← All drivers</span>
-    <div class="two">
-      <div class="panel">
-        <div class="row" style="gap:20px">${ring(s.safe_score, true)}
-          <div><div style="font-size:20px;font-weight:700">Driver ${s.id} <span class="muted small">(simulated)</span></div>
-            <div style="margin:6px 0"><span class="badge tier">${esc(s.tier.name)}</span> <span class="muted">${esc(s.tier.action)}</span></div>
-            <div class="small muted">${s.trips} trips · ${s.ego_high} high + ${s.ego_elevated} elevated driver-caused moments · ${s.events_per_10_trips} weighted events per 10 trips</div>
-            <div class="small muted">${s.other_events} moments caused by other road users (not counted)${s.contested ? ` · ${s.contested} contested (excluded pending review)` : ''}</div></div></div>
-        <p class="small muted" style="margin-top:14px">Score = 100 − 35 × (high + 0.4 × elevated driver-caused moments per 10 trips). Tiers: ≥85 reward (discount after human review), 70–84 standard (no change), &lt;70 coaching offered (no increase).</p>
-      </div>
-      <div class="panel">
-        <div class="row" style="justify-content:space-between"><h2 style="margin:0">Coaching note</h2>
-          <button class="btn primary" id="coachBtn">Generate with W&amp;B LLM</button></div>
-        <div id="coach" class="report md" style="${d.coach ? '' : 'display:none'}">${d.coach ? md(d.coach.note) : ''}</div>
-      </div>
+// ---------- driver ----------
+async function rider(id, my) {
+  const d = await api('riders/' + encodeURIComponent(id));
+  if (stale(my)) return;
+  const s = d.summary, u = tierUI(s.tier);
+  const G = {all: ['All trips', () => true], ego: ['Driver-caused', c => c.level !== 'low' && c.cause === 'ego'],
+    others: ['Caused by others', c => c.level !== 'low' && c.cause !== 'ego'], low: ['Low risk', c => c.level === 'low']};
+  view.innerHTML = `
+    <button class="back" onclick="back('drivers')">${ic('back')}Leaderboard</button>
+    <div class="panel dhead">
+      ${av(s.id, 'lg')}
+      <div><h1>${esc(nameOf(s.id))}</h1>
+        <div class="sub" style="font-size:13.5px">Rank #${OV.rank[s.id] ?? '–'} of ${OV.riders.length} · ${s.trips} trips · demo driver</div>
+        <div class="tags" style="margin-top:10px">${pill(s.tier.name, u.c, 1)}${s.contested ? pill(s.contested + ' contested', 'var(--elev)') : ''}</div></div>
+      <div class="ring" style="--p:${s.safe_score};--c:${u.c}"><div><div><b>${s.safe_score}</b><small>safety score</small></div></div></div>
+      <div class="prem" style="--c:${u.c}"><div class="k">Premium effect</div><div class="big">${u.prem}</div><div class="sub">${esc(s.tier.action)}</div></div>
     </div>
-    <h2 style="margin-top:20px">Flagged moments (${flagged.length})</h2>
-    ${momentTable(flagged)}
-    <h2 style="margin-top:20px">Other trips (${d.clips.length - flagged.length})</h2>
-    ${momentTable(d.clips.filter(c => c.level === 'low'))}`;
+    <div class="tiles" style="margin-top:12px">
+      ${tile(s.ego_high + s.ego_elevated, 'Driver-caused moments', `${s.ego_high} high · ${s.ego_elevated} elevated`)}
+      ${tile(s.other_events, 'Caused by others', 'not counted')}
+      ${tile(s.events_per_10_trips, 'Weighted events', 'per 10 trips')}
+      ${tile(d.clips.filter(G.low[1]).length, 'Low-risk trips', `of ${s.trips}`)}
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <div class="row"><div><h2>Coaching note</h2><div class="sub">AI-written tips based only on driver-caused moments</div></div>
+        <button class="btn pri" id="coachBtn" ${d.coach ? 'hidden' : ''}>Generate</button></div>
+      <div id="coach" class="report" ${d.coach ? '' : 'hidden'}>${d.coach ? md(d.coach.note) : ''}</div>
+    </div>
+    <div class="sh"><div class="seg" id="grp">${Object.entries(G).map(([k, [l, f]]) => `<button data-g="${k}">${l} <span class="cnt">${d.clips.filter(f).length}</span></button>`).join('')}</div>
+      <span class="meta">Riskiest first</span></div>
+    <div class="vgrid" id="trips"></div>`;
+  const show = k => {
+    document.querySelectorAll('#grp button').forEach(b => b.classList.toggle('on', b.dataset.g === k));
+    const box = $('#trips'), cs = d.clips.filter(G[k][1]);
+    release(box);
+    box.innerHTML = cs.map(c => card(c)).join('') || '<div class="empty">No trips here.</div>';
+    wire(box);
+  };
+  document.querySelectorAll('#grp button').forEach(b => b.onclick = () => show(b.dataset.g));
+  show('all');
   $('#coachBtn').onclick = async e => {
-    e.target.disabled = true; e.target.innerHTML = '<span class="spinner"></span> Writing…';
-    try { const c = await api(`riders/${id}/coach`, {method: 'POST'}); $('#coach').style.display = ''; $('#coach').innerHTML = md(c.note); }
-    catch (err) { $('#coach').style.display = ''; $('#coach').textContent = 'Failed: ' + err.message; }
-    e.target.disabled = false; e.target.textContent = 'Regenerate';
+    const b = e.currentTarget;
+    b.disabled = true; b.innerHTML = '<span class="spin"></span>Writing…';
+    try { const c = await api(`riders/${encodeURIComponent(id)}/coach`, {method: 'POST'}); $('#coach').innerHTML = md(c.note); b.hidden = true; }
+    catch (err) { $('#coach').textContent = 'Failed: ' + err.message; b.disabled = false; b.textContent = 'Retry'; }
+    $('#coach').hidden = false;
   };
 }
 
-function momentTable(cs) {
-  if (!cs.length) return '<div class="muted">None.</div>';
-  return `<div class="panel" style="padding:0"><table><thead><tr><th>Rank</th><th>Clip</th><th>Risk</th><th>Caused by</th><th>Cues</th><th>What the model saw</th></tr></thead><tbody>
-    ${cs.map(c => `<tr class="click" onclick="go('clip','${c.id}')">
-      <td>#${c.rank}</td><td>${c.id}<div class="small muted">driver ${c.rider}</div></td>
-      <td>${levelBadge(c.level)}<div class="small muted">${(c.score * 100).toFixed(0)}/100</div></td>
-      <td>${causeBadge(c.cause, c.level)}${c.contested ? '<div class="small" style="color:var(--elev)">contested</div>' : ''}</td>
-      <td>${chips(c.cues)}</td><td class="small">${esc(c.summary)}</td></tr>`).join('')}
-  </tbody></table></div>`;
-}
-
+// ---------- moments ----------
+const MS = {level: '', cause: '', rider: '', page: 0}, PER = 24;
 async function moments() {
-  $('#view').innerHTML = `
-    <div class="row" style="justify-content:space-between;margin-bottom:12px"><h2 style="margin:0">Riskiest moments across all trips</h2>
-      <div class="row"><select id="lvl"><option value="">All levels</option><option value="high">High</option><option value="elevated">Elevated</option><option value="low">Low</option></select>
-      <select id="cause"><option value="">Any cause</option><option value="ego">Driver-caused</option><option value="other">Other road user</option><option value="none">No clear cause</option></select></div></div>
-    <div id="list"><span class="spinner"></span></div>`;
-  const load = async () => {
-    const d = await api(`clips?limit=100&level=${$('#lvl').value}&cause=${$('#cause').value}`);
-    $('#list').innerHTML = `<div class="small muted" style="margin-bottom:8px">${d.total} clips · showing top ${d.clips.length}</div>` + momentTable(d.clips);
+  const all = [...DB.clips].sort((a, b) => a.rank - b.rank);
+  const ids = Object.keys(OV.rank).sort((a, b) => nameOf(a).localeCompare(nameOf(b)));
+  view.innerHTML = `
+    <div class="ph"><h1>Moments</h1><p>Every trip, ranked by collision risk. Hover a clip to preview it.</p></div>
+    <div class="panel filters">
+      <div class="frow"><label>Risk</label><div class="seg" id="fl"></div></div>
+      <div class="frow"><label>Caused by</label><div class="seg" id="fc"></div></div>
+      <div class="frow"><label>Driver</label><select class="sel" id="fr"><option value="">All drivers</option>${ids.map(i => `<option value="${esc(i)}">${esc(nameOf(i))}</option>`).join('')}</select></div>
+    </div>
+    <div class="sh"><h2 id="mt"></h2><span class="meta" id="mm"></span></div>
+    <div class="vgrid" id="mg"></div>
+    <div class="pager" id="mp"></div>`;
+  const chips = (el, key, opts, base) => {
+    $(el).innerHTML = opts.map(([v, l]) => `<button data-v="${v}" class="${MS[key] === v ? 'on' : ''}">${l} <span class="cnt">${base.filter(c => !v || c[key] === v).length}</span></button>`).join('');
+    $(el).querySelectorAll('button').forEach(b => b.onclick = () => { MS[key] = b.dataset.v; MS.page = 0; draw(); });
   };
-  $('#lvl').onchange = $('#cause').onchange = load; load();
+  const toGrid = () => window.scrollTo({top: $('#mt').getBoundingClientRect().top + scrollY - 96, behavior: 'smooth'});
+  const draw = () => {
+    const byR = all.filter(c => !MS.rider || c.rider === MS.rider);
+    const byL = byR.filter(c => !MS.level || c.level === MS.level);
+    const cs = byL.filter(c => !MS.cause || c.cause === MS.cause);
+    chips('#fl', 'level', [['', 'All'], ['high', 'High'], ['elevated', 'Elevated'], ['low', 'Low']], byR);
+    chips('#fc', 'cause', [['', 'Anyone'], ['ego', 'Driver'], ['other', 'Other road user'], ['none', 'No clear cause']], byL);
+    const pages = Math.max(1, Math.ceil(cs.length / PER));
+    MS.page = Math.min(MS.page, pages - 1);
+    const from = MS.page * PER, slice = cs.slice(from, from + PER);
+    $('#mt').textContent = MS.rider ? `${nameOf(MS.rider)}’s trips` : 'All trips';
+    $('#mm').textContent = cs.length ? `${cs.length} trips · showing ${from + 1}–${from + slice.length} · riskiest first` : '';
+    const g = $('#mg');
+    release(g);
+    g.innerHTML = slice.map(c => card(c)).join('') || '<div class="empty">No trips match these filters.</div>';
+    wire(g);
+    $('#mp').innerHTML = pages > 1 ? `<button class="btn" id="pv" ${MS.page ? '' : 'disabled'}>${ic('back')}Previous</button><span>Page ${MS.page + 1} of ${pages}</span><button class="btn" id="nx" ${MS.page < pages - 1 ? '' : 'disabled'}>Next${ic('chev')}</button>` : '';
+    if (pages > 1) { $('#pv').onclick = () => { MS.page--; draw(); toGrid(); }; $('#nx').onclick = () => { MS.page++; draw(); toGrid(); }; }
+  };
+  $('#fr').value = MS.rider;
+  $('#fr').onchange = e => { MS.rider = e.target.value; MS.page = 0; draw(); };
+  draw();
 }
 
-async function clip(id) {
-  $('#view').innerHTML = '<span class="spinner"></span>';
-  const c = await api('clips/' + id);
-  const comp = c.components || {};
-  const compRows = Object.entries({precursor: 'Cosmos Reason precursor score', search: 'Hazard-query similarity (Cosmos Embed)', yolo: 'In-path proximity & looming (YOLO11)', llm: 'W&B LLM judge'})
-    .filter(([k]) => k in comp).map(([k, l]) => `<div class="small" style="margin:6px 0 2px">${l} <span class="muted">z=${comp[k].toFixed(2)}</span></div>
-      <div class="bar"><i style="width:${Math.max(3, Math.min(100, 50 + comp[k] * 20))}%"></i></div>`).join('');
-  $('#view').innerHTML = `
-    <span class="back" onclick="history.length > 1 ? history.back() : go('moments')">← Back</span>
+// ---------- clip ----------
+const COMP = {precursor: 'Cosmos Reason precursor', search: 'Hazard similarity · Cosmos Embed', yolo: 'Proximity & looming · YOLO11', llm: 'LLM judge · W&B'};
+async function clip(id, my) {
+  const c = await api('clips/' + encodeURIComponent(id));
+  if (stale(my)) return;
+  const comp = c.components || {}, r = OV.riders.find(x => x.id === c.rider), u = r ? tierUI(r.tier) : TIER_UI[1];
+  const [lt, lc] = LEVEL[c.level] || ['Unscored', 'var(--dim)'];
+  const tag = c.level === 'low' ? pill('No risky moment', 'var(--low)') : c.cause === 'ego' ? pill('Driver-caused · counts toward score', 'var(--ego)')
+    : pill(`${CAUSE[c.cause] || c.cause} · not counted`, c.cause === 'other' ? 'var(--other)' : 'var(--dim)');
+  const cstText = x => x ? `Contested · ${esc(x.status)}. Excluded from the score until reviewed.` : 'A contested moment is excluded from the score until a human reviews it.';
+  view.innerHTML = `
+    <button class="back" onclick="back('moments')">${ic('back')}Back</button>
     <div class="two">
       <div>
-        <video id="vid" controls preload="metadata" src="${BASE}api/stream/${c.id}"></video>
-        <div class="timeline">${c.segments.map(s => `<div title="segment ${s.n}: risk ${s.risk}" style="background:${riskColor(s.risk)}" onclick="seek(${(s.n - 1) * 5})">${s.n === c.peak_segment ? '▲ ' : ''}${(s.n - 1) * 5}s · risk ${s.risk ?? '?'}</div>`).join('')}</div>
-        <div class="small muted">Segments are 5 s; ▲ marks the riskiest segment. The clip ends just before the moment that matters.</div>
-        <div class="panel" style="margin-top:14px;padding:0"><table><thead><tr><th>Seg</th><th>Risk</th><th>Cause</th><th>TTC</th><th>Gap ahead</th><th>Ego speed</th><th>Cues / summary</th></tr></thead><tbody>
-          ${c.segments.map(s => `<tr><td>${s.n}/${s.of}</td><td style="color:${riskColor(s.risk)};font-weight:700">${s.risk ?? '?'}</td><td>${esc(CAUSE[s.cause] || '—')}</td>
-            <td>${s.ttc != null ? s.ttc + ' s' : '—'}</td><td>${esc(s.lead || '—')}</td><td>${esc(s.ego || '—')}</td><td>${chips(s.cues)}<div class="small" style="margin-top:4px">${esc(s.summary)}</div></td></tr>`).join('')}
-        </tbody></table></div>
+        <div class="player"><video id="vid" controls playsinline preload="metadata" src="${BASE}api/stream/${esc(c.id)}"></video></div>
+        <div class="tl" id="tl">${c.segments.map(s => `<button data-n="${s.n}" style="--c:${riskCol(s.risk)}" onclick="seek(${(s.n - 1) * 5})"><div class="t">${segT(s, c.duration)}${s.n === c.peak_segment ? ' · riskiest' : ''}</div><div class="r">${s.risk ?? '–'}<span class="sub"> /10</span></div></button>`).join('')}</div>
+        <div class="panel" style="padding:0;margin-top:16px;overflow-x:auto"><table class="st">
+          <thead><tr><th>Segment</th><th>Risk</th><th>Caused by</th><th>Time to contact</th><th>Lead vehicle</th><th>Speed</th><th>What the model saw</th></tr></thead>
+          <tbody>${c.segments.map(s => `<tr><td style="white-space:nowrap">${segT(s, c.duration)}</td><td style="color:${riskCol(s.risk)};font-weight:800">${s.risk ?? '–'}</td><td>${esc(CAUSE[s.cause] || '–')}</td>
+            <td>${s.ttc != null ? s.ttc + ' s' : '–'}</td><td>${esc(s.lead || '–')}</td><td>${esc(s.ego || '–')}</td>
+            <td style="min-width:220px"><div class="tags">${cues(s.cues)}</div><div style="margin-top:4px">${esc(s.summary)}</div></td></tr>`).join('')}</tbody></table></div>
       </div>
-      <div>
+      <div class="side">
         <div class="panel">
-          <div class="row" style="justify-content:space-between"><div style="font-size:18px;font-weight:700">Clip ${c.id}</div>${levelBadge(c.level)}</div>
-          <div class="small muted" style="margin:4px 0 10px">Driver ${c.rider} (simulated) · rank #${c.rank} of all trips · risk ${(c.score * 100).toFixed(0)}/100</div>
-          <div style="margin-bottom:8px">${causeBadge(c.cause, c.level)}</div>
-          ${chips(c.cues)}
-          <p style="margin:12px 0 4px">${esc(c.summary)}</p>
-          ${c.llm && c.llm.rationale ? `<p class="small muted">LLM judge: risk ${c.llm.risk}/10, cause ${esc(c.llm.cause)}: ${esc(c.llm.rationale)}</p>` : ''}
-          <h2 style="margin-top:16px">Why this score</h2>${compRows}
+          <div class="row"><div><div class="sub">Trip ${esc(c.id)}</div><div class="riskbig" style="color:${lc}">${pct(c.score)}<span class="sub" style="font-size:14px;font-weight:600"> /100 risk</span></div></div>${pill(lt, lc, 1)}</div>
+          <div class="tags" style="margin-top:12px">${tag}${c.contested ? pill('Contested', 'var(--elev)') : ''}</div>
+          <p style="margin:14px 0 10px">${esc(c.summary)}</p>
+          <div class="tags">${cues(c.cues)}</div>
+          ${c.llm && c.llm.rationale ? `<div class="sum full" style="margin-top:12px">${ic('eye')}<p><b>LLM judge · ${esc(c.llm.risk)}/10</b> — ${esc(c.llm.rationale)}</p></div>` : ''}
+          <div class="drv" onclick="go('rider','${esc(c.rider)}')">${av(c.rider)}<div><b>${esc(nameOf(c.rider))}</b><div class="sub">Rank #${OV.rank[c.rider] ?? '–'} · score ${r ? r.safe_score : '–'}</div></div>${r ? pill(u.prem, u.c) : ''}</div>
         </div>
-        <div class="panel" style="margin-top:14px">
-          <div class="row" style="justify-content:space-between"><h2 style="margin:0">Incident report</h2><button class="btn primary" id="repBtn">${c.report ? 'Show' : 'Generate'}</button></div>
-          <div id="rep" class="report md" style="${c.report ? '' : 'display:none'}">${c.report ? md(c.report.answer) : ''}</div>
-          <div class="small muted" style="margin-top:6px">Written by Cosmos Reason via VSS /videos/synthesize from this clip's indexed segments.</div>
+        <div class="panel"><h2>Why this score</h2>
+          ${Object.entries(COMP).filter(([k]) => k in comp).map(([k, l]) => `<div class="wr"><div class="lab"><span>${l}</span><span class="sub">z ${comp[k] >= 0 ? '+' : ''}${comp[k].toFixed(2)}</span></div>
+            <div class="bar"><i style="width:${Math.max(3, Math.min(100, 50 + comp[k] * 20))}%;background:var(--accent)"></i></div></div>`).join('')}
         </div>
-        <div class="panel" style="margin-top:14px">
-          <h2 style="margin-top:0">Driver review</h2>
-          <div id="contestState" class="small" style="margin-bottom:8px">${c.contested ? `Contested: ${esc(c.contested.status)}` : 'Not contested. A contested moment is excluded from the score until a human reviews it.'}</div>
-          <div class="row"><input type="text" id="reason" placeholder="Why do you disagree? (optional)" style="flex:1">
-            <button class="btn" id="contestBtn">${c.contested ? 'Withdraw' : 'Contest'}</button></div>
+        <div class="panel">
+          <div class="row"><div><h2>Incident report</h2><div class="sub">Written by Cosmos Reason from this trip's segments</div></div><button class="btn pri" id="repBtn" ${c.report ? 'hidden' : ''}>Generate</button></div>
+          <div id="rep" class="report" ${c.report ? '' : 'hidden'}>${c.report ? md(c.report.answer) : ''}</div>
+        </div>
+        <div class="panel">
+          <h2>Dispute this moment</h2>
+          <div id="cst" class="sub" style="margin:4px 0 12px">${cstText(c.contested)}</div>
+          <div class="row"><input class="txt" id="reason" placeholder="Reason (optional)"><button class="btn" id="cBtn">${c.contested ? 'Withdraw' : 'Contest'}</button></div>
         </div>
       </div>
     </div>`;
-  window.seek = t => { const v = $('#vid'); v.currentTime = t; v.play(); };
-  $('#vid').addEventListener('loadedmetadata', () => { if (c.peak_segment > 1) $('#vid').currentTime = (c.peak_segment - 1) * 5; }, {once: true});
+  const v = $('#vid');
+  window.seek = t => { v.currentTime = t; v.play().catch(() => {}); };
+  v.addEventListener('loadedmetadata', () => { if (c.peak_segment > 1) v.currentTime = (c.peak_segment - 1) * 5; }, {once: true});
+  const hl = () => { const n = Math.min(c.segments.length, Math.floor(v.currentTime / 5) + 1); document.querySelectorAll('#tl button').forEach(b => b.classList.toggle('on', +b.dataset.n === n)); };
+  v.addEventListener('timeupdate', hl); hl();
   $('#repBtn').onclick = async e => {
-    e.target.disabled = true; e.target.innerHTML = '<span class="spinner"></span> Writing…';
-    try { const r = await api(`clips/${id}/report`, {method: 'POST'}); $('#rep').style.display = ''; $('#rep').innerHTML = md(r.answer); }
-    catch (err) { $('#rep').style.display = ''; $('#rep').textContent = 'Failed: ' + err.message; }
-    e.target.disabled = false; e.target.textContent = 'Show';
+    const b = e.currentTarget;
+    b.disabled = true; b.innerHTML = '<span class="spin"></span>Writing…';
+    try { const rep = await api(`clips/${encodeURIComponent(id)}/report`, {method: 'POST'}); $('#rep').innerHTML = md(rep.answer); b.hidden = true; }
+    catch (err) { $('#rep').textContent = 'Failed: ' + err.message; b.disabled = false; b.textContent = 'Retry'; }
+    $('#rep').hidden = false;
   };
-  $('#contestBtn').onclick = async () => {
-    const withdraw = !!c.contested;
-    const r = await api(`clips/${id}/contest`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({withdraw, reason: $('#reason').value})});
-    c.contested = r.contested;
-    $('#contestState').textContent = c.contested ? `Contested: ${c.contested.status}. Driver ${r.rider.id} score is now ${r.rider.safe_score}.` : `Contest withdrawn. Driver ${r.rider.id} score is ${r.rider.safe_score}.`;
-    $('#contestBtn').textContent = c.contested ? 'Withdraw' : 'Contest';
+  $('#cBtn').onclick = async e => {
+    const b = e.currentTarget;
+    b.disabled = true;
+    try {
+      const res = await api(`clips/${encodeURIComponent(id)}/contest`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({withdraw: !!c.contested, reason: $('#reason').value})});
+      c.contested = res.contested; OV = null;
+      $('#cst').innerHTML = `${cstText(c.contested)} ${esc(nameOf(res.rider.id))}’s score is now ${res.rider.safe_score}.`;
+      b.textContent = c.contested ? 'Withdraw' : 'Contest';
+    } catch (err) { $('#cst').textContent = 'Failed: ' + err.message; }
+    b.disabled = false;
   };
 }
 
-async function search() {
-  $('#view').innerHTML = `
-    <div class="searchbar"><input type="text" id="q" placeholder="e.g. vehicle ahead braking suddenly, cyclist entering the lane, car running a red light">
-      <button class="btn primary" id="go">Search</button></div>
-    <div class="chips" style="margin-bottom:14px">${['vehicle ahead braking suddenly', 'car cutting into our lane', 'pedestrian stepping into the road', 'cyclist crossing in front', 'driving at night in rain'].map(q => `<span class="chip" style="cursor:pointer" onclick="$('#q').value='${q}';$('#go').click()">${q}</span>`).join('')}</div>
-    <div class="small muted" style="margin-bottom:10px">Semantic search over the VSS index (Cosmos Embed + captions), limited to the Nexar public-test clips uploaded on 2026-10-02.</div>
+// ---------- search ----------
+const SR = {q: '', results: null, seq: 0};
+const EXAMPLES = ['vehicle ahead braking suddenly', 'car cutting into our lane', 'pedestrian stepping into the road', 'cyclist crossing in front', 'driving at night in rain'];
+async function search(_, my) {
+  view.innerHTML = `
+    <div class="panel"><div class="sbox">
+      <div class="sinput">${ic('search')}<input id="q" placeholder="Describe a driving moment, e.g. car cutting into our lane" value="${esc(SR.q)}"></div>
+      <button class="btn pri" id="go">${ic('search')}Search</button>
+    </div></div>
     <div id="res"></div>`;
-  $('#q').onkeydown = e => { if (e.key === 'Enter') $('#go').click(); };
-  $('#go').onclick = async () => {
-    const q = $('#q').value.trim(); if (!q) return;
-    $('#res').innerHTML = '<span class="spinner"></span> Searching (takes ~15 s)…';
-    try { const d = await api('search?q=' + encodeURIComponent(q)); $('#res').innerHTML = d.results.length ? momentTable(d.results) : '<div class="muted">No matches.</div>'; }
-    catch (err) { $('#res').textContent = 'Search failed: ' + err.message; }
+  const res = $('#res');
+  const show = () => {
+    release(res);
+    res.innerHTML = `<div class="sh"><h2>Results for “${esc(SR.q)}”</h2><span class="meta">${SR.results.length} trips</span></div>` +
+      (SR.results.length ? `<div class="vgrid">${SR.results.map(h => card(h, {sim: h.similarity, match: h.match_segment, start: h.match_start != null ? h.match_start + 1 : undefined})).join('')}</div>` : '<div class="empty">No matches. Try describing the moment differently.</div>');
+    wire(res);
   };
+  const run = async q => {
+    q = q.trim(); if (!q) return;
+    $('#q').value = q; SR.q = q;
+    const n = ++SR.seq;
+    release(res);
+    res.innerHTML = '<div class="loading"><span class="spin"></span>Searching every trip… about 15 seconds</div>';
+    try { const d = await api('search?q=' + encodeURIComponent(q)); if (stale(my) || n !== SR.seq) return; SR.results = d.results; show(); }
+    catch (e) { if (!stale(my) && n === SR.seq) res.innerHTML = `<div class="empty">Search failed: ${esc(e.message)}</div>`; }
+  };
+  if (SR.results) show();
+  else res.innerHTML = `<div class="panel hero">
+      <div class="mark big">${ic('search')}</div>
+      <h2>What are you looking for?</h2><p>Describe a driving moment in plain words to find it across every trip.</p>
+      <div class="try"><div class="h">Try something like:</div>${EXAMPLES.map(q => `<button data-q="${esc(q)}">${ic('search')}“${esc(q)}”</button>`).join('')}</div>
+    </div>`;
+  res.onclick = e => { const b = e.target.closest('[data-q]'); if (b) run(b.dataset.q); };
+  $('#q').onkeydown = e => { if (e.key === 'Enter') run(e.target.value); };
+  $('#go').onclick = () => run($('#q').value);
 }
 
+// ---------- how it works ----------
 async function method() {
-  OV = OV || await api('overview');
-  $('#view').innerHTML = `<div class="panel md" style="max-width:900px">
-    <h2>How MomentOS scores a trip</h2>
-    <p>Each dashcam clip runs through the VAST DataEngine pipeline: Segmenter (5 s segments) → YOLO11 detector → Cosmos Reason → Cosmos Embed1 → VastDB.
-    MomentOS adds a <b>precursor prompt</b> that asks Cosmos Reason for a fixed, parseable answer per segment: <code>RISK 0–10</code>, <code>CAUSE ego|other|none</code>, time-to-contact, gap to the lead vehicle, ego speed and cue flags (cut-in, hard braking ahead, pedestrian or cyclist in path, tailgating, lane drift, red light…).</p>
-    <p>The clip risk score blends four signals, weighted toward the final segment because Nexar clips stop 0.5–1.5 s before the event:</p>
-    <p>• Cosmos Reason precursor score (40%) • W&amp;B LLM judge reading the segment notes (25%) • Cosmos Embed similarity to hazard queries (20%) • YOLO11 in-path proximity, looming and pedestrians/cyclists in the final 0.5 s (15%). Weights were fixed before evaluation.</p>
-    <h2>Fairness guardrails</h2>
-    <p>• Opt-in and driver-facing. • Only driver-caused moments count; other road users' actions never do. • Discount or coaching only — no surcharge tier. • Human review before any tier change; any moment can be contested. • No location features (no penalising "accident-prone" areas). • No identification of people or vehicles. • Ground-truth labels are used only offline for evaluation and never reach the pipeline, the index prompts, or this app.</p>
-    <h2>Evaluation</h2>
-    <p>See <code>results/metrics.md</code> in the repo for AP / ROC AUC on the Nexar public test split with ablations.</p>
-    <h2>Models</h2><p>${Object.entries(OV.models).map(([k, v]) => `${k}: ${esc(v)}`).join(' · ')}</p>
-    <h2>Data</h2><p>${esc(OV.source)}. Citation: Moura, Daniel C., and Zvitia, Orly. "Nexar Collision Dataset." Hugging Face, 2025.</p>
-  </div>`;
+  const th = DB.thresholds || {}, tiers = OV.policy.tiers;
+  const step = (n, t, p) => `<div class="step"><div class="no">${n}</div><b>${t}</b><p>${p}</p></div>`;
+  const blend = [['Cosmos Reason precursor', 40], ['LLM judge · W&B', 25], ['Hazard similarity · Cosmos Embed', 20], ['Proximity & looming · YOLO11', 15]];
+  view.innerHTML = `
+    <div class="ph"><h1>How momentOS works</h1><p>From dashcam footage to a fair, explainable insurance score.</p></div>
+    <div class="steps">
+      ${step(1, 'Dashcam trip', 'Each trip clip is split into 5-second segments on VAST DataEngine.')}
+      ${step(2, 'AI review', 'Cosmos Reason, YOLO11 and Cosmos Embed rate every segment for collision warning signs and who caused them.')}
+      ${step(3, 'Risky moments', `Trips scoring above ${pct(th.elevated ?? 0)} are flagged elevated, above ${pct(th.high ?? 0)} high.`)}
+      ${step(4, 'Score & premium', 'Driver-caused moments per 10 trips set a 0–100 safety score and a premium tier.')}
+    </div>
+    <div class="grid2">
+      <div class="panel"><h2>Safety score</h2>
+        <div class="formula">score = 100 − 35 × (high + 0.4 × elevated) per 10 trips</div>
+        <div class="sub">Counts driver-caused moments only.</div>
+        <table class="st" style="margin-top:10px"><thead><tr><th>Tier</th><th>Score</th><th>Premium</th></tr></thead><tbody>
+          ${tiers.map((t, i) => `<tr><td>${pill(t.name, (TIER_UI[i] || TIER_UI[1]).c, 1)}</td><td>${range(i).replace('score ', '')}</td><td>${esc(t.action)}</td></tr>`).join('')}
+        </tbody></table>
+      </div>
+      <div class="panel"><h2>Fairness guardrails</h2><ul class="ok">${['Opt-in and driver-facing', 'Only driver-caused moments count', 'Discounts and coaching only, never a surcharge', 'Human review before any tier change',
+        'Any moment can be contested', 'No location data; no identifying people or plates', 'Ground-truth labels used only for offline evaluation'].map(s => `<li>${ic('check')}${s}</li>`).join('')}</ul></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><h2>Trip risk blend</h2><div class="sub">Weighted toward the last segment: clips end 0.5–1.5 s before the event.</div>
+        ${blend.map(([l, w]) => `<div class="wr"><div class="lab"><span>${l}</span><b>${w}%</b></div><div class="bar"><i style="width:${w * 2.5}%;background:var(--accent)"></i></div></div>`).join('')}
+      </div>
+      <div class="panel"><h2>Accuracy</h2><div class="sub">Predicting which Nexar test clips end in a collision or near-miss (667 clips).</div>
+        <div class="tiles" style="margin-top:12px">${tile('0.754', 'Average precision', 'random = 0.50')}${tile('0.785', 'ROC AUC', 'random = 0.50')}</div>
+        <div class="kv">${Object.entries(OV.models).map(([k, m]) => `<span>${esc(k)}</span><span>${esc(m)}</span>`).join('')}<span>data</span><span>${esc(OV.source)}</span></div>
+      </div>
+    </div>`;
 }
 
-const [v, arg] = (location.hash.slice(1) || 'drivers').split('/');
-go(({drivers: 1, rider: 1, moments: 1, clip: 1, search: 1, method: 1})[v] ? v : 'drivers', arg);
+render();
 </script>
 </body>
 </html>
